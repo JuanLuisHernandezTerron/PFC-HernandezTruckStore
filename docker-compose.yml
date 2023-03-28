@@ -1,0 +1,14 @@
+version: '2.15.1' # specify docker-compose version
+
+# Define the services/containers to be run
+services:
+  angular:
+    hostname: localhost
+    #container_name: angular-app
+    build: ./src-frontend/frontend-HernandezTruck
+    ports:
+      - 8181:80
+  express: #name of the second service
+    build: ./src-api/backend-HernandezTruck # specify the directory of the Dockerfile
+    ports:
+      - "3000:3000" #specify ports forewarding
