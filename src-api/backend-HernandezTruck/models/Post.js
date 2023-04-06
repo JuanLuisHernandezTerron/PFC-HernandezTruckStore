@@ -5,6 +5,7 @@ var Usuario = require("../models/Usuario");
 var Vehiculo = require("../models/Vehiculo")
 
 var postSchema = new Schema({
+    titulo:{type: String, required:true},
     fecha_post:{type: Date, default: Date.now()},
     tipo_publicacion:{
         type: String,
@@ -16,8 +17,8 @@ var postSchema = new Schema({
         ref: 'Usuario'
     }],
     informacionUser:[{
-        idUsusarioVendedor:{type: Schema.ObjectId,ref:'Usuario'},
-        idVehiculo:{type: Schema.ObjectId,ref:'Vehiculo'}
+        idUsuarioVendedor:{type: Schema.ObjectId,ref:'Usuario'},
+        idVehiculo:{type: String,ref:'Vehiculo'}
     }]
 })
 

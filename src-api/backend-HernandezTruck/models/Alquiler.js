@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var db = mongoose.connection;
 var Usuario = require("../models/Usuario");
 var Vehiculo = require("../models/Vehiculo")
+var db = mongoose.connection;
 
 
 var alquilerSchema = new Schema({

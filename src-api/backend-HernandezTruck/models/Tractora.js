@@ -5,7 +5,7 @@ var Vehiculo = require("../models/Vehiculo");
 
 var tractoraSchema = new Schema({
     _id:{        
-        type: Schema.ObjectId,
+        type: String,
         ref: 'Vehiculo',
         required: true
     },
@@ -14,8 +14,9 @@ var tractoraSchema = new Schema({
     numeroDepositos:{type : Number,require:true},
     kms:{type : Number,require:true},
     combustible:{type:String,require:true},
-    modelo:{type:String,require:true},
     retarder:{type : Boolean,require:true}
 })
+
+
 
 module.exports = mongoose.model('Tractora', tractoraSchema);

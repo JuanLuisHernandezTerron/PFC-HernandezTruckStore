@@ -1,11 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
-var db = mongoose.connection;
+const validationToken = require('./../middleware/ValidacionToken')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const { newUser, getAllUsers, loginUser } = require('./../controllers/UsersController')
+
+/*POST - Ingreso del usuario */
+router.post('/register', newUser);
+
+/*POST - Login del usuario */
+router.post('/login', loginUser)
+
+/*GET - Información de todos los usuarios */
+router.get('/getAllUsers',validationToken,getAllUsers),
+
 
 module.exports = router;

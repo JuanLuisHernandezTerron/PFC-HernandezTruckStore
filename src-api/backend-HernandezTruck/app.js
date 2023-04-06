@@ -15,6 +15,7 @@ var usuarioRouter = require('./routes/usuario');
 var vehiculoRouter = require('./routes/vehiculo');
 var app = express();
 //-------------------INICIO MONGODB ATLAS
+
 var mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 
@@ -22,15 +23,16 @@ mongoose.connect(process.env.DB_URI, { useNewUrlParser: true })
   .then(() => console.log('Conexion Base de Datos establecida'))
   .catch((err) => console.error(err));
 var db = mongoose.connection;
+
 //-------------------FIN MONGODB ATLAS
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

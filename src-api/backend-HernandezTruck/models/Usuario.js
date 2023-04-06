@@ -6,12 +6,12 @@ var Posts = require("./Post")
 var usuarioSchema = new Schema({
     nombre:{type: String, required: true},
     apellidos:{type: String, required: true},
-    Email:{type: String, required: true},
+    email:{type: String, required: true},
     contrasena:{type: String, required: true},
     rol:{
         type: String,
-        enum:["registrado","administrador"],
-        default: "registrado"
+        default: "registrado",
+        enum:["registrado","administrador"]
     },
     dni:{type: String, max:8,required: true,index:{ unique: true}},
     telefono:{type: Number, required: true},
@@ -20,7 +20,10 @@ var usuarioSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'Post'
     }]
-})
+});
+
+const bcrypt = require('bcryptjs');
+const SALT_WORK_FACTOR = 10;
 
 // Contraseña
 usuarioSchema.pre('save', function (next) {
@@ -40,14 +43,11 @@ usuarioSchema.pre('save', function (next) {
     });
 });
 //Comparamos las contraseñas y nos la devuelve desencriptada.
-usuarioSchema.methods.comparePassword = function (candidatePassword, cb) {
-    bcrypt.compare(candidatePassword,
-        this.contrasena,
-        function (err,
-            isMatch) {
-            if (err) return cb(err);
-            cb(null, isMatch);
-        });
+usuarioSchema.methods.comparePassword = function(candidatePassword, cb) {
+    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+    if (err) return cb(err);
+    cb(null, isMatch);
+    });
 };
-
-module.exports = mongoose.model('Usuario', usuarioSchema);
+const Usuario = mongoose.model("Usuario",usuarioSchema)
+module.exports = Usuario;
