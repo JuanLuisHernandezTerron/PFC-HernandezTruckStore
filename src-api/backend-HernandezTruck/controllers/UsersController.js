@@ -6,21 +6,33 @@ const SALT_WORK_FACTOR = 10;
 const newUser = async function (req, res) {
   try{
     const data = req.body;
-    await Usuario.create(data)
-    const token = jwt.sign({_id:data._id},process.env.secret_key_jwt);
-    res.status(200).json({status:"Ingresado Correctamente",token})
-  
+    const consultaEmail = await Usuario.find({"email":data.email}).exec();
+    console.log(consultaEmail.length);
+    (consultaEmail.length === 0) ?
+     (await Usuario.create(data), 
+     ConsultaUsuario = await Usuario.find({"dni":data.dni}).exec(),
+     token = jwt.sign({_id: ConsultaUsuario[0]._id},process.env.secret_key_jwt,{expiresIn:'1d'}), 
+     res.status(200).json({status:"Ingresado Correctamente",token})
+     ) 
+     : 
+     res.send("Email ya existente");
    }catch(err){
-       console.log(err)
+       console.log(err);
        res.json({status:"error",error:"Usuario no registrado"})
    }
 };
 
 const loginUser = async function (req, res) {
   const {email , contrasena} = req.body;
-  const token = jwt.sign({email:email,contrasena:contrasena},process.env.secret_key_jwt);
-  res.status(200).json({token})
-
+  const ConsultaUsuario = await Usuario.find({"email":email}).exec();
+  const comparePassword = await bcrypt.compare(contrasena, ConsultaUsuario[0].contrasena);
+  console.log(ConsultaUsuario[0].contrasena)
+  if (ConsultaUsuario[0].email == email && comparePassword) {
+    const token = jwt.sign({_id: ConsultaUsuario[0]._id},process.env.secret_key_jwt,{expiresIn:'1d'});
+    res.status(200).json({token})
+  }else{
+    res.json({status:"error",error:"Usuario no registrado"})
+  }
 };
 
 const getAllUsers = async function (req, res) {

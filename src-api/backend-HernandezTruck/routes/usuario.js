@@ -8,7 +8,7 @@ const { newUser, getAllUsers, loginUser } = require('./../controllers/UsersContr
 router.post('/register', newUser);
 
 /*POST - Login del usuario */
-router.post('/login', loginUser)
+router.post('/login',validationToken, loginUser)
 
 /*GET - Información de todos los usuarios */
 router.get('/getAllUsers',validationToken,getAllUsers),
