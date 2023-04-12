@@ -1,0 +1,6 @@
+<mat-form-field class="width" appearance="fill">
+    <mat-label>Selecciona una ciudad</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let metodo of Ciudades" [value]="metodo">{{metodo}}</mat-option>
+    </mat-select>
+</mat-form-field>

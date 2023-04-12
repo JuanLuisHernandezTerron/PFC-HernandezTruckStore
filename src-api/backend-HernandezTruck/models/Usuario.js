@@ -6,7 +6,7 @@ var Posts = require("./Post")
 var usuarioSchema = new Schema({
     nombre:{type: String, required: true},
     apellidos:{type: String, required: true},
-    email:{type: String, required: true},
+    email:{type: String, required: true,index:{ unique: true}},
     contrasena:{type: String, required: true},
     rol:{
         type: String,

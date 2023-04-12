@@ -1,0 +1,4 @@
+<mat-form-field class="width" hintLabel="Máximo 9 características" appearance="fill">
+    <input matInput #input maxlength="9" placeholder="12345678X" required>
+    <mat-hint align="end">{{input.value.length}}/9</mat-hint>
+</mat-form-field>

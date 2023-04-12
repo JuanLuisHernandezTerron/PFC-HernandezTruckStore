@@ -1,0 +1,56 @@
+<div id="mainRegistro" class="container-fluid">
+    <div class="w-75 m-auto registro shadow-lg">
+        <div class="row">
+            <p class="col-12 justify-content-center d-flex title-registro">REGISTRO</p>
+        </div>
+        <div class="row">
+            <div class="col-6 text-center">
+                <h1 class="col-12 tittle-bienvenido mt-5">Bienvenido</h1>
+                <img class="img-fluid w-xl-50 col-12 img-camion " src="./../../../assets/img/190c447017303c654881ad49e85f4ad4.svg">
+            </div>
+            <div class="col-6">
+            <form class="">
+                <div class="row col-12">
+                    <label for="nameUser" name="namelabel">Nombre *</label>
+                    <app-input id="nameInput" name="nameUser"></app-input>
+                </div>
+                <div class="row col-12">
+                    <label for="ApellidosUser" name="Apellidoslabel">Apellidos *</label>
+                    <app-input id="ApellidosInput" name="ApellidosUser"></app-input>
+                </div>
+                <div class="row col-12">
+                    <label for="CorreoUser" name="Correolabel">Correo Electrónico *</label>
+                    <app-input-email id="CorreoInput" name="CorreoUser"></app-input-email>
+                </div>
+                <div class="row col-12">
+                    <label for="DNIUser" name="DNIlabel">DNI *</label>
+                    <app-input-dni id="DNIinput" name="DNIUser"></app-input-dni>
+                </div>
+                <div class="row col-12">
+                    <label for="Telfuser" name="Telflabel">Telefono *</label>
+                    <app-input-telefono id="Telfinput" name="TelfUser"></app-input-telefono>
+                </div>
+                <div class="row col-12">
+                    <label for="CalleUser" name="Callelabel">Ubicacion / Calle *</label>
+                    <app-input id="Calleinput" name="CalleUser"></app-input>
+                </div>
+                <div class="row col-12">
+                    <label for="CiudadUser" name="Ciudadlabel">Ciudad *</label>
+                    <app-input-ccaa id="Ciudadinput" name="CiudadUser"></app-input-ccaa>            
+                </div>
+                <div class="row col-12">
+                    <label for="DNIUser" name="DNIlabel">Contraseña *</label>
+                    <app-input-password id="DNIinput" name="DNIUser"></app-input-password>
+                </div>
+                <div class="row col-12">
+                    <label for="DNIConfirmUser" name="DNIConfirmlabel">Confirmar Contraseña *</label>
+                    <app-input-password id="DNIConfirminput" name="DNIConfirmUser"></app-input-password>
+                </div>
+                <div class="row col-12">
+                    <button class="ms-5 mt5 mb-5" type="button">Registrarme</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

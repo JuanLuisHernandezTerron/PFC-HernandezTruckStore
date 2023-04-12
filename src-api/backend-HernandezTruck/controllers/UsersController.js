@@ -31,7 +31,7 @@ const loginUser = async function (req, res) {
     const token = jwt.sign({_id: ConsultaUsuario[0]._id},process.env.secret_key_jwt,{expiresIn:'1d'});
     res.status(200).json({token})
   }else{
-    res.json({status:"error",error:"Usuario no registrado"})
+    res.json({status:"error",error:"Email incorrecto o contraseña incorrecta"})
   }
 };
 

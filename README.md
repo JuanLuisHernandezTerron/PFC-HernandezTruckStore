@@ -12,7 +12,7 @@ Hernández Truck Store
 #### Autor: Juan Luis Hernández Terrón https://github.com/JuanLuisHernandezTerron
 #### Tutor: Angélica Mora Nuñez
 #### Fecha de Inicio: 10-03-2023
-#### Fecha de Finalización: DD-MM-YYYY
+#### Fecha de Finalización: 14-06-2023
 
 ## Breve descripción del proyecto
 Este proyecto consiste en el desarrollo de una aplicación web destinada a los empresarios autónomos / empresas, del sector del transporte.
@@ -25,11 +25,6 @@ Este proyecto se ha realizado, ya que los pequeños autónomos o PYMES del secto
 que tanto empresas con gran renombre en nuestro país y también autónomos, quieran subir en nuestra aplicación sus vehículos(cabezas tractoras y remolques), donde podrán alquilar o vender.
 
 Con esta idea, los pequeños autónomos y PYMES podrán ampliar su flota de vehículos sin tener que desembolsar una gran cantidad de dinero, y así dándoles una 2da vida a cabezas tractoras y remolques.
-
-- **¿Qué va a hacer la aplicación?**
-- **¿Cuál es su atractivo principal?** 
-- **¿Qué problema concreto va a resolver?** 
-- **¿Qué necesidad va a cubrir?**
 
 ## Estructura del Proyecto
 He elegido esta estructura de carpetas para el PFC:
