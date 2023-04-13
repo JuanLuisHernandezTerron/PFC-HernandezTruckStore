@@ -4,50 +4,66 @@
             <p class="col-12 justify-content-center d-flex title-registro">REGISTRO</p>
         </div>
         <div class="row">
-            <div class="col-6 text-center">
-                <h1 class="col-12 tittle-bienvenido mt-5">Bienvenido</h1>
+            <div class="col-6 d-none d-xl-block text-center my-auto">
+                <h1 class="col-12 tittle-bienvenido">Bienvenido</h1>
                 <img class="img-fluid w-xl-50 col-12 img-camion " src="./../../../assets/img/190c447017303c654881ad49e85f4ad4.svg">
             </div>
-            <div class="col-6">
-            <form class="">
-                <div class="row col-12">
+            <div class="col-xl-6 col-12">
+            <form (submit)="registro()">
+                <div class="row col-12 inpustCenter">
                     <label for="nameUser" name="namelabel">Nombre *</label>
-                    <app-input id="nameInput" name="nameUser"></app-input>
+                    <mat-form-field class="width" appearance="fill">
+                        <input type="text" id="nameInput" name="nombre" placeholder="Inserte su nombre" [(ngModel)] = "user.nombre" matInput required>
+                    </mat-form-field>
                 </div>
-                <div class="row col-12">
+                <div class="row col-12 inpustCenter">
                     <label for="ApellidosUser" name="Apellidoslabel">Apellidos *</label>
-                    <app-input id="ApellidosInput" name="ApellidosUser"></app-input>
+                    <mat-form-field class="width" appearance="fill">
+                        <input type="text" [(ngModel)] = "user.apellidos" placeholder="Inserte su apellido" name="apellidos" matInput required>
+                    </mat-form-field>
                 </div>
-                <div class="row col-12">
+                <div class="row col-12 inpustCenter">
                     <label for="CorreoUser" name="Correolabel">Correo Electrónico *</label>
-                    <app-input-email id="CorreoInput" name="CorreoUser"></app-input-email>
+                    <mat-form-field class="width" appearance="fill">
+                        <input type="email" id="CorreoInput" [(ngModel)] = "user.email" name="email" matInput placeholder="example@example.es" [formControl]="email" required>
+                        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                    </mat-form-field>
                 </div>
-                <div class="row col-12">
+                <div class="row col-12 inpustCenter">
                     <label for="DNIUser" name="DNIlabel">DNI *</label>
-                    <app-input-dni id="DNIinput" name="DNIUser"></app-input-dni>
+                    <mat-form-field class="width" hintLabel="Máximo 9 características" appearance="fill">
+                        <input matInput id="DNIinput" [(ngModel)] = "user.dni" name="dni" #input maxlength="9" placeholder="12345678X" required>
+                        <mat-hint align="end">{{input.value.length}}/9</mat-hint>
+                    </mat-form-field>
                 </div>
-                <div class="row col-12">
+                <div class="row col-12 inpustCenter">
                     <label for="Telfuser" name="Telflabel">Telefono *</label>
-                    <app-input-telefono id="Telfinput" name="TelfUser"></app-input-telefono>
+                    <mat-form-field class="width" hintLabel="Máximo 9 características" appearance="fill">
+                        <input type="number" id="Telfinput" [(ngModel)] = "user.telefono" name="telefono" matInput #input minlength="9" maxlength="9" placeholder="XXXXXXXXX" required>
+                    </mat-form-field>
                 </div>
-                <div class="row col-12">
+                <div class="row col-12 inpustCenter">
                     <label for="CalleUser" name="Callelabel">Ubicacion / Calle *</label>
-                    <app-input id="Calleinput" name="CalleUser"></app-input>
+                    <mat-form-field class="width" appearance="fill">
+                        <input type="text" id="Calleinput" placeholder="Ej: C\Pedroso, Camas (Sevilla)" [(ngModel)] = "user.direccion" name="direccion" matInput required>
+                    </mat-form-field>
                 </div>
-                <div class="row col-12">
-                    <label for="CiudadUser" name="Ciudadlabel">Ciudad *</label>
-                    <app-input-ccaa id="Ciudadinput" name="CiudadUser"></app-input-ccaa>            
+                <div class="row col-12 inpustCenter">
+                    <label for="PasswdUser" name="Passwdlabel">Contraseña *</label>
+                    <mat-form-field class="width" appearance="fill">
+                        <mat-label>Introduce tu contraseña</mat-label>
+                        <input matInput id="Passwdinput" [(ngModel)] = "user.contrasena" name="contrasena" [type]="hide ? 'password' : 'text'" required>
+                    </mat-form-field>
                 </div>
-                <div class="row col-12">
-                    <label for="DNIUser" name="DNIlabel">Contraseña *</label>
-                    <app-input-password id="DNIinput" name="DNIUser"></app-input-password>
+                <div class="row col-12 inpustCenter">
+                    <label for="PasswdRepeatUser" name="PasswdRepeatlabel">Confirmar Contraseña *</label>
+                    <mat-form-field class="width" appearance="fill">
+                        <mat-label>Introduce tu contraseña</mat-label>
+                        <input matInput id="PasswRepeatdinput" [(ngModel)] = "user.contrasenaAUX" name="contrasenaRepeat" [type]="hide ? 'password' : 'text'" required>
+                    </mat-form-field>
                 </div>
-                <div class="row col-12">
-                    <label for="DNIConfirmUser" name="DNIConfirmlabel">Confirmar Contraseña *</label>
-                    <app-input-password id="DNIConfirminput" name="DNIConfirmUser"></app-input-password>
-                </div>
-                <div class="row col-12">
-                    <button class="ms-5 mt5 mb-5" type="button">Registrarme</button>
+                <div class="row col-12 ms-xl-5 m-auto  inpustCenter mb-5">
+                    <button class="ms-xl-5 mt-5" class="buttonSubmit" type="submit">Registrarme</button>
                 </div>
             </form>
             </div>

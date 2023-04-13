@@ -13,7 +13,7 @@ var usuarioSchema = new Schema({
         default: "registrado",
         enum:["registrado","administrador"]
     },
-    dni:{type: String, max:8,required: true,index:{ unique: true}},
+    dni:{type: String, max:9,required: true,index:{ unique: true}},
     telefono:{type: Number, required: true},
     direccion:{type:String,required:true},
     favoritos:[{
