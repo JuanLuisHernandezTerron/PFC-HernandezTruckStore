@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
+import { AuthService } from "./../../services/auth.service";
+import { Router } from "@angular/router";
+
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -7,7 +10,6 @@ import {FormControl, Validators} from '@angular/forms';
 }) 
 
 export class RegistroComponent implements OnInit {
-  
   email = new FormControl('', [Validators.required, Validators.email]);
   ciudad = new FormControl('', [Validators.required]);
   getErrorMessage() {
@@ -26,25 +28,13 @@ export class RegistroComponent implements OnInit {
     email: '',
     contrasena: '',
     contrasenaAUX: '',
-    rol:'',
     dni:'',
     telefono:'',
     direccion:''
   }
 
-  userAUX = {
-    nombre: '',
-    apellidos : '',
-    email: '',
-    contrasena: '',
-    rol:'',
-    dni:'',
-    telefono:'',
-    direccion:''
-  }
-
-
-  constructor () {
+  constructor (private authservice: AuthService,
+              private router: Router,) {
 
   }
 
@@ -52,6 +42,15 @@ export class RegistroComponent implements OnInit {
   }
 
   registro():void{
-    console.log(this.user)
+    this.authservice.registro(this.user)
+      .subscribe(
+        res =>{
+          console.log(res),
+          localStorage.setItem('token',res.token);
+            this.router.navigate(['/vehiculos']);
+        },
+        err =>
+          console.log(err),
+      )
   }
 }

@@ -1,0 +1,29 @@
+@font-face {
+    font-family: 'RadioGrotesk';
+    src: url('./../../../assets/RadioGrotesk-Regular.otf') format("opentype");
+}
+
+*{
+    font-family: "RadioGrotesk";
+}
+
+.modal{
+    --bs-modal-bg: #F8F4EA;
+}
+
+.olvpswd{
+    font-size: 15px;
+    color: rgb(111, 162, 237);
+}
+
+.boton{
+    width: 200px;
+    background-color: #73A9BF;
+    font-size: 22px;
+}
+
+.btn-primary{
+    --bs-btn-bg: #D9D9D9;
+    --bs-btn-color: #000000;
+    --bs-btn-border-color: none;
+}

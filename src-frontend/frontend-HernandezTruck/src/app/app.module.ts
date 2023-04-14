@@ -5,6 +5,7 @@ import {MatInputModule } from "@angular/material/input";
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { SkeletonComponent } from './layout/skeleton/skeleton.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from "@angular/forms";
+import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     NavigationComponent,
     SkeletonComponent,
     RegistroComponent,
-    LoginComponent
+    LoginComponent,
+    VehiculosComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     ReactiveFormsModule,
     MatSelectModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
   ],
