@@ -6,6 +6,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { VehiculosComponent } from "./components/vehiculos/vehiculos.component";
 import { SkeletonComponent } from "./layout/skeleton/skeleton.component";
 
+import { AuthGuard } from "./guards/auth.guard";
 const routes: Routes = [{
   path:'',
   component: SkeletonComponent,
@@ -13,7 +14,7 @@ const routes: Routes = [{
   children:[
     { path: 'register', component: RegistroComponent},
     { path: 'login', component: LoginComponent},
-    { path: 'vehiculos', component: VehiculosComponent},
+    { path: 'vehiculos', component: VehiculosComponent, canActivate:[AuthGuard]},
 
   ]}
 ];

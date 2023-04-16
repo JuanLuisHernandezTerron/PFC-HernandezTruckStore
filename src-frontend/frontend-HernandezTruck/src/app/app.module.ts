@@ -5,7 +5,9 @@ import {MatInputModule } from "@angular/material/input";
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +22,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
 
+import { TokenInterceptorService } from "./services/token-interceptor.service";
+import { AuthGuard } from "./guards/auth.guard";
 
 @NgModule({
   declarations: [
@@ -43,9 +47,16 @@ import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
     MatSelectModule,
     MatIconModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatAutocompleteModule
   ],
-  providers: [
+  //Con interceptor creamos una cabecera
+  providers: [AuthGuard
+    ,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

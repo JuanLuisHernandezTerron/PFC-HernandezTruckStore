@@ -24,14 +24,21 @@ const newUser = async function (req, res) {
 
 const loginUser = async function (req, res) {
   const {email , contrasena} = req.body;
+  console.log(email+","+contrasena);
   const ConsultaUsuario = await Usuario.find({"email":email}).exec();
-  const comparePassword = await bcrypt.compare(contrasena, ConsultaUsuario[0].contrasena);
-  console.log(ConsultaUsuario[0].contrasena)
-  if (ConsultaUsuario[0].email == email && comparePassword) {
-    const token = jwt.sign({_id: ConsultaUsuario[0]._id},process.env.secret_key_jwt,{expiresIn:'1d'});
-    res.status(200).json({token})
+  console.log(ConsultaUsuario)
+  
+  if (ConsultaUsuario.length === 0) {
+    res.status(401).json({status:"error",error:"Email incorrecto o contraseña incorrecta"})
   }else{
-    res.json({status:"error",error:"Email incorrecto o contraseña incorrecta"})
+    comparePassword = await bcrypt.compare(contrasena, ConsultaUsuario[0].contrasena);
+    console.log(ConsultaUsuario[0].contrasena)
+    if (ConsultaUsuario[0].email == email && comparePassword) {
+      const token = jwt.sign({_id: ConsultaUsuario[0]._id},process.env.secret_key_jwt,{expiresIn:'1d'});
+      res.status(200).json({token})
+    }else{
+      res.status(401).json({status:"error",error:"Email incorrecto o contraseña incorrecta"})
+    }
   }
 };
 
