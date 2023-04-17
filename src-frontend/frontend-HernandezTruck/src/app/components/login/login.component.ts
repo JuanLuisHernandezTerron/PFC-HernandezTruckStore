@@ -10,6 +10,21 @@ import { Router } from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl('', [Validators.required]);
+
+  getErrorMessageEmail(){
+    if (this.email.hasError('required')) {
+      return "Introduce un valor al Correo "
+    }
+    return this.email.hasError('email') ? "Introduce Correctamente un email" : ""
+  }
+
+  getErrorMessagePassword(){
+    if (this.email.hasError('required')) {
+      return "Introduce un valor al Password "
+    }
+    return "";
+  }
 
   constructor (private authservice: AuthService,
     private router: Router) {

@@ -13,13 +13,15 @@
                 <div class="row col-12 inpustCenter">
                     <label for="nameUser" name="namelabel">Nombre *</label>
                     <mat-form-field class="width" appearance="fill">
-                        <input type="text" id="nameInput" name="nombre" placeholder="Inserte su nombre" [(ngModel)] = "user.nombre" matInput required>
+                        <input type="text" id="nameInput" name="nombre" placeholder="Inserte su nombre" [formControl]="global" [(ngModel)] = "user.nombre" matInput required>
+                        <mat-error *ngIf="global.invalid">{{getErrorMessageGlobal()}}</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="row col-12 inpustCenter">
                     <label for="ApellidosUser" name="Apellidoslabel">Apellidos *</label>
                     <mat-form-field class="width" appearance="fill">
-                        <input type="text" [(ngModel)] = "user.apellidos" placeholder="Inserte su apellido" name="apellidos" matInput required>
+                        <input type="text" [(ngModel)] = "user.apellidos" [formControl]="global" placeholder="Inserte su apellido" name="apellidos" matInput required>
+                        <mat-error *ngIf="global.invalid">{{getErrorMessageGlobal()}}</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="row col-12 inpustCenter">
@@ -32,8 +34,10 @@
                 <div class="row col-12 inpustCenter">
                     <label for="DNIUser" name="DNIlabel">DNI *</label>
                     <mat-form-field class="width" hintLabel="Máximo 9 características" appearance="fill">
-                        <input matInput id="DNIinput" [(ngModel)] = "user.dni" name="dni" #input maxlength="9" placeholder="12345678X" required>
+                        <input matInput id="DNIinput" [(ngModel)] = "user.dni" name="dni" [formControl]="DNI" #input maxlength="9" placeholder="12345678X" required>
                         <mat-hint align="end">{{input.value.length}}/9</mat-hint>
+                        <mat-error *ngIf="DNI.invalid">{{getErrorMessageDNI()}}</mat-error>
+
                     </mat-form-field>
                 </div>
                 <div class="row col-12 inpustCenter">
@@ -45,21 +49,24 @@
                 <div class="row col-12 inpustCenter">
                     <label for="CalleUser" name="Callelabel">Ubicacion / Calle *</label>
                     <mat-form-field class="width" appearance="fill">
-                        <input type="text" id="Calleinput" placeholder="Ej: C\Pedroso, Camas (Sevilla)" [(ngModel)] = "user.direccion" name="direccion" matInput required>
+                        <input type="text" id="Calleinput" placeholder="Ej: C\Pedroso, Camas (Sevilla)" [formControl]="global" [(ngModel)] = "user.direccion" name="direccion" matInput required>
+                        <mat-error *ngIf="global.invalid">{{getErrorMessageGlobal()}}</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="row col-12 inpustCenter">
                     <label for="PasswdUser" name="Passwdlabel">Contraseña *</label>
                     <mat-form-field class="width" appearance="fill">
                         <mat-label>Introduce tu contraseña</mat-label>
-                        <input matInput id="Passwdinput" [(ngModel)] = "user.contrasena" name="contrasena" [type]="hide ? 'password' : 'text'" required>
+                        <input matInput id="Passwdinput" [(ngModel)] = "user.contrasena" name="contrasena" [formControl]="password" [type]="hide ? 'password' : 'text'" required>
+                        <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="row col-12 inpustCenter">
                     <label for="PasswdRepeatUser" name="PasswdRepeatlabel">Confirmar Contraseña *</label>
                     <mat-form-field class="width" appearance="fill">
                         <mat-label>Introduce tu contraseña</mat-label>
-                        <input matInput id="PasswRepeatdinput" [(ngModel)] = "user.contrasenaAUX" name="contrasenaRepeat" [type]="hide ? 'password' : 'text'" required>
+                        <input matInput id="PasswRepeatdinput" [(ngModel)] = "user.contrasenaAUX" [formControl]="password" name="contrasenaRepeat" [type]="hide ? 'password' : 'text'" required>
+                        <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="row col-12 ms-xl-5 m-auto  inpustCenter mb-5">

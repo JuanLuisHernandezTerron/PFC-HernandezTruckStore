@@ -18,7 +18,7 @@ const newUser = async function (req, res) {
      res.send("Email ya existente");
    }catch(err){
        console.log(err);
-       res.json({status:"error",error:"Usuario no registrado"})
+       res.status(401).json({status:"error",error:"Usuario no registrado"})
    }
 };
 
