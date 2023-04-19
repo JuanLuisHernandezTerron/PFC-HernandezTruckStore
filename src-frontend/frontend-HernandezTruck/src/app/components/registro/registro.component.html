@@ -9,64 +9,64 @@
                 <img class="img-fluid w-xl-50 col-12 img-camion " src="./../../../assets/img/190c447017303c654881ad49e85f4ad4.svg">
             </div>
             <div class="col-xl-6 col-12 ">
-            <form (submit)="registro()">
+            <form [formGroup] ="formGroup" (submit)="registro()">
                 <div class="row col-12 inpustCenter">
                     <label for="nameUser" name="namelabel">Nombre *</label>
                     <mat-form-field class="width" appearance="fill">
-                        <input type="text" id="nameInput" name="nombre" placeholder="Inserte su nombre" [formControl]="global" [(ngModel)] = "user.nombre" matInput required>
-                        <mat-error *ngIf="global.invalid">{{getErrorMessageGlobal()}}</mat-error>
+                        <input type="text" id="nameInput" name="nombre" placeholder="Inserte su nombre" formControlName="nombre" [(ngModel)] = "user.nombre" matInput required>
+                        <mat-error>Ingrese el Nombre [Mín 5 carácteres]</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="row col-12 inpustCenter">
                     <label for="ApellidosUser" name="Apellidoslabel">Apellidos *</label>
                     <mat-form-field class="width" appearance="fill">
-                        <input type="text" [(ngModel)] = "user.apellidos" [formControl]="global" placeholder="Inserte su apellido" name="apellidos" matInput required>
-                        <mat-error *ngIf="global.invalid">{{getErrorMessageGlobal()}}</mat-error>
+                        <input type="text" [(ngModel)] = "user.apellidos" formControlName="apellidos" placeholder="Inserte su apellido" name="apellidos" matInput required>
+                        <mat-error>Ingrese el Apellido [Mín 5 carácteres]</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="row col-12 inpustCenter">
                     <label for="CorreoUser" name="Correolabel">Correo Electrónico *</label>
                     <mat-form-field class="width" appearance="fill">
-                        <input type="email" id="CorreoInput" [(ngModel)] = "user.email" name="email" matInput placeholder="example@example.es" [formControl]="email" required>
-                        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                        <input type="email" id="CorreoInput" [(ngModel)] = "user.email" formControlName="email" name="email" matInput placeholder="example@example.es" required>
+                        <mat-error>Ingrese Correctamente el Email</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="row col-12 inpustCenter">
                     <label for="DNIUser" name="DNIlabel">DNI *</label>
                     <mat-form-field class="width" hintLabel="Máximo 9 características" appearance="fill">
-                        <input matInput id="DNIinput" [(ngModel)] = "user.dni" name="dni" [formControl]="DNI" #input maxlength="9" placeholder="12345678X" required>
+                        <input matInput id="DNIinput" [(ngModel)] = "user.dni" name="DNI" formControlName="DNI" #input maxlength="9" placeholder="12345678X" required>
                         <mat-hint align="end">{{input.value.length}}/9</mat-hint>
-                        <mat-error *ngIf="DNI.invalid">{{getErrorMessageDNI()}}</mat-error>
-
+                        <mat-error>Ingrese Correctamente el DNI</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="row col-12 inpustCenter">
                     <label for="Telfuser" name="Telflabel">Telefono *</label>
                     <mat-form-field class="width" hintLabel="Máximo 9 características" appearance="fill">
-                        <input type="number" id="Telfinput" [(ngModel)] = "user.telefono" name="telefono" matInput #input minlength="9" maxlength="9" placeholder="XXXXXXXXX" required>
+                        <input type="number" id="Telfinput" formControlName="telefono" [(ngModel)] = "user.telefono" name="telefono" matInput #input placeholder="XXXXXXXXX" required>
+                        <mat-error>Ingrese Correctamente el Teléfono, Recuerda 9 Carácteres</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="row col-12 inpustCenter">
                     <label for="CalleUser" name="Callelabel">Ubicacion / Calle *</label>
                     <mat-form-field class="width" appearance="fill">
-                        <input type="text" id="Calleinput" placeholder="Ej: C\Pedroso, Camas (Sevilla)" [formControl]="global" [(ngModel)] = "user.direccion" name="direccion" matInput required>
-                        <mat-error *ngIf="global.invalid">{{getErrorMessageGlobal()}}</mat-error>
+                        <input type="text" id="Calleinput" placeholder="Ej: C\Pedroso, Camas (Sevilla)" formControlName="direccion" [(ngModel)] = "user.direccion" name="direccion" matInput required>
+                        <mat-error>Ingrese Correctamente su Direccion</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="row col-12 inpustCenter">
                     <label for="PasswdUser" name="Passwdlabel">Contraseña *</label>
                     <mat-form-field class="width" appearance="fill">
                         <mat-label>Introduce tu contraseña</mat-label>
-                        <input matInput id="Passwdinput" [(ngModel)] = "user.contrasena" name="contrasena" [formControl]="password" [type]="hide ? 'password' : 'text'" required>
-                        <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
+                        <input matInput id="Passwdinput" [(ngModel)] = "user.contrasena" name="password" formControlName="password" [type]="hide ? 'password' : 'text'" required>
+                        <mat-error>Introduce Correctamente su contraseña</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="row col-12 inpustCenter">
                     <label for="PasswdRepeatUser" name="PasswdRepeatlabel">Confirmar Contraseña *</label>
                     <mat-form-field class="width" appearance="fill">
                         <mat-label>Introduce tu contraseña</mat-label>
-                        <input matInput id="PasswRepeatdinput" [(ngModel)] = "user.contrasenaAUX" [formControl]="password" name="contrasenaRepeat" [type]="hide ? 'password' : 'text'" required>
-                        <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
+                        <input matInput id="PasswRepeatdinput" [(ngModel)] = "user.contrasenaAUX" formControlName="ConfirmPassword" name="ConfirmPassword" [type]="hide ? 'password' : 'text'" required>
+                        <mat-error *ngIf="validatorInput('ConfirmPassword','MatchPassword')">Las contraseñas no coinciden</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="row col-12 ms-xl-5 m-auto  inpustCenter mb-5">

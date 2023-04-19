@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { AuthService } from "./../../services/auth.service";
+import { Validate } from "./matchPWD";
 import { Router } from "@angular/router";
 
 @Component({
@@ -10,40 +11,8 @@ import { Router } from "@angular/router";
 }) 
 
 export class RegistroComponent implements OnInit {
-  email = new FormControl('', [Validators.required, Validators.email]);
-  global = new FormControl('', [Validators.required]);
-  password = new FormControl('', [Validators.required]);
-  DNI = new FormControl('', [Validators.required,Validators.pattern('^[0-9]{8,8}[A-Za-z]$')]);
   
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'Introduce un valor por favor';
-    }
-
-    return this.email.hasError('email') ? 'El email no es valido' : '';
-  }
-
-  getErrorMessageGlobal() {
-    if (this.global.hasError('required')) {
-      return 'Introduce un valor por favor';
-    }
-    return "";
-  }
-
-  getErrorMessagePassword() {
-    if (this.password.hasError('required')) {
-      return 'Introduce un valor por favor';
-    }
-    return this.password.hasError('password') ? 'La contraseña no es valida' : '';
-  }
-
-  getErrorMessageDNI() {
-    if (this.DNI.hasError('pattern')) {
-      return 'El DNI no es valido';
-    }
-    return this.DNI.hasError('required') ? 'Introduce un valor por favor' : '';
-  }
-
+    formGroup !: FormGroup;  
 
   hide = true;
 
@@ -59,11 +28,35 @@ export class RegistroComponent implements OnInit {
   }
 
   constructor (private authservice: AuthService,
-              private router: Router,) {
-
+              private router: Router,
+              private fb: FormBuilder) {
+    this.validatorRegister();
   }
 
   ngOnInit(): void {
+  }
+
+  validatorRegister():void{
+    this.formGroup = this.fb.group({
+      nombre : new FormControl('', [Validators.required, Validators.minLength(5)]),
+      apellidos : new FormControl('', [Validators.required, Validators.minLength(5)]),
+      email : new FormControl('', [Validators.required, Validators.email]),
+      password : new FormControl('', [Validators.required,Validators.pattern('^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$')]),
+      ConfirmPassword : new FormControl('', [Validators.required]),
+      DNI : new FormControl('', [Validators.required,Validators.pattern('^[0-9]{8,8}[A-Za-z]$')]),
+      telefono : new FormControl('',[Validators.required, Validators.pattern("^[0-9]{9}$")]),
+      direccion : new FormControl('', [Validators.required])
+    },{
+      validator: Validate.MatchPassword,
+    });
+  }
+
+  /*
+  * value: valor del input
+  * typerror: tipo de validacion
+  */
+  public validatorInput= (valueInput:string,typeError:string)=>{
+    return this.formGroup.controls[valueInput].hasError(typeError)
   }
 
   registro():void{
@@ -74,6 +67,8 @@ export class RegistroComponent implements OnInit {
           if (res.status === 'Ingresado Correctamente') {
             localStorage.setItem('token',res.token);
             this.router.navigate(['/vehiculos']);
+          }else{
+            this.router.navigate(['/register']);
           }
         },
         err =>

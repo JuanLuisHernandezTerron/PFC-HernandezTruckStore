@@ -32,6 +32,10 @@ export class NavigationComponent implements OnInit{
         return name ? this._filter(name as string) : this.options.slice();
       }),
     );
+    const getID = this.authservice.getID()
+    const valores = this.authservice.getInfoUsuario(getID).subscribe((data) => console.log(data));
+    // const valores = this.authservice.getInfoUsuario(getID).subscribe(data =>asd=data);
+    console.log(valores);
   }
 
   displayFn(user: User): string {

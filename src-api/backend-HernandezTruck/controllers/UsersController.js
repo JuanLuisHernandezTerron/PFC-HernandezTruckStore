@@ -11,7 +11,8 @@ const newUser = async function (req, res) {
     (consultaEmail.length === 0) ?
      (await Usuario.create(data), 
      ConsultaUsuario = await Usuario.find({"dni":data.dni}).exec(),
-     token = jwt.sign({_id: ConsultaUsuario[0]._id},process.env.secret_key_jwt,{expiresIn:'1d'}), 
+     console.log(ConsultaUsuario),
+     token = jwt.sign({_id: ConsultaUsuario[0]._id, rol:ConsultaUsuario[0].rol},process.env.secret_key_jwt,{expiresIn:'1d'}), 
      res.status(200).json({status:"Ingresado Correctamente",token})
      ) 
      : 
@@ -34,7 +35,7 @@ const loginUser = async function (req, res) {
     comparePassword = await bcrypt.compare(contrasena, ConsultaUsuario[0].contrasena);
     console.log(ConsultaUsuario[0].contrasena)
     if (ConsultaUsuario[0].email == email && comparePassword) {
-      const token = jwt.sign({_id: ConsultaUsuario[0]._id},process.env.secret_key_jwt,{expiresIn:'1d'});
+      const token = jwt.sign({_id: ConsultaUsuario[0]._id, rol:ConsultaUsuario[0].rol},process.env.secret_key_jwt,{expiresIn:'1d'});
       res.status(200).json({token})
     }else{
       res.status(401).json({status:"error",error:"Email incorrecto o contraseña incorrecta"})
