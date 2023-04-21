@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'RadioGrotesk';
+    src: url('./../../../assets/RadioGrotesk-Regular.otf') format("opentype");
+}
+
+footer{
+    background-color: #F8F4EA;
+}
+
+
+*{
+    font-family: "RadioGrotesk";
+}
+
+img{
+    width: 8%;
+}
+
+.letraGrande{
+    font-size: 60px;
+}
+
+.letrasInfo{
+    font-size: 20px;
+}
+
+.borde{
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-top: none;
+    border-bottom: none;
+}
+
+@media only screen and (max-width: 1164px){
+
+    img{
+        width: 10%;
+    }
+}

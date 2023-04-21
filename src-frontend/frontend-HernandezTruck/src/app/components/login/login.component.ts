@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { AuthService } from "./../../services/auth.service";
 import { Router } from "@angular/router";
 
@@ -9,26 +9,25 @@ import { Router } from "@angular/router";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.required]);
 
-  getErrorMessageEmail(){
-    if (this.email.hasError('required')) {
-      return "Introduce un valor al Correo "
-    }
-    return this.email.hasError('email') ? "Introduce Correctamente un email" : ""
-  }
-
-  getErrorMessagePassword(){
-    if (this.email.hasError('required')) {
-      return "Introduce un valor al Password "
-    }
-    return "";
-  }
+  formLogin !:FormGroup;
+  hide = true;
 
   constructor (private authservice: AuthService,
-    private router: Router) {
+    private router: Router,
+    private fb: FormBuilder) {
+      this.validatorLogin();
+}
 
+ngOnInit(): void {
+
+}
+
+validatorLogin():void{
+  this.formLogin = this.fb.group({
+    email : new FormControl('', [Validators.required, Validators.email]),
+    password : new FormControl('', [Validators.required,Validators.pattern('^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$')])
+  });
 }
 
 user = {
@@ -36,9 +35,7 @@ user = {
   contrasena: ''
 }
 
-ngOnInit(): void {
 
-}
 
 login(){
   console.log(this.user);

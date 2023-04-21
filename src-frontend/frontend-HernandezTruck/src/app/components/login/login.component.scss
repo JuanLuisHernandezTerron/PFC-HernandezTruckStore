@@ -15,7 +15,7 @@
 
 .mainLogin{
     border-radius: 20px;
-    width: 40%;
+    max-width: 40%;
     background-color: #F8F4EA;
 }
 
@@ -42,4 +42,11 @@ hr{
     --bs-btn-bg: #D9D9D9;
     --bs-btn-color: #000000;
     --bs-btn-border-color: none;
+}
+
+@media only screen and (max-width: 1100px){
+    .mainLogin{
+        max-width: 80%;
+
+    }
 }
