@@ -13,20 +13,6 @@ export class AuthService {
 
   constructor(private http: HttpClient,private router:Router) { }
 
-  getID(){
-    const help = new JwtHelperService;
-    const token = localStorage.getItem('token');
-    const payload = help.decodeToken(token);
-    console.log(payload)
-    if (payload?.rol) {
-      return payload.rol;
-    }
-  }
-
-   getInfoUsuario(rol:any):Observable<any[]>{
-     return this.http.get<any>(this.URL+'/usuarios/getAllUsers?rol='+rol)
-   }
-
   registro(user:any){
     return this.http.post<any>(this.URL+'/usuarios/register',user);
   }

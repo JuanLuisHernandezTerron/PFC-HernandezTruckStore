@@ -2,7 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import { AuthService } from "./../../services/auth.service";
+import {AuthService} from '././../../services/auth.service';
+import { UserService } from "./../../services/Usuario/user.service";
+import { Router } from "@angular/router";
+
 export interface User {
   name: string;
 }
@@ -12,12 +15,15 @@ export interface User {
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit{
-  constructor(public authservice: AuthService){
+  constructor(public Userservice: UserService,
+              public authservice: AuthService,
+              private router:Router){
 
   }
 
   userAUX={
-    nombre:"JHT"
+    nombre:"JHT",
+    nombreCompleto: 'Juan Luis Hernandez Terron'
   }
 
   myControl = new FormControl<string | User>('');
@@ -32,10 +38,18 @@ export class NavigationComponent implements OnInit{
         return name ? this._filter(name as string) : this.options.slice();
       }),
     );
-    const getID = this.authservice.getID()
-    const valores = this.authservice.getInfoUsuario(getID).subscribe((data) => console.log(data));
-    // const valores = this.authservice.getInfoUsuario(getID).subscribe(data =>asd=data);
+
+    const getID = this.Userservice.getRol();
+    const valores = this.Userservice.getInfoUsuario(getID).subscribe((data) => console.log(data));
     console.log(valores);
+    let backdrop = document.querySelector('.modal-backdrop') as HTMLDivElement;
+    if (backdrop!= null) {
+      backdrop.remove();
+    }
+  }
+  
+  logout():any{
+    this.authservice.logout();
   }
 
   displayFn(user: User): string {

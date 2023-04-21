@@ -20,7 +20,10 @@ export class LoginComponent implements OnInit {
 }
 
 ngOnInit(): void {
-
+  let backdrop = document.querySelector('.modal-backdrop') as HTMLDivElement;
+  if (backdrop!= null) {
+    backdrop.remove();
+  }
 }
 
 validatorLogin():void{
@@ -47,7 +50,8 @@ login(){
       res =>{
       console.log(res),
       localStorage.setItem('token',res.token);
-        this.router.navigate(['/vehiculos']);
+        this.router.navigateByUrl('/vehiculos').then(()=>{window.location.reload()});
+
       },
       err =>
       console.log(err),

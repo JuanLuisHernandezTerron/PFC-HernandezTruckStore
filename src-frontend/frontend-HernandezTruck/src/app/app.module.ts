@@ -24,6 +24,8 @@ import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
 
 import { TokenInterceptorService } from "./services/token-interceptor.service";
 import { AuthGuard } from "./guards/auth.guard";
+import { MainAdministradorComponent } from './components/main/Administrador/main-administrador/main-administrador.component';
+import { MainUserComponent } from './components/main/Usuario/main-user/main-user.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { AuthGuard } from "./guards/auth.guard";
     SkeletonComponent,
     RegistroComponent,
     LoginComponent,
-    VehiculosComponent
+    VehiculosComponent,
+    MainAdministradorComponent,
+    MainUserComponent
   ],
   imports: [
     BrowserModule,
