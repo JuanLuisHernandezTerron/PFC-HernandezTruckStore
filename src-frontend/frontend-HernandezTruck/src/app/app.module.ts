@@ -7,6 +7,9 @@ import {MatIconModule} from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { RouterModule } from '@angular/router';
+import {MatButtonModule} from '@angular/material/button';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +29,7 @@ import { TokenInterceptorService } from "./services/token-interceptor.service";
 import { AuthGuard } from "./guards/auth.guard";
 import { MainAdministradorComponent } from './components/main/Administrador/main-administrador/main-administrador.component';
 import { MainUserComponent } from './components/main/Usuario/main-user/main-user.component';
+import { SliderNoticiasComponent } from './components/slider-noticias/slider-noticias.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,8 @@ import { MainUserComponent } from './components/main/Usuario/main-user/main-user
     LoginComponent,
     VehiculosComponent,
     MainAdministradorComponent,
-    MainUserComponent
+    MainUserComponent,
+    SliderNoticiasComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,9 @@ import { MainUserComponent } from './components/main/Usuario/main-user/main-user
     MatIconModule,
     FormsModule,
     HttpClientModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    RouterModule,
+    MatButtonModule
   ],
   //Con interceptor creamos una cabecera
   providers: [AuthGuard

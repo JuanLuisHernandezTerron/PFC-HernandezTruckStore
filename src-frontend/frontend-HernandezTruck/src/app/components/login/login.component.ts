@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { AuthService } from "./../../services/auth.service";
 import { Router } from "@angular/router";
-
+import { UserService } from "./../../services/Usuario/user.service";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor (private authservice: AuthService,
     private router: Router,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private userService: UserService) {
       this.validatorLogin();
 }
 
@@ -50,7 +51,11 @@ login(){
       res =>{
       console.log(res),
       localStorage.setItem('token',res.token);
-        this.router.navigateByUrl('/vehiculos').then(()=>{window.location.reload()});
+      if (this.userService.getRol() === 'administrador') {
+        this.router.navigateByUrl('/DashboardAdmin').then(()=>{window.location.reload()});
+      }else{
+        this.router.navigateByUrl('/mainUser').then(()=>{window.location.reload()});
+      }
 
       },
       err =>

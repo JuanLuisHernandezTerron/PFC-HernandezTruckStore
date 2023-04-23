@@ -38,14 +38,16 @@ export class NavigationComponent implements OnInit{
         return name ? this._filter(name as string) : this.options.slice();
       }),
     );
-
-    const getID = this.Userservice.getRol();
-    const valores = this.Userservice.getInfoUsuario(getID).subscribe((data) => console.log(data));
+    const valores = this.Userservice.getInfoUsuario(this.getRol()).subscribe((data) => console.log(data));
     console.log(valores);
     let backdrop = document.querySelector('.modal-backdrop') as HTMLDivElement;
     if (backdrop!= null) {
       backdrop.remove();
     }
+  }
+
+  getRol(){
+    return this.Userservice.getRol();
   }
   
   logout():any{
