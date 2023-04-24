@@ -26,11 +26,13 @@ export class NavigationComponent implements OnInit{
     nombreCompleto: 'Juan Luis Hernandez Terron'
   }
 
+  users:any;
+
   myControl = new FormControl<string | User>('');
   options: User[] = [{name: 'Cabeza Tractora Volvo'}, {name: 'Cabeza Tractora MAN'}, {name: 'Schmitz'}];
   filteredOptions: Observable<User[]> | undefined;
 
-  ngOnInit() {
+  ngOnInit () {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => {
@@ -38,8 +40,13 @@ export class NavigationComponent implements OnInit{
         return name ? this._filter(name as string) : this.options.slice();
       }),
     );
-    const valores = this.Userservice.getInfoUsuario(this.getRol()).subscribe((data) => console.log(data));
-    console.log(valores);
+    
+    this.Userservice.getInfoUsuario(this.getRol()).subscribe((data) => {
+      this.users = data;
+      console.log(this.users.consulta[0].nombre);
+    });
+
+
     let backdrop = document.querySelector('.modal-backdrop') as HTMLDivElement;
     if (backdrop!= null) {
       backdrop.remove();

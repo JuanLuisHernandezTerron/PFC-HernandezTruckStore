@@ -9,7 +9,6 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class UserService {
   private URL = 'http://localhost:3000';
-
   constructor(private http: HttpClient,private router:Router) { }
 
   getRol(){
