@@ -1,16 +1,15 @@
 const Post = require('../models/Post');
 const Vehiculo = require('../models/Vehiculo');
-const cabezatractora = require('../models/Tractora'); 
+const cabezatractora = require('../models/Tractora');
+const semiremolque = require('../models/Semiremolque') 
 const Usuario = require('../models/Usuario'); 
 
 const getPostVehicle = async function(req,res){
   try{
-    console.log('Entrando en try')    
-    console.log(await Post.find({}).exec())
-    
-    if(consultaTractora){
-      res.status(200).json(consultaTractora);
-    }
+    consultaAllPost = await Post.find({}).populate('informacionUser.idUsuarioVendedor').populate('informacionUser.idVehiculo').exec()
+    if (consultaAllPost){
+      res.status(200).json(consultaAllPost);
+    } 
   }catch(err){
     res.json({status:"error",error:"Post no encontrado"})
   }
@@ -36,9 +35,9 @@ const newPost = async function (req,res) {
         fecha_post:req.body.fecha_post,
         tipo_publicacion:req.body.tipo_publicacion,
         informacionUser:[{
-            idUsuarioVendedor:req.body.idUsuarioVendedor,
-            idVehiculo:req.body.idVehiculo
-        }]
+          idUsuarioVendedor:req.body.idUsuarioVendedor,
+          idVehiculo:req.body.idVehiculo
+      }]
       }
       await Post.create(post)
 
@@ -60,6 +59,19 @@ const newPost = async function (req,res) {
           console.log(e)
          res.json({status:"error",error:"Usuario no registrado tractora"})
       }
+      }else if(req.body.tipoVehiculo === 'semirremolque'){
+        try{
+          const SemiremolqueVehiculo = {
+            _id:req.body._id,
+            tipoSemiremolque:req.body.tipoSemiremolque,
+            tipoEje:req.body.tipoEje,
+            ADR:req.body.ADR
+        }
+        await semiremolque.create(SemiremolqueVehiculo)
+
+        }catch(err){
+          res.json({status:"error",error:"Usuario no registrado Semiremolque"})
+        }
       }
      }catch(err){
          console.log(err)

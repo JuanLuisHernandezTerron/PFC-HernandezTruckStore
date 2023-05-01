@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'RadioGrotesk';
+    src: url('./../../../../../assets/RadioGrotesk-Regular.otf') format("opentype");
+}
+
+*{
+    font-family: "RadioGrotesk";
+}
+
+.eleccion:hover{
+    transform: scale(1.02);
+
+}
+
+.eleccion{
+    width: 40%;
+    min-height: 500px;
+    border-radius: 5px;
+    border: 1px solid #579BB1;
+    background-color: #E1D7C6;
+    transition: 0.3s ease-in-out;
+}
+
+.contador{
+    font-size: 30px;
+}
+
+hr{
+    border: 1px solid black;
+}

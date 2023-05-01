@@ -10,6 +10,10 @@ export class PostService {
 
   constructor(private http: HttpClient,private router:Router) { }
 
+  registroPostSemiRemolque(postSemiremolque:any){
+    return this.http.post<any>(this.URL+'/posts/newPost',postSemiremolque);
+  }
+
   registroPostTractora(postTractora:any){
     return this.http.post<any>(this.URL+'/posts/newPost',postTractora);
   }

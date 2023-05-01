@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var db = mongoose.connection;
+const validationToken = require('./../middleware/ValidacionToken')
+const { getAllTractoras } = require('./../controllers/TractoraController')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+/* Recojo todas las tractoras insertardas en la Base de Datos */
+router.get('/allTractoras', getAllTractoras);
 
 module.exports = router;

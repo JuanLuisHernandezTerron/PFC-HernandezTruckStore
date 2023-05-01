@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'RadioGrotesk';
+    src: url('./../../../assets/RadioGrotesk-Regular.otf') format("opentype");
+}
+
+*{
+    font-family: "RadioGrotesk";
+}
+
+.bola{
+    width: 8%;
+}
+
+.botonEnviar{
+    background-color: #73A9BF;
+    height: 60px;
+    width: 25%;
+}
+
+button > span{
+    font-size: 30px;
+}

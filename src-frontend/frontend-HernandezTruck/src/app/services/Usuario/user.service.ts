@@ -33,7 +33,6 @@ export class UserService {
     const help = new JwtHelperService;
     const token = localStorage.getItem('token');
     const payload = help.decodeToken(token);
-    console.log(payload)
     if (payload?.rol) {
       return payload.rol;
     }
@@ -43,8 +42,8 @@ export class UserService {
     const help = new JwtHelperService;
     const token = localStorage.getItem('token');
     const payload = help.decodeToken(token);
-    console.log(payload)
     if (payload?._id) {
+      console.log(payload._id)
       return payload._id;
     }
   }

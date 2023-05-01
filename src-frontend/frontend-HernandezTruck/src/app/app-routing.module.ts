@@ -19,6 +19,7 @@ const routes: Routes = [{
   component: SkeletonComponent,
   pathMatch:'prefix',
   children:[
+    { path: '', component: MainUserComponent},
     { path: 'register', component: RegistroComponent},
     { path: 'login', component: LoginComponent},
     { path: 'vehiculos', component: VehiculosComponent, canActivate:[AuthGuard]},

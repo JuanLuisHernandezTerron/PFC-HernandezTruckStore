@@ -1,1 +1,39 @@
-<p>main-user works!</p>
+<div class="container">
+    <div class="row d-none d-lg-block col-12">
+        <app-slider-noticias></app-slider-noticias>
+    </div>
+    <div class="row d-flex justify-content-around">
+        <div class="eleccion mt-5 text-center mb-5" routerLink="/">
+            <div class="m-5">
+                <h1>Cabezas<br>Tratoras</h1>
+            </div>
+            <div class="mt-5">
+                <img src="./../../../assets/img/cabezaTractoraIcon.png" alt="logo-tractora">
+            </div>
+            <div class="mt-5">
+                <p class="contador">{{contadorTractora}}</p>
+            </div>
+        </div>
+        <div class="eleccion mt-5 text-center mb-5" routerLink="/">
+            <div class="m-5">
+                <h1>Semi-<br>Remolques</h1>
+            </div>
+            <div class="mt-5">
+                <img src="./../../../assets/img/remolque.png" alt="logo-remolque"/>
+            </div>
+            <div class="mt-5">
+                <p class="contador">{{contadorRemolque}}</p>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="row">
+            <h1 class="text-center">Te Puede Interesar...</h1>
+        </div>
+        <div class="row">
+
+        </div>
+    </div>
+</div>
+
