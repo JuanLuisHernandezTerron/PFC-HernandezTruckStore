@@ -5,6 +5,7 @@ import {map, startWith} from 'rxjs/operators';
 import {AuthService} from '././../../services/auth.service';
 import { UserService } from "./../../services/Usuario/user.service";
 import { Router } from "@angular/router";
+import { Usuario } from "./../../models/usuario";
 
 export interface User {
   name: string;
@@ -27,6 +28,7 @@ export class NavigationComponent implements OnInit{
   }
 
   users:any;
+  userInfo:Usuario;
 
   myControl = new FormControl<string | User>('');
   options: User[] = [{name: 'Cabeza Tractora Volvo'}, {name: 'Cabeza Tractora MAN'}, {name: 'Schmitz'}];
@@ -40,7 +42,12 @@ export class NavigationComponent implements OnInit{
         return name ? this._filter(name as string) : this.options.slice();
       }),
     );
-    
+
+    this.Userservice.userInformacion.subscribe((data)=>{
+      this.userInfo = data;
+      console.log(this.userInfo)
+    })
+
     this.Userservice.getInfoUsuario(this.getRol()).subscribe((data) => {
       this.users = data;
       console.log(this.users.consulta[0].nombre);

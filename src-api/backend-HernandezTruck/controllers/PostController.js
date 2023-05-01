@@ -1,6 +1,20 @@
 const Post = require('../models/Post');
 const Vehiculo = require('../models/Vehiculo');
 const cabezatractora = require('../models/Tractora'); 
+const Usuario = require('../models/Usuario'); 
+
+const getPostVehicle = async function(req,res){
+  try{
+    console.log('Entrando en try')    
+    console.log(await Post.find({}).exec())
+    
+    if(consultaTractora){
+      res.status(200).json(consultaTractora);
+    }
+  }catch(err){
+    res.json({status:"error",error:"Post no encontrado"})
+  }
+}
 
 const newPost = async function (req,res) {
   try{
@@ -38,7 +52,7 @@ const newPost = async function (req,res) {
               numeroDepositos:req.body.numeroDepositos,
               kms:req.body.kms,
               combustible:req.body.combustible,
-              retarder:req.body.retarder
+              retarder:req.body.retarde
           }
           await cabezatractora.create(cabezaTractoraVehiculo)
 
@@ -53,6 +67,9 @@ const newPost = async function (req,res) {
   }
 }
 
+
+
 module.exports = {
-    newPost
+    newPost,
+    getPostVehicle
 }

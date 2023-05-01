@@ -9,6 +9,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { RouterModule } from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+
 
 
 
@@ -30,6 +33,12 @@ import { AuthGuard } from "./guards/auth.guard";
 import { MainAdministradorComponent } from './components/main/Administrador/main-administrador/main-administrador.component';
 import { MainUserComponent } from './components/main/Usuario/main-user/main-user.component';
 import { SliderNoticiasComponent } from './components/slider-noticias/slider-noticias.component';
+import { SubmenuRegistradoComponent } from './components/nav/submenu-registrado/submenu-registrado.component';
+import { SubmenuAdminComponent } from './components/nav/submenu-admin/submenu-admin.component';
+import { UserService } from './services/Usuario/user.service';
+import { Publicacion1Component } from './components/publicacion1/publicacion1.component';
+import { DatosCabezaComponent } from './components/datos-cabeza/datos-cabeza.component';
+import { DatosRemolqueComponent } from './components/datos-remolque/datos-remolque.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +51,12 @@ import { SliderNoticiasComponent } from './components/slider-noticias/slider-not
     VehiculosComponent,
     MainAdministradorComponent,
     MainUserComponent,
-    SliderNoticiasComponent
+    SliderNoticiasComponent,
+    SubmenuRegistradoComponent,
+    SubmenuAdminComponent,
+    Publicacion1Component,
+    DatosCabezaComponent,
+    DatosRemolqueComponent
   ],
   imports: [
     BrowserModule,
@@ -59,10 +73,12 @@ import { SliderNoticiasComponent } from './components/slider-noticias/slider-not
     HttpClientModule,
     MatAutocompleteModule,
     RouterModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   //Con interceptor creamos una cabecera
-  providers: [AuthGuard
+  providers: [UserService,AuthGuard
     ,{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,

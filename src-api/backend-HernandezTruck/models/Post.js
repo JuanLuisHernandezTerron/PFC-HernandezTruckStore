@@ -12,6 +12,7 @@ var postSchema = new Schema({
         enum:["Alquilar","Vender"],
         required:true
     },
+    likes:{type:Number},
     Reports:[{
         type: Schema.ObjectId,
         ref: 'Usuario'

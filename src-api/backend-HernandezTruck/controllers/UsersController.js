@@ -63,8 +63,28 @@ const getAllUsers = async function (req, res) {
 });
 }
 
+const getinfoUser = async function (req, res) {
+  try{
+    consulta = await Usuario.findOne({'_id':req.params.id},{contrasena:0}).exec()
+  }catch(err){
+    console.log(err)
+    res.json({status:"error",error:"Error"})
+  }
+
+  jwt.verify(req.token, process.env.secret_key_jwt , function(error, authData) {
+    if (error) {
+      res.sendStatus(403);
+    } else {
+      res.json({
+      consulta
+    });
+  }
+});
+}
+
 module.exports = {
     newUser,
     getAllUsers,
-    loginUser
+    loginUser,
+    getinfoUser
 };
