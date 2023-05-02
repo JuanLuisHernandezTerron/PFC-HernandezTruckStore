@@ -10,6 +10,7 @@ import { MainUserComponent } from "./../app/components/main/Usuario/main-user/ma
 import { Publicacion1Component } from './components/publicacion1/publicacion1.component';
 import { DatosCabezaComponent } from './components/datos-cabeza/datos-cabeza.component';
 import { DatosRemolqueComponent } from './components/datos-remolque/datos-remolque.component';
+import { TractoraInformacionComponent } from './components/mainInformacion/Tractora/tractora-informacion/tractora-informacion.component';
 //Guards
 import { AuthGuard } from "./guards/auth.guard";
 import { UsersGuardGuard } from "./guards/users-guard.guard";
@@ -29,7 +30,8 @@ const routes: Routes = [{
     { path: 'mainUser', component:MainUserComponent, canActivate:[AuthGuard]},
     { path: 'publicacionStep1', component:Publicacion1Component, canActivate:[PostGuardGuard]},
     { path: 'datosCabezaTractora', component:DatosCabezaComponent, canActivate:[PostGuardGuard]},
-    { path: 'datosSemiremolque', component:DatosRemolqueComponent, canActivate:[PostGuardGuard]}
+    { path: 'datosSemiremolque', component:DatosRemolqueComponent, canActivate:[PostGuardGuard]},
+    { path: 'informacionAllTractoras', component:TractoraInformacionComponent}
   ]}
 ];
 

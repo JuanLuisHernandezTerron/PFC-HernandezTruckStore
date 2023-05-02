@@ -39,6 +39,7 @@ import { UserService } from './services/Usuario/user.service';
 import { Publicacion1Component } from './components/publicacion1/publicacion1.component';
 import { DatosCabezaComponent } from './components/datos-cabeza/datos-cabeza.component';
 import { DatosRemolqueComponent } from './components/datos-remolque/datos-remolque.component';
+import { TractoraInformacionComponent } from './components/mainInformacion/Tractora/tractora-informacion/tractora-informacion.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { DatosRemolqueComponent } from './components/datos-remolque/datos-remolq
     SubmenuAdminComponent,
     Publicacion1Component,
     DatosCabezaComponent,
-    DatosRemolqueComponent
+    DatosRemolqueComponent,
+    TractoraInformacionComponent
   ],
   imports: [
     BrowserModule,
