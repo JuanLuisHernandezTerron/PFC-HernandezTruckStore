@@ -22,11 +22,6 @@ export class NavigationComponent implements OnInit{
 
   }
 
-  userAUX={
-    nombre:"JHT",
-    nombreCompleto: 'Juan Luis Hernandez Terron'
-  }
-
   users:any;
   userInfo:Usuario;
 

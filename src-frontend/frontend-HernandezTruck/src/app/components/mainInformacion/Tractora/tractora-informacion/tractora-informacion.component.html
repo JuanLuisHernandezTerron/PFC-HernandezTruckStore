@@ -1,45 +1,51 @@
 <div class="container">
     <div class="row">
         <div class="col-12 d-flex justify-content-end mt-3">
-            <button class="botonFiltro p-2">Compra</button>
-            <button class="botonFiltro ms-3 p-2">Alquiler</button>
+            <button (click)="getPostCompraTractora()" class="botonFiltro p-2">Compra</button>
+            <button (click)="getPostAlquilerTractora()" class="botonFiltro ms-3 p-2">Alquiler</button>
         </div>
     </div>
     <div class="row">
-        <div class="col-2">
+        <div class="col-2 filtros">
             FILTROS
         </div>
-        <div class="col-10 divTractora mt-3 mb-5">
-            <div class="row">
-                <div class="col-3 mt-3">
-                    <img class="img-fluid" src="./../../../../../assets/img/cabezaTractoraIcon.png" alt="img">
-                </div>
-                <div class="col-8">
-                    <div class="row">
-                        <div class="col-12 mt-3">
-                            <h4>Cabeza Tractora Iveco Stralis 480</h4>
+        <ng-container>
+            <div class="col-10 divTractora mt-3 mb-5" *ngFor="let Tractoras of post">
+                <div class="row">
+                    <div class="col-3 mt-3">
+                        <img class="img-fluid" src="./../../../../../assets/img/cabezaTractoraIcon.png" alt="img">
+                    </div>
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col-12 mt-3">
+                                <h4>{{Tractoras.titulo}}</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-1">
+                                <img src="./../../../../../assets/img/image 10.png" class="img-fluid" alt="imagen-localizador">
+                            </div>
+                            <div class="col-11">
+                                <h4>{{Tractoras.informacionUser[0].idUsuarioVendedor.direccion}}</h4>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-6">
+                                <h4>{{Tractoras.informacionUser[0].idVehiculo.precio}}€</h4>
+                            </div>
+                            <div class="col-6 d-flex mb-3 justify-content-end">
+                                <button class="botonFiltro p-2" (click)="idBoton(Tractoras._id)" id={{Tractoras._id}}>Contactar</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <h4>Bormujos,Sevilla</h4>
-                        </div>
+                    <div class="col-1 mt-3">
+                        <img src="./../../../../../assets/img/image 11.png" alt="Likes">
+                        <span>{{Tractoras.likes.length}}</span>
                     </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-6">
-                            <h4>15.000€</h4>
-                        </div>
-                        <div class="col-6 d-flex mb-3 justify-content-end">
-                            <button class="botonFiltro p-2">Contactar</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-1 mt-3">
-                    <img src="./../../../../../assets/img/image 11.png" alt="Likes">
-                    <span>150</span>
                 </div>
             </div>
-        </div>
+        </ng-container>
+
     </div>
 </div>

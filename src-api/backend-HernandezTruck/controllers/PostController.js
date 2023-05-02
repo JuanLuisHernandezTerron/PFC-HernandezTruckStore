@@ -4,6 +4,28 @@ const cabezatractora = require('../models/Tractora');
 const semiremolque = require('../models/Semiremolque') 
 const Usuario = require('../models/Usuario'); 
 
+const getVehicleAlquilar = async function(req,res){
+  try{
+    consultaAlquilerPost = await Post.find({}).where('tipo_publicacion').equals('Alquilar').populate('informacionUser.idUsuarioVendedor').populate('informacionUser.idVehiculo').exec()
+    if (consultaAlquilerPost){
+      res.status(200).json(consultaAlquilerPost);
+    } 
+  }catch(err){
+    res.json({status:"error",error:"Post no encontrado"})
+  }
+}
+
+const getVehicleVenta = async function(req,res){
+  try{
+    consultaAlquilerPost = await Post.find({}).where('tipo_publicacion').equals('Vender').populate('informacionUser.idUsuarioVendedor').populate('informacionUser.idVehiculo').exec()
+    if (consultaAlquilerPost){
+      res.status(200).json(consultaAlquilerPost);
+    } 
+  }catch(err){
+    res.json({status:"error",error:"Post no encontrado"})
+  }
+}
+
 const getPostVehicle = async function(req,res){
   try{
     consultaAllPost = await Post.find({}).populate('informacionUser.idUsuarioVendedor').populate('informacionUser.idVehiculo').exec()
@@ -34,6 +56,7 @@ const newPost = async function (req,res) {
         titulo:req.body.titulo,
         fecha_post:req.body.fecha_post,
         tipo_publicacion:req.body.tipo_publicacion,
+        localizacion:req.body.localizacion,
         informacionUser:[{
           idUsuarioVendedor:req.body.idUsuarioVendedor,
           idVehiculo:req.body.idVehiculo
@@ -85,5 +108,7 @@ const newPost = async function (req,res) {
 
 module.exports = {
     newPost,
-    getPostVehicle
+    getPostVehicle,
+    getVehicleAlquilar,
+    getVehicleVenta
 }

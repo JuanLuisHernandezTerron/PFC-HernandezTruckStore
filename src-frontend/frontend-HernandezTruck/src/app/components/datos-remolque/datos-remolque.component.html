@@ -29,7 +29,7 @@
                 <div class="col-4">
                     <label for="matriculaTractora" name="matriculaLabel">Matricula *</label><br>
                     <mat-form-field class="width" appearance="fill">
-                        <input type="text" id="matriculaInput" [(ngModel)] = "semiremolque._id" [(ngModel)] = "semiremolque.vehiculo" formControlName="_id" name="matricula" matInput placeholder="Inserte la Matricula Por Favor..." required>
+                        <input type="text" id="matriculaInput" [(ngModel)] = "semiremolque._id" [(ngModel)] = "semiremolque.idVehiculo" [(ngModel)] = "semiremolque.vehiculo" formControlName="_id" name="matricula" matInput placeholder="Inserte la Matricula Por Favor..." required>
                         <mat-error>Ingrese Correctamente la Matricula</mat-error>
                     </mat-form-field>
                 </div>
@@ -104,7 +104,7 @@
             <hr>
             <div class="row">
                 <div class="col-4">
-                    <label for="PrecioTractora" name="Preciolabel">Precio Tractora *</label><br>
+                    <label for="PrecioTractora" name="Preciolabel">Precio SemiRemolque *</label><br>
                     <mat-form-field class="width" appearance="fill">
                         <input type="Number" id="PrecioInput" [(ngModel)] = "semiremolque.precio" formControlName="precio" name="precio" matInput placeholder="Inserte el Precio Por favor..." required>
                         <mat-error>Ingrese Correctamente el Precio</mat-error>
