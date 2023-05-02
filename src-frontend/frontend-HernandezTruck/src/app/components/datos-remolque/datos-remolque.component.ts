@@ -39,7 +39,8 @@ export class DatosRemolqueComponent implements OnInit{
     titulo:"",
     tipo_publicacion:"",
     idUsuarioVendedor:this.userService.getInfoToken(),
-    idVehiculo:''
+    idVehiculo:'',
+    vehiculo:''
   }
 
   validateSemiremolque():void{

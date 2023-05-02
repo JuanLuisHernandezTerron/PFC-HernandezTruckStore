@@ -30,7 +30,7 @@
                 <div class="col-4">
                     <label for="MatriculaUser" name="Matriculalabel">Matrícula *</label><br>
                     <mat-form-field class="width" appearance="fill">
-                        <input type="text" id="MatriculaInput" [(ngModel)] = "cabezaTractora._id" [(ngModel)] = "cabezaTractora.idVehiculo" formControlName="_id" name="matricula" matInput placeholder="Inserte Matricula Por favor..." required>
+                        <input type="text" id="MatriculaInput" [(ngModel)] = "cabezaTractora._id" [(ngModel)] = "cabezaTractora.idVehiculo" [(ngModel)] = "cabezaTractora.vehiculo" formControlName="_id" name="matricula" matInput placeholder="Inserte Matricula Por favor..." required>
                         <mat-error>Ingrese Correctamente la Matrícula</mat-error>
                     </mat-form-field>
                 </div>

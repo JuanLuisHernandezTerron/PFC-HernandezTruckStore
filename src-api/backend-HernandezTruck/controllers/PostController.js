@@ -51,7 +51,8 @@ const newPost = async function (req,res) {
               numeroDepositos:req.body.numeroDepositos,
               kms:req.body.kms,
               combustible:req.body.combustible,
-              retarder:req.body.retarde
+              retarder:req.body.retarde,
+              vehiculo:req.body._id
           }
           await cabezatractora.create(cabezaTractoraVehiculo)
 
@@ -65,7 +66,8 @@ const newPost = async function (req,res) {
             _id:req.body._id,
             tipoSemiremolque:req.body.tipoSemiremolque,
             tipoEje:req.body.tipoEje,
-            ADR:req.body.ADR
+            ADR:req.body.ADR,
+            vehiculo:req.body._id
         }
         await semiremolque.create(SemiremolqueVehiculo)
 

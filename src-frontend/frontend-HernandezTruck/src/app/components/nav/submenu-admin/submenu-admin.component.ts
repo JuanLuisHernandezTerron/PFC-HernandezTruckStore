@@ -11,12 +11,6 @@ import { Usuario } from 'src/app/models/usuario';
 export class SubmenuAdminComponent implements OnInit{
   constructor(private navigation: NavigationComponent,
               private userService: UserService){
-
-  }
-
-  userAUX={
-    nombre:"JHT",
-    nombreCompleto: 'Juan Luis Hernandez Terron'
   }
 
   user:Usuario;

@@ -38,7 +38,8 @@ export class DatosCabezaComponent implements OnInit{
     titulo:'',
     tipo_publicacion:'',
     idUsuarioVendedor:this.userService.getInfoToken(),
-    idVehiculo:''
+    idVehiculo:'',
+    vehiculo:''
   }
 
   validatorPostVehicle():void{
