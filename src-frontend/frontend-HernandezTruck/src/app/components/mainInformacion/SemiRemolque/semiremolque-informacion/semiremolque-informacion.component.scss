@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'RadioGrotesk';
+    src: url('./../../../../../assets/RadioGrotesk-Regular.otf') format("opentype");
+}
+
+*{
+    font-family: "RadioGrotesk";
+}
+
+button{
+    background-color: #73A9BF;
+}
+
+.divTractora{
+    border: 1px solid black;
+    border-radius: 5px;
+}
