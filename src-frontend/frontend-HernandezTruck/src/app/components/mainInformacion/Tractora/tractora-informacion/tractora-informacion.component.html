@@ -9,8 +9,8 @@
         <div class="col-2 filtros">
             FILTROS
         </div>
-        <ng-container>
-            <div class="col-10 divTractora mt-3 mb-5" *ngFor="let Tractoras of post">
+        <div class="col-10">
+            <div class="divTractora mt-3 mb-5" *ngFor="let Tractoras of arraydatos">
                 <div class="row">
                     <div class="col-3 mt-3">
                         <img class="img-fluid" src="./../../../../../assets/img/cabezaTractoraIcon.png" alt="img">
@@ -23,7 +23,8 @@
                         </div>
                         <div class="row">
                             <div class="col-1">
-                                <img src="./../../../../../assets/img/image 10.png" class="img-fluid" alt="imagen-localizador">
+                                <img src="./../../../../../assets/img/image 10.png" class="img-fluid"
+                                    alt="imagen-localizador">
                             </div>
                             <div class="col-11">
                                 <h4>{{Tractoras.informacionUser[0].idUsuarioVendedor.direccion}}</h4>
@@ -35,7 +36,8 @@
                                 <h4>{{Tractoras.informacionUser[0].idVehiculo.precio}}€</h4>
                             </div>
                             <div class="col-6 d-flex mb-3 justify-content-end">
-                                <button class="botonFiltro p-2" (click)="idBoton(Tractoras._id)" id={{Tractoras._id}}>Contactar</button>
+                                <button class="botonFiltro p-2" (click)="idBoton(Tractoras._id)"
+                                    id={{Tractoras._id}}>Contactar</button>
                             </div>
                         </div>
                     </div>
@@ -45,7 +47,6 @@
                     </div>
                 </div>
             </div>
-        </ng-container>
-
+        </div>
     </div>
 </div>
