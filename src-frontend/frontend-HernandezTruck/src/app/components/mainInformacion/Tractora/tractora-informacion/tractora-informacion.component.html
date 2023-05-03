@@ -36,8 +36,8 @@
                                 <h4>{{Tractoras.informacionUser[0].idVehiculo.precio}}€</h4>
                             </div>
                             <div class="col-6 d-flex mb-3 justify-content-end">
-                                <button class="botonFiltro p-2" (click)="idBoton(Tractoras._id)"
-                                    id={{Tractoras._id}}>Contactar</button>
+                                <button routerLink="/informacionDetalladaVehicle/{{Tractoras._id}}" class="botonFiltro p-2" (click)="idBoton(Tractoras.titulo)"
+                                    id={{Tractoras.titulo}}>Contactar</button>
                             </div>
                         </div>
                     </div>

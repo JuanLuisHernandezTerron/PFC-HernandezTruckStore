@@ -41,6 +41,7 @@ import { DatosCabezaComponent } from './components/datos-cabeza/datos-cabeza.com
 import { DatosRemolqueComponent } from './components/datos-remolque/datos-remolque.component';
 import { TractoraInformacionComponent } from './components/mainInformacion/Tractora/tractora-informacion/tractora-informacion.component';
 import { SemiremolqueInformacionComponent } from './components/mainInformacion/SemiRemolque/semiremolque-informacion/semiremolque-informacion.component';
+import { RegisterDetalladoComponent } from './components/informacionDetalladaPost/registrado/register-detallado/register-detallado.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { SemiremolqueInformacionComponent } from './components/mainInformacion/S
     DatosCabezaComponent,
     DatosRemolqueComponent,
     TractoraInformacionComponent,
-    SemiremolqueInformacionComponent
+    SemiremolqueInformacionComponent,
+    RegisterDetalladoComponent,
   ],
   imports: [
     BrowserModule,
