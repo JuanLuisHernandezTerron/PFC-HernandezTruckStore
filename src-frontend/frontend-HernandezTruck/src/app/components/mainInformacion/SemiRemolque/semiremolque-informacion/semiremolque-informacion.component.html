@@ -36,7 +36,7 @@
                                 <h4>{{remolque.informacionUser[0].idVehiculo.precio}}€</h4>
                             </div>
                             <div class="col-6 d-flex mb-3 justify-content-end">
-                                <button class="botonFiltro p-2" (click)="idBoton(remolque.titulo)"
+                                <button class="botonFiltro p-2" routerLink="/informacionDetalladaVehicle/{{remolque._id}}" (click)="idBoton(remolque.titulo)"
                                     name={{remolque.titulo}}>Contactar</button>
                             </div>
                         </div>

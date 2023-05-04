@@ -15,3 +15,7 @@ button{
     border: 1px solid black;
     border-radius: 5px;
 }
+
+.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled){
+    color: var(#fff, transparent) !important;
+}

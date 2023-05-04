@@ -21,6 +21,10 @@ export class AuthService {
     return this.http.post<any>(this.URL+'/usuarios/login',user);
   }
 
+  insertFavoritosUser(idUser,idPost){
+    return this.http.put<any>(this.URL+'/usuarios/insertPostFavorito/'+idPost+"/"+idUser,{});
+  }
+
   loggedIn(){
     if (localStorage.getItem('token')) {
       return true;

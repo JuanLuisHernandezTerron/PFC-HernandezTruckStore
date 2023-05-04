@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -81,7 +81,8 @@ import { RegisterDetalladoComponent } from './components/informacionDetalladaPos
     RouterModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSnackBarModule
   ],
   //Con interceptor creamos una cabecera
   providers: [UserService,AuthGuard

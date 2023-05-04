@@ -33,6 +33,7 @@ export class DatosRemolqueComponent implements OnInit{
     modelo:'',
     precio:"",
     color:'',
+    media:'',
     tipoSemiremolque:'',
     tipoEje:"",
     ADR:false,
@@ -65,7 +66,7 @@ export class DatosRemolqueComponent implements OnInit{
 
 
   ingresarRemolque(){
-    this.postservice.registroPostTractora(this.semiremolque).subscribe(
+    this.postservice.registroPostSemiRemolque(this.semiremolque).subscribe(
       res =>{
         if (res.status === 'Ingresado Correctamente') {
           this.route.navigate(['/mainUser']); 

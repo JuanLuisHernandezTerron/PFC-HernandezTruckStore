@@ -15,6 +15,7 @@ var postSchema = new Schema({
     likes:[{type: Schema.ObjectId,
             ref: 'Usuario'
     }],
+    media:{type:String},
     Reports:[{
         type: Schema.ObjectId,
         ref: 'Usuario'

@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="col-1 mt-3">
-                        <img src="./../../../../../assets/img/image 11.png" alt="Likes">
+                        <img mat-stroked-button (click)="openSnackBar('Guardado en Favoritos', 'Aceptar')" src="./../../../../../assets/img/image 11.png" alt="Likes">
                         <span>{{Tractoras.likes.length}}</span>
                     </div>
                 </div>

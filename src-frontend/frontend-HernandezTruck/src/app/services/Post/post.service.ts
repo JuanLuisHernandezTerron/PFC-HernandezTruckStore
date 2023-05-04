@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Router } from "@angular/router";
 import { PostVehicle } from 'src/app/models/PostVehiculo';
 import { BehaviorSubject, Observable } from "rxjs";
@@ -17,7 +17,8 @@ export class PostService {
     tipo_publicacion:"",
     Reports:[],
     likes:[],
-    informacionUser:[]
+    informacionUser:[],
+    media:""
   });
 
 
@@ -25,6 +26,10 @@ export class PostService {
 
   get PostInformacion():Observable<PostVehicle>{
     return this.postVehicleObservale.asObservable();
+  }
+
+  getPost(id:String){
+    return this.http.get<any>(this.URL+'/posts/getPost/'+id)
   }
 
   setPost(post:PostVehicle){
@@ -42,13 +47,12 @@ export class PostService {
   getPostVenta():Observable<any>{
     return this.http.get<any>(this.URL+'/posts/getVehiclesVenta')
   }
-
   
   registroPostSemiRemolque(postSemiremolque:any){
     return this.http.post<any>(this.URL+'/posts/newPost',postSemiremolque);
   }
 
-  registroPostTractora(postTractora:any){
+  registroPostTractora(postTractora:FormData){
     return this.http.post<any>(this.URL+'/posts/newPost',postTractora);
   }
 }

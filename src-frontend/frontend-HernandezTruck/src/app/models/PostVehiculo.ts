@@ -5,5 +5,6 @@ export interface PostVehicle {
     tipo_publicacion: String,
     Reports: Array<any>,
     likes: Array<any>,
+    media:String,
     informacionUser: Array<any>
 }

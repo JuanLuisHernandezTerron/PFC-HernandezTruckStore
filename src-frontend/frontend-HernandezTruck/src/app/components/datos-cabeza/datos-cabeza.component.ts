@@ -11,7 +11,6 @@ import { Router } from "@angular/router";
 })
 export class DatosCabezaComponent implements OnInit{
   formGroup !: FormGroup;  
-
   constructor(private userService:UserService,
               private fb: FormBuilder,
               private postservice:PostService,
@@ -30,6 +29,7 @@ export class DatosCabezaComponent implements OnInit{
     precio:'',
     color:'',
     cv:'',
+    media:'',
     adblue:false,
     numeroDepositos:'',
     kms:'',
@@ -60,6 +60,7 @@ export class DatosCabezaComponent implements OnInit{
       titulo : new FormControl('', [Validators.required]),
       tipo_publicacion : new FormControl('', [Validators.required]),
       adblue : new FormControl('', [Validators.required]),
+      media : new FormControl('', [Validators.required])
     });
   }
 
@@ -68,7 +69,36 @@ export class DatosCabezaComponent implements OnInit{
   }
 
   ingresarTractora():void{
-    this.postservice.registroPostTractora(this.cabezaTractora).subscribe(
+    const formData = new FormData();
+    formData.append('_id',this.cabezaTractora._id);
+    formData.append('ejes',this.cabezaTractora.ejes);
+    formData.append('mma',this.cabezaTractora.mma);
+    formData.append('tipoVehiculo',this.cabezaTractora.tipoVehiculo);
+    formData.append('fechaMatriculacion',this.cabezaTractora.fechaMatriculacion);
+    formData.append('Marca',this.cabezaTractora.Marca);
+    formData.append('modelo',this.cabezaTractora.modelo);
+    formData.append('precio',this.cabezaTractora.precio);
+    formData.append('color',this.cabezaTractora.color);
+    formData.append('cv',this.cabezaTractora.cv);
+    // let linkMedia = this.cabezaTractora.media.split('\\');
+    // console.log(linkMedia[2]);
+    // console.log(typeof(linkMedia[2]));
+    // formData.append('media',linkMedia[2]);
+    console.log(this.cabezaTractora.media);
+    formData.append('media',this.cabezaTractora.media);
+    formData.append('adblue',JSON.stringify(this.cabezaTractora.adblue));
+    formData.append('numeroDepositos',this.cabezaTractora.numeroDepositos);
+    formData.append('kms',this.cabezaTractora.kms);
+    formData.append('combustible',this.cabezaTractora.combustible);
+    formData.append('retarde',JSON.stringify(this.cabezaTractora.retarde));
+    formData.append('titulo',this.cabezaTractora.titulo);
+    formData.append('tipo_publicacion',this.cabezaTractora.tipo_publicacion);
+    formData.append('idUsuarioVendedor',this.cabezaTractora.idUsuarioVendedor);
+    formData.append('idVehiculo',this.cabezaTractora.idVehiculo);
+    formData.append('vehiculo',this.cabezaTractora.vehiculo);
+
+
+    this.postservice.registroPostTractora(formData).subscribe(
           res =>{
             if (res.status === 'Ingresado Correctamente') {
               this.route.navigate(['/mainUser']); 

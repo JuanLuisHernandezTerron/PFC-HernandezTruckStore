@@ -2,7 +2,18 @@ const Post = require('../models/Post');
 const Vehiculo = require('../models/Vehiculo');
 const cabezatractora = require('../models/Tractora');
 const semiremolque = require('../models/Semiremolque') 
-const Usuario = require('../models/Usuario'); 
+const Usuario = require('../models/Usuario');
+
+const getPost = async function(req,res){
+  try{
+    post = await Post.findById({_id:req.params.id}).populate('informacionUser.idUsuarioVendedor').populate('informacionUser.idVehiculo').exec();
+    if(post){
+      res.status(200).json(post);
+    }
+  }catch(err){
+    res.json({status:"error",error:"Post no encontrado"})
+  }
+}
 
 const getVehicleAlquilar = async function(req,res){
   try{
@@ -39,7 +50,7 @@ const getPostVehicle = async function(req,res){
 
 const newPost = async function (req,res) {
   try{
-    const vehicle={
+    const vehicle =({
         _id:req.body._id,
         ejes:req.body.ejes,
         mma:req.body.mma,
@@ -49,14 +60,14 @@ const newPost = async function (req,res) {
         modelo:req.body.modelo,
         precio:req.body.precio,
         color:req.body.color
-      }
+        })
       await  Vehiculo.create(vehicle)
-
       const post ={
         titulo:req.body.titulo,
         fecha_post:req.body.fecha_post,
         tipo_publicacion:req.body.tipo_publicacion,
         localizacion:req.body.localizacion,
+        // media:'http://localhost:3000/uploads/'+req.file.filename,
         informacionUser:[{
           idUsuarioVendedor:req.body.idUsuarioVendedor,
           idVehiculo:req.body.idVehiculo
@@ -110,5 +121,6 @@ module.exports = {
     newPost,
     getPostVehicle,
     getVehicleAlquilar,
-    getVehicleVenta
+    getVehicleVenta,
+    getPost
 }

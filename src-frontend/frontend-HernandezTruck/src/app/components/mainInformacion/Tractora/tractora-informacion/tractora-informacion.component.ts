@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { PostService } from 'src/app/services/Post/post.service';
 import { PostVehicle } from 'src/app/models/PostVehiculo';
 import { Observable } from 'rxjs';
-
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/services/auth.service';
+import {UserService} from './../../../../services/Usuario/user.service'
 
 @Component({
   selector: 'app-tractora-informacion',
@@ -11,6 +13,9 @@ import { Observable } from 'rxjs';
 })
 export class TractoraInformacionComponent {
   constructor(private servicePost: PostService,
+              private _snackBar: MatSnackBar,
+              private authservice: AuthService,
+              private userService : UserService
   ) { }
   post: PostVehicle;
   arraydatos: Array<PostVehicle> = [];
@@ -24,6 +29,10 @@ export class TractoraInformacionComponent {
         }
       });
     })
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 
   getPostAlquilerTractora() {
@@ -47,6 +56,13 @@ export class TractoraInformacionComponent {
         }
       });
     })
+  }
+
+  agregarFavoritos(){
+    let idUser = this.userService.getInfoToken();
+    // this.authservice.insertFavoritosUser(,idUser).subscribe((data)=>{
+    //   console.log(data);
+    // })
   }
 
   idBoton(e) {

@@ -3,6 +3,15 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const SALT_WORK_FACTOR = 10;
 
+const ingresarPostFavorito = async function(req,res){
+  try{
+    consulta = Usuario.findByIdAndUpdate({_id:req.params.idUser},{$push:{favoritos:[req.params.idPost]}}).exec();
+    res.status(200).json({status:"Post AñadidoCorrectamente"}) 
+  }catch(err){
+    res.status(401).json({status:"error",error:"Post no ingresado"})
+  }
+}
+
 const newUser = async function (req, res) {
   try{
     const data = req.body;
@@ -86,5 +95,6 @@ module.exports = {
     newUser,
     getAllUsers,
     loginUser,
-    getinfoUser
+    getinfoUser,
+    ingresarPostFavorito
 };
