@@ -21,8 +21,12 @@ export class AuthService {
     return this.http.post<any>(this.URL+'/usuarios/login',user);
   }
 
-  insertFavoritosUser(idUser,idPost){
-    return this.http.put<any>(this.URL+'/usuarios/insertPostFavorito/'+idPost+"/"+idUser,{});
+  insertFavoritosUser(idPost,idUser){
+    return this.http.put<any>(this.URL+'/usuarios/insertPostFavorito/'+idPost+"/"+idUser,"");
+  }
+
+  eliminarFavoritosUser(idPost,idUser){
+    return this.http.put<any>(this.URL+'/usuarios/eliminarPostFavorito/'+idPost+"/"+idUser,"");
   }
 
   loggedIn(){

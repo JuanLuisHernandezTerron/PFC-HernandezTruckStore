@@ -28,6 +28,14 @@ export class PostService {
     return this.postVehicleObservale.asObservable();
   }
 
+  insertarFavoritosUsuario(idPost:String,idUser:String){
+    return this.http.put<any>(this.URL+'/posts/insertUsuarioFavoritos/'+idPost+"/"+idUser,"")
+  }
+
+  eliminarFavoritosUsuario(idPost:String,idUser:String){
+    return this.http.put<any>(this.URL+'/posts/eliminarUsuarioFavoritos/'+idPost+"/"+idUser,"")
+  }
+
   getPost(id:String){
     return this.http.get<any>(this.URL+'/posts/getPost/'+id)
   }

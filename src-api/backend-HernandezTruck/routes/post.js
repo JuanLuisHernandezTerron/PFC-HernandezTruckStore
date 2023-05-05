@@ -4,22 +4,27 @@ var mongoose = require('mongoose');
 var db = mongoose.connection;
 const Post = require('../models/Post');
 const MediaMiddleware = require('./../middleware/media')
-const { newPost, getPostVehicle, getVehicleAlquilar, getVehicleVenta, getPost } = require('./../controllers/PostController')
+const { newPost, getPostVehicle, getVehicleAlquilar, getVehicleVenta, getPost, insertUsuarioPostFavoritos, eliminarUsuarioPostFavoritos} = require('./../controllers/PostController')
 const validationToken = require('./../middleware/ValidacionToken')
-/* Creacion de un nuevo Post*/
+/*POST - Creacion de un nuevo Post*/
 router.post('/newPost',validationToken,MediaMiddleware.upload,newPost);
 
-/* Devuelve todos los posts con sus respectivos usuarios y vehículos*/
+/*GET - Devuelve todos los posts con sus respectivos usuarios y vehículos*/
 router.get('/getPostsAll',getPostVehicle);
 
-/* Devuelve los post de Alquiler*/
+/*GET - Devuelve los post de Alquiler*/
 router.get('/getVehiclesAlquiler',getVehicleAlquilar)
 
-/* Devuelve los post de Ventas*/
+/*GET - Devuelve los post de Ventas*/
 router.get('/getVehiclesVenta',getVehicleVenta)
 
-/* Devuelve mediante su id el post*/
+/*PUT - Inserta los usuario que han dado MG a las publicaciones*/
+router.put('/insertUsuarioFavoritos/:idPost/:idUser',insertUsuarioPostFavoritos)
 
+/*PUT - Eliminar los usuario que han dado MG a las publicaciones*/
+router.put('/eliminarUsuarioFavoritos/:idPost/:idUser',eliminarUsuarioPostFavoritos)
+
+/*GET - Devuelve mediante su id el post*/
 router.get('/getPost/:id',getPost)
 
 

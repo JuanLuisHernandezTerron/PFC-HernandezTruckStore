@@ -3,6 +3,16 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const SALT_WORK_FACTOR = 10;
 
+const eliminarPostFavorito = async function(req,res){
+
+  try{
+    consulta = Usuario.updateOne({_id:req.params.idUser},{$pull:{favoritos: req.params.idPost}}).exec();
+    res.status(200).json({status:"Post EliminadoCorrectamente"}) 
+  }catch(err){
+    res.status(401).json({status:"error",error:"Post no ingresado"})
+  }
+}
+
 const ingresarPostFavorito = async function(req,res){
   try{
     consulta = Usuario.findByIdAndUpdate({_id:req.params.idUser},{$push:{favoritos:[req.params.idPost]}}).exec();
@@ -96,5 +106,6 @@ module.exports = {
     getAllUsers,
     loginUser,
     getinfoUser,
-    ingresarPostFavorito
+    ingresarPostFavorito,
+    eliminarPostFavorito
 };
