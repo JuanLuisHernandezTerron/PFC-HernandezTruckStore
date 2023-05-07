@@ -17,7 +17,7 @@
             <p>Likes</p>
         </div>
         <div class="col-1">
-            <img class="img-fluid" src="./../../../../../assets/img/share 1.png" alt="">
+            <img class="img-fluid" mat-stroked-button (click)="openSnackBar('Enlace Copiado en el PortaPapeles', 'Aceptar')" [cdkCopyToClipboard]="copyEnlace" src="./../../../../../assets/img/share 1.png" alt="">
         </div>
         <div class="col-1">
             <img class="img-fluid" src="./../../../../../assets/img/warning 1.png" alt="">
@@ -25,101 +25,112 @@
     </div>
     <div class="row">
         <div class="col-6">
-            <ng-container *ngIf= "tipoPost(); else postSemi">
+            <ng-container *ngIf="tipoPost(); else postSemi">
                 <h2 class="text-center">Información Detallada</h2>
                 <hr class="m-auto w-50">
                 <div class="row text-center">
                     <div class="col-12">
-                        <p>Matricula  . . . . . . . . . . . . . . . . . . . . . . . . .  {{DatoTractora._id}}</p>
+                        <p>Matricula . . . . . . . . . . . . . . . . . . . . . . . . . {{DatoTractora._id}}</p>
                     </div>
                     <div class="col-12">
-                        <p>Ejes  . . . . . . . . . . . . . . . . . . . . . . . . . . . .   {{informacionPost.informacionUser[0].idVehiculo.ejes}}</p>
+                        <p>Ejes . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+                            {{informacionPost.informacionUser[0].idVehiculo.ejes}}</p>
                     </div>
                     <div class="col-12">
-                       <p> MMA .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . {{informacionPost.informacionUser[0].idVehiculo.mma}} T</p>
+                        <p> MMA .. . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+                            {{informacionPost.informacionUser[0].idVehiculo.mma}} T</p>
                     </div>
                     <div class="col-12">
-                        <p>Año Matriculacion . . . . . . . . . . . . . . . . . {{informacionPost.informacionUser[0].idVehiculo.fechaMatriculacion | date:'longDate'}}</p>
+                        <p>Año Matriculacion . . . . . . . . . . . . . . . . .
+                            {{informacionPost.informacionUser[0].idVehiculo.fechaMatriculacion | date:'longDate'}}</p>
                     </div>
                     <div class="col-12">
-                        <p>Marca . . . . . . . . . . . . . . . . . . . . .  . . . . . . {{informacionPost.informacionUser[0].idVehiculo.Marca}}</p>
+                        <p>Marca . . . . . . . . . . . . . . . . . . . . . . . . . . .
+                            {{informacionPost.informacionUser[0].idVehiculo.Marca}}</p>
                     </div>
                     <div class="col-12">
-                        <p>Modelo . . . . . . . . . . . . . . . . . . . . .  . . . . . {{informacionPost.informacionUser[0].idVehiculo.modelo}}</p>
+                        <p>Modelo . . . . . . . . . . . . . . . . . . . . . . . . . .
+                            {{informacionPost.informacionUser[0].idVehiculo.modelo}}</p>
                     </div>
                     <div class="col-12">
-                        <p>Potencia (CV) . . . . . . . . . . . . . . . . . . . . .  . . {{DatoTractora.cv}} CV</p>
+                        <p>Potencia (CV) . . . . . . . . . . . . . . . . . . . . . . . {{DatoTractora.cv}} CV</p>
                     </div>
                     <div class="col-12">
-                        <p>AdBlue . . . . . . . . . . . . . . . . . . . . .  . . . . . . {{DatoTractora.adblue}}</p>
+                        <p>AdBlue . . . . . . . . . . . . . . . . . . . . . . . . . . . {{DatoTractora.adblue |
+                            booleanSiNo}}</p>
                     </div>
                     <div class="col-12">
-                        <p><span class="me-3">Numero Depositos</span>. . . . . . . . . . . . . . . . . . {{DatoTractora.numeroDepositos}}</p>
+                        <p><span class="me-3">Numero Depositos</span>. . . . . . . . . . . . . . . . . .
+                            {{DatoTractora.numeroDepositos}}</p>
                     </div>
                     <div class="col-12">
-                        <p>Kilómetros (KMS) . . . . . . . . . . . . . . . . . . . . . . . . . . . {{DatoTractora.kms}} Km</p>
+                        <p>Kilómetros (KMS) . . . . . . . . . . . . . . . . . . . . . . . . {{DatoTractora.kms}} Km</p>
                     </div>
                     <div class="col-12">
-                        <p>Combustible . . . . . . . . . . . . . . . . . . . . . . . . . . . {{DatoTractora.combustible}}</p>
+                        <p>Combustible . . . . . . . . . . . . . . . . . . . . . . . . . . .
+                            {{DatoTractora.combustible}}</p>
                     </div>
                     <div class="col-12">
-                        <p>Retarder . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . {{DatoTractora.retarder}}</p>
+                        <p>Retarder . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+                            {{DatoTractora.retarder | booleanSiNo}}</p>
                     </div>
                 </div>
             </ng-container>
         </div>
         <div class="col-6">
-            <div class="row">
-                <h2 class="col-12 text-center">Información Vendedor</h2>
-            </div>
-            <hr class="w-50 m-auto">
-            <div class="row">
-                <img class="mt-3 col-12 imgPerfil img-fluid m-auto" src="./../../../../../assets/img/image 12.png"
-                    alt="imagenPerfil">
-            </div>
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h3 class="mt-3">{{informacionPost.informacionUser[0].idUsuarioVendedor.nombre}} {{informacionPost.informacionUser[0].idUsuarioVendedor.apellidos}}</h3>
+            <ng-container *ngIf="authservice.loggedIn(); else informacionVendedor">
+                <div class="row">
+                    <h2 class="col-12 text-center">Información Vendedor</h2>
                 </div>
-            </div>
-            <div class="row">
-                <div class="mt-3 col-5 borderInformacion m-auto p-1">
-                    <div class="row">
-                        <div class="col-1">
-                            <img src="./../../../../../assets/img/image 13.png" alt="IconoLlamada">
-                        </div>
-                        <div class="col-11 text-center">
-                            <h5>+34 {{informacionPost.informacionUser[0].idUsuarioVendedor.telefono}}</h5>
+                <hr class="w-50 m-auto">
+                <div class="row">
+                    <img class="mt-3 col-12 imgPerfil img-fluid m-auto" src="./../../../../../assets/img/image 12.png"
+                        alt="imagenPerfil">
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3 class="mt-3">{{informacionPost.informacionUser[0].idUsuarioVendedor.nombre}}
+                            {{informacionPost.informacionUser[0].idUsuarioVendedor.apellidos}}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mt-3 col-5 borderInformacion m-auto p-1">
+                        <div class="row">
+                            <div class="col-1">
+                                <img src="./../../../../../assets/img/image 13.png" alt="IconoLlamada">
+                            </div>
+                            <div class="col-11 text-center">
+                                <h5>+34 {{informacionPost.informacionUser[0].idUsuarioVendedor.telefono}}</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class=" mt-4 col-5 borderInformacion m-auto p-1">
-                    <div class="row">
-                        <div class="col-1">
-                            <img src="./../../../../../assets/img/image 14.png" alt="IconoLlamada">
-                        </div>
-                        <div class="col-11 text-center">
-                            <h5>{{informacionPost.informacionUser[0].idUsuarioVendedor.email}}</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="mt-4 mb-2 col-5 borderInformacion m-auto p-1">
-                    <div class="row">
-                        <div class="col-1">
-                            <img src="./../../../../../assets/img/image 15.png" alt="IconoLlamada">
-                        </div>
-                        <div class="col-11 text-center">
-                            <h5>{{informacionPost.informacionUser[0].idUsuarioVendedor.direccion}}</h5>
+                <div class="row">
+                    <div class=" mt-4 col-5 borderInformacion m-auto p-1">
+                        <div class="row">
+                            <div class="col-1">
+                                <img src="./../../../../../assets/img/image 14.png" alt="IconoLlamada">
+                            </div>
+                            <div class="col-11 text-center">
+                                <h5>{{informacionPost.informacionUser[0].idUsuarioVendedor.email}}</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <span class="d-flex justify-content-center">*Regístrate para poder ver la información</span>
-            <ng-container *ngIf= "authservice.loggedIn(); else login">
+                <div class="row">
+                    <div class="mt-4 mb-2 col-5 borderInformacion m-auto p-1">
+                        <div class="row">
+                            <div class="col-1">
+                                <img src="./../../../../../assets/img/image 15.png" alt="IconoLlamada">
+                            </div>
+                            <div class="col-11 text-center">
+                                <h5>{{informacionPost.informacionUser[0].idUsuarioVendedor.direccion}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="authservice.loggedIn(); else login">
                 <div class="row">
                     <button class="mt-4 mb-5 p-2 col-5 m-auto" routerLink="/">
                         Contactar
@@ -139,4 +150,57 @@
 </ng-template>
 <ng-template #postSemi>
     <h2>es semiremolque</h2>
+</ng-template>
+<ng-template #informacionVendedor>
+    <div class="row">
+        <h2 class="col-12 text-center">Información Vendedor</h2>
+    </div>
+    <hr class="w-50 m-auto">
+    <div class="row">
+        <img class="mt-3 col-12 imgPerfil img-fluid m-auto" src="./../../../../../assets/img/image 12.png"
+            alt="imagenPerfil">
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <h3 class="mt-3">{{informacionPost.informacionUser[0].idUsuarioVendedor.nombre}}
+                {{informacionPost.informacionUser[0].idUsuarioVendedor.apellidos}}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mt-3 col-5 borderInformacion m-auto p-1">
+            <div class="row">
+                <div class="col-1">
+                    <img src="./../../../../../assets/img/image 13.png" alt="IconoLlamada">
+                </div>
+                <div class="col-11 text-center">
+                    <h5>+34 {{informacionPost.informacionUser[0].idUsuarioVendedor.telefono | eliminatedNumbers}} . . . . . . . . . </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" mt-4 col-5 borderInformacion m-auto p-1">
+            <div class="row">
+                <div class="col-1">
+                    <img src="./../../../../../assets/img/image 14.png" alt="IconoLlamada">
+                </div>
+                <div class="col-11 text-center">
+                    <h5>{{informacionPost.informacionUser[0].idUsuarioVendedor.email | slice:0:10}} . . . . . . . . . . . .</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mt-4 mb-2 col-5 borderInformacion m-auto p-1">
+            <div class="row">
+                <div class="col-1">
+                    <img src="./../../../../../assets/img/image 15.png" alt="IconoLlamada">
+                </div>
+                <div class="col-11 text-center">
+                    <h5>{{informacionPost.informacionUser[0].idUsuarioVendedor.direccion | slice:0:4}}. . . . . . . . . . . . </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <span class="d-flex justify-content-center">*Regístrate para poder ver la información</span>
 </ng-template>

@@ -12,6 +12,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 
 
 
@@ -42,6 +43,8 @@ import { DatosRemolqueComponent } from './components/datos-remolque/datos-remolq
 import { TractoraInformacionComponent } from './components/mainInformacion/Tractora/tractora-informacion/tractora-informacion.component';
 import { SemiremolqueInformacionComponent } from './components/mainInformacion/SemiRemolque/semiremolque-informacion/semiremolque-informacion.component';
 import { RegisterDetalladoComponent } from './components/informacionDetalladaPost/registrado/register-detallado/register-detallado.component';
+import { BooleanSiNoPipe } from './Pipe/boolean-si-no.pipe';
+import { EliminatedNumbersPipe } from './Pipe/eliminated-numbers.pipe';
 
 @NgModule({
   declarations: [
@@ -63,6 +66,8 @@ import { RegisterDetalladoComponent } from './components/informacionDetalladaPos
     TractoraInformacionComponent,
     SemiremolqueInformacionComponent,
     RegisterDetalladoComponent,
+    BooleanSiNoPipe,
+    EliminatedNumbersPipe,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +87,8 @@ import { RegisterDetalladoComponent } from './components/informacionDetalladaPos
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ClipboardModule
   ],
   //Con interceptor creamos una cabecera
   providers: [UserService,AuthGuard

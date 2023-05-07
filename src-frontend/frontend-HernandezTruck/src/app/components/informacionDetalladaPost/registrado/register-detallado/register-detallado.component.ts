@@ -4,6 +4,8 @@ import { PostService } from 'src/app/services/Post/post.service';
 import { TractoraService } from 'src/app/services/Vehiculos/Tractora/tractora.service';
 import { PostVehicle } from 'src/app/models/PostVehiculo';
 import { tractora } from 'src/app/models/tractora';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-register-detallado',
   templateUrl: './register-detallado.component.html',
@@ -15,8 +17,10 @@ export class RegisterDetalladoComponent implements OnInit {
   DatoTractora !: tractora; 
   constructor (public authservice: AuthService,
               private postServie : PostService,
-              private tractoraService: TractoraService) { }
+              private tractoraService: TractoraService,
+              private _snackBar : MatSnackBar) { }
   contador = 0;
+  copyEnlace = window.location.toString();
 
   ngOnInit(): void {
     this.informacionPost = {
@@ -49,6 +53,10 @@ export class RegisterDetalladoComponent implements OnInit {
 
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
+
   tipoPost(){
    let esCabeza = false;
 
@@ -60,8 +68,6 @@ export class RegisterDetalladoComponent implements OnInit {
          this.DatoTractora = data
       })
       }
-      console.log(this.informacionPost)
-      console.log(this.DatoTractora)
    }
     return esCabeza;
   }
