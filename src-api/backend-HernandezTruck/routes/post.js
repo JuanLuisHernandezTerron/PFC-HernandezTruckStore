@@ -6,6 +6,7 @@ const Post = require('../models/Post');
 const MediaMiddleware = require('./../middleware/media')
 const { newPost, getPostVehicle, getVehicleAlquilar, getVehicleVenta, getPost, insertUsuarioPostFavoritos, eliminarUsuarioPostFavoritos} = require('./../controllers/PostController')
 const validationToken = require('./../middleware/ValidacionToken')
+
 /*POST - Creacion de un nuevo Post*/
 router.post('/newPost',validationToken,MediaMiddleware.upload,newPost);
 

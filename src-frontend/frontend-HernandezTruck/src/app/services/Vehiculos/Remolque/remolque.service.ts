@@ -10,6 +10,7 @@ export class RemolqueService {
   private URL = 'http://localhost:3000';
   constructor(private http: HttpClient) { }
 
+
   getCountRemolque():Observable<Number>{
     return this.http.get<Number>(this.URL+'/semirremolques/allRemolqueCount')
   }

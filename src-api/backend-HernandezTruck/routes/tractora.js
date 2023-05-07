@@ -3,13 +3,15 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var db = mongoose.connection;
 const validationToken = require('./../middleware/ValidacionToken')
-const { getAllTractorasCount,getAllInfoTractoras } = require('./../controllers/TractoraController')
+const { getAllTractorasCount,getAllInfoTractoras, getInfoTractora } = require('./../controllers/TractoraController')
 
-/* Recojo todas las tractoras insertardas en la Base de Datos */
+/*GET - Recojo todas las tractoras insertardas en la Base de Datos */
 router.get('/allTractoras', getAllTractorasCount);
 
-/* Recojo la información completa de los vehiculos*/
-
+/*GET - Recojo la información completa de los vehiculos*/
 router.get('/informacionTractora', getAllInfoTractoras)
+
+/*GET - Recojo la información de la tractora , mediante el id del vehiculo*/
+router.get('/informacionVehicleTractora/:idVehicle', getInfoTractora)
 
 module.exports = router;

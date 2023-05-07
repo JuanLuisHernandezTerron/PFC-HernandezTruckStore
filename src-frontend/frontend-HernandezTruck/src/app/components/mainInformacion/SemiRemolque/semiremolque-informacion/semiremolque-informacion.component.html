@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="col-1 mt-3">
-                        <img src="./../../../../../assets/img/image 11.png" alt="Likes">
+                        <img mat-stroked-button name="{{remolque._id}}" src="./../../../../../assets/img/image 11.png" (click)="agregarFavoritos($event.target.name)" alt="Likes">
                         <span>{{remolque.likes.length}}</span>
                     </div>
                 </div>
