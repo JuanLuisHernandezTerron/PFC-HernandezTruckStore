@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '././../../../../services/auth.service';
+import { AuthService } from '././../../../../services/auth.service';
 import { PostService } from 'src/app/services/Post/post.service';
 import { TractoraService } from 'src/app/services/Vehiculos/Tractora/tractora.service';
 import { PostVehicle } from 'src/app/models/PostVehiculo';
 import { tractora } from 'src/app/models/tractora';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UserService } from 'src/app/services/Usuario/user.service'; 
+import { UserService } from 'src/app/services/Usuario/user.service';
+import { RemolqueService } from 'src/app/services/Vehiculos/Remolque/remolque.service';
+import { semiRemolque } from 'src/app/models/semiRemolque';
 
 @Component({
   selector: 'app-register-detallado',
@@ -15,36 +17,46 @@ import { UserService } from 'src/app/services/Usuario/user.service';
 export class RegisterDetalladoComponent implements OnInit {
   informacionPost !: PostVehicle;
   es_tractora = false;
-  DatoTractora !: tractora; 
-  constructor (public authservice: AuthService,
-              private postServie : PostService,
-              private tractoraService: TractoraService,
-              private _snackBar : MatSnackBar,
-              private userService:UserService) { }
+  DatoTractora !: tractora;
+  DatoRemolque !: semiRemolque;
+  constructor(public authservice: AuthService,
+    private postServie: PostService,
+    private tractoraService: TractoraService,
+    private _snackBar: MatSnackBar,
+    private userService: UserService,
+    private remolqueService: RemolqueService) { }
   contador = 0;
   copyEnlace = window.location.toString();
 
   ngOnInit(): void {
     this.informacionPost = {
-      _id:'',
-      titulo:'',
+      _id: '',
+      titulo: '',
       fecha_post: new Date(),
-      tipo_publicacion:'',
+      tipo_publicacion: '',
       Reports: [],
-      likes:[],
-      media:'',
-      informacionUser:[]
+      likes: [],
+      media: '',
+      informacionUser: []
     }
 
-    this.DatoTractora={
-      _id:'',
-      cv:0,
+    this.DatoTractora = {
+      _id: '',
+      cv: 0,
       adblue: false,
       numeroDepositos: 0,
-      kms:0,
-      combustible:'',
-      retarder:false,
-      vehiculo:[]
+      kms: 0,
+      combustible: '',
+      retarder: false,
+      vehiculo: []
+    }
+
+    this.DatoRemolque = {
+      _id: '',
+      tipoSemiremolque: '',
+      tipoEje: '',
+      ADR: false,
+      vehiculo: []
     }
 
 
@@ -85,26 +97,38 @@ export class RegisterDetalladoComponent implements OnInit {
     this._snackBar.open(message, action);
   }
 
-  reportarPost(){
-    this.postServie.reportarPost(this.informacionPost._id,this.userService.getInfoToken()).subscribe((data)=>{
+  reportarPost() {
+    this.postServie.reportarPost(this.informacionPost._id, this.userService.getInfoToken()).subscribe((data) => {
       if (data.status === 'Post Reportador Correctamente') {
         this._snackBar.open('Post Reportado Correctamente, esta acción es irreversible', 'Aceptar');
       }
     })
   }
 
-  tipoPost(){
-   let esCabeza = false;
+  tipoOperacion(){
+    return (this.informacionPost.tipo_publicacion === 'Vender') ? true : false;
+  }
+
+  tipoPost() {
+    let esCabeza = false;
 
     if (this.informacionPost.informacionUser[0].idVehiculo.tipoVehiculo === "cabezatractora") {
-      esCabeza =  true;
+      esCabeza = true;
       if (this.contador <= 0) {
-         this.contador ++;
-         this.tractoraService.getInfoVehiculo(this.informacionPost.informacionUser[0].idVehiculo._id).subscribe((data)=>{
-         this.DatoTractora = data
-      })
+        this.contador++;
+        this.tractoraService.getInfoVehiculo(this.informacionPost.informacionUser[0].idVehiculo._id).subscribe((data) => {
+          this.DatoTractora = data
+        })
       }
-   }
+    } else if (this.informacionPost.informacionUser[0].idVehiculo.tipoVehiculo === "semirremolque") {
+      if (this.contador <= 0) {
+        this.contador++;
+        this.remolqueService.getInfoVehiculoRemolque(this.informacionPost.informacionUser[0].idVehiculo._id).subscribe((data) => {
+          this.DatoRemolque = data
+        })
+      }
+      console.log(this.DatoRemolque)
+    }
     return esCabeza;
   }
 }

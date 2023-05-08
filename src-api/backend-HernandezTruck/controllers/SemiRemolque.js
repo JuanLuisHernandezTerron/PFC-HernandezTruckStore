@@ -1,6 +1,7 @@
 const Vehiculo = require('../models/Vehiculo');
 const semiRemolque = require('../models/Semiremolque'); 
 
+
 const getinfoRemolque = async function(req,res){
     try{
         console.log(req.params.idVehicle)
