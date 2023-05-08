@@ -36,13 +36,15 @@
                                 <h4>{{Tractoras.informacionUser[0].idVehiculo.precio}}€</h4>
                             </div>
                             <div class="col-6 d-flex mb-3 justify-content-end">
-                                <button routerLink="/informacionDetalladaVehicle/{{Tractoras._id}}" class="botonFiltro p-2" (click)="idBoton(Tractoras.titulo)"
+                                <button routerLink="/informacionDetalladaVehicle/{{Tractoras._id}}"
+                                    class="botonFiltro p-2" (click)="idBoton(Tractoras.titulo)"
                                     id={{Tractoras.titulo}}>Contactar</button>
                             </div>
                         </div>
                     </div>
                     <div class="col-1 mt-3">
-                        <img mat-stroked-button name="{{Tractoras._id}}" (click)="agregarFavoritos($event.target.name)" src="./../../../../../assets/img/image 11.png" alt="Likes">
+                        <img mat-stroked-button name="{{Tractoras._id}}" (click)="agregarFavoritos($event.target.name)"
+                            src="./../../../../../assets/img/image 11.png" alt="Likes">
                         <span>{{Tractoras.likes.length}}</span>
                     </div>
                 </div>

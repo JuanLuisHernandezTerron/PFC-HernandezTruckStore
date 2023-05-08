@@ -13,14 +13,17 @@
     </div>
     <div class="row d-flex justify-content-center text-center">
         <div class=" col-1">
-            <img class="img-fluid" src="./../../../../../assets/img/image 11.png" alt="">
-            <p>Likes</p>
+            <ng-container *ngIf="authservice.loggedIn(); else likeInvitado">
+                <img class="img-fluid" mat-stroked-button (click)="agregarFavoritos()" src="./../../../../../assets/img/image 11.png" alt="">
+            </ng-container>
         </div>
         <div class="col-1">
             <img class="img-fluid" mat-stroked-button (click)="openSnackBar('Enlace Copiado en el PortaPapeles', 'Aceptar')" [cdkCopyToClipboard]="copyEnlace" src="./../../../../../assets/img/share 1.png" alt="">
         </div>
         <div class="col-1">
-            <img class="img-fluid" src="./../../../../../assets/img/warning 1.png" alt="">
+            <ng-container *ngIf="authservice.loggedIn(); else warninInvitado">
+                <img class="img-fluid" mat-stroked-button (click)="reportarPost()" src="./../../../../../assets/img/warning 1.png" alt="">
+            </ng-container>
         </div>
     </div>
     <div class="row">
@@ -73,6 +76,9 @@
                     <div class="col-12">
                         <p>Retarder . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
                             {{DatoTractora.retarder | booleanSiNo}}</p>
+                    </div>
+                    <div class="col-12">
+                        <h2>PRECIO {{informacionPost.informacionUser[0].idVehiculo.precio}} €</h2>
                     </div>
                 </div>
             </ng-container>
@@ -147,6 +153,12 @@
             Contactar
         </button>
     </div>
+</ng-template>
+<ng-template #likeInvitado>
+    <img class="img-fluid" routerLink="/register"  src="./../../../../../assets/img/image 11.png" alt="">
+</ng-template>
+<ng-template #warninInvitado>
+    <img class="img-fluid" routerLink="/register" src="./../../../../../assets/img/warning 1.png" alt="">
 </ng-template>
 <ng-template #postSemi>
     <h2>es semiremolque</h2>

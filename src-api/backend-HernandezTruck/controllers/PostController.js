@@ -4,6 +4,15 @@ const cabezatractora = require('../models/Tractora');
 const semiremolque = require('../models/Semiremolque')
 const Usuario = require('../models/Usuario');
 
+const anadirPostReport = async function (req,res){
+  try {
+    consulta = Post.updateOne({ _id: req.params.idPost }, {$addToSet:{Reports:req.params.idUser}}).exec();
+    res.status(200).json({ status: "Post Reportador Correctamente" })
+  } catch (err) {
+    res.status(401).json({ status: "error", error: "Post no ingresado" })
+  }
+}
+
 const eliminarUsuarioPostFavoritos = async function (req, res) {
   try {
     consulta = Post.updateOne({ _id: req.params.idPost }, {$pull:{likes:req.params.idUser}}).exec();
@@ -142,5 +151,6 @@ module.exports = {
   getVehicleVenta,
   getPost,
   insertUsuarioPostFavoritos,
-  eliminarUsuarioPostFavoritos
+  eliminarUsuarioPostFavoritos,
+  anadirPostReport
 }

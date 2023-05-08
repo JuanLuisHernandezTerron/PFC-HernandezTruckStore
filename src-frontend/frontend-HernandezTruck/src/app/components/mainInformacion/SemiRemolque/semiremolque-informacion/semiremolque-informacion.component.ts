@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from './../../../../services/Usuario/user.service';
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -16,7 +17,8 @@ export class SemiremolqueInformacionComponent {
   constructor(private servicePost: PostService,
               private userService: UserService,
               private authService: AuthService,
-              private _snackBar:MatSnackBar
+              private _snackBar:MatSnackBar,
+              private router: Router
     ) { }
     post: PostVehicle;
     arraydatos: Array<PostVehicle> = [];
@@ -57,27 +59,32 @@ export class SemiremolqueInformacionComponent {
 
     agregarFavoritos(idPost) {
       let idUser = this.userService.getInfoToken();
-      this.userService.getInfoUsuarioID(idUser).subscribe((data) => {
-        if (JSON.stringify(data.consulta.favoritos).split('"').includes(idPost)) {
-          this.authService.eliminarFavoritosUser(idPost, idUser).subscribe((data) => {
-            if (data.status === "Post EliminadoCorrectamente") {
-              this._snackBar.open('Post Eliminado de Favoritos', 'Aceptar');
-              this.servicePost.eliminarFavoritosUsuario(idPost, idUser).subscribe();
-              window.location.reload();
-            }
-          })
-        }
-  
-        if (!JSON.stringify(data.consulta.favoritos).split('"').includes(idPost)) {
-          this.authService.insertFavoritosUser(idPost, idUser).subscribe((data) => {
-            if (data.status === "Post AñadidoCorrectamente") {
-              this.servicePost.insertarFavoritosUsuario(idPost, idUser).subscribe();
-              this._snackBar.open('Post añadido a Favoritos', 'Aceptar');
-              window.location.reload();
-            }
-          })
-        }
-      })
+      if (this.authService.loggedIn()) {
+        this.userService.getInfoUsuarioID(idUser).subscribe((data) => {
+          if (JSON.stringify(data.consulta.favoritos).split('"').includes(idPost)) {
+            this.authService.eliminarFavoritosUser(idPost, idUser).subscribe((data) => {
+              if (data.status === "Post EliminadoCorrectamente") {
+                this._snackBar.open('Post Eliminado de Favoritos', 'Aceptar');
+                this.servicePost.eliminarFavoritosUsuario(idPost, idUser).subscribe();
+                window.location.reload();
+              }
+            })
+          }
+    
+          if (!JSON.stringify(data.consulta.favoritos).split('"').includes(idPost)) {
+            this.authService.insertFavoritosUser(idPost, idUser).subscribe((data) => {
+              if (data.status === "Post AñadidoCorrectamente") {
+                this.servicePost.insertarFavoritosUsuario(idPost, idUser).subscribe();
+                this._snackBar.open('Post añadido a Favoritos', 'Aceptar');
+                window.location.reload();
+              }
+            })
+          }
+        })
+      }else{
+        this.router.navigateByUrl('/register');
+      }
+
   
     }
   

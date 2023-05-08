@@ -28,6 +28,10 @@ export class PostService {
     return this.postVehicleObservale.asObservable();
   }
 
+  reportarPost(idPost:String,idUser:String){
+    return this.http.put<any>(this.URL+'/posts/anadirPostReportado/'+idPost+"/"+idUser,"")
+  }
+
   insertarFavoritosUsuario(idPost:String,idUser:String){
     return this.http.put<any>(this.URL+'/posts/insertUsuarioFavoritos/'+idPost+"/"+idUser,"")
   }

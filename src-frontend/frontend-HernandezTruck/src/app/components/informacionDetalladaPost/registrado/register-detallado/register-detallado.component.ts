@@ -5,6 +5,7 @@ import { TractoraService } from 'src/app/services/Vehiculos/Tractora/tractora.se
 import { PostVehicle } from 'src/app/models/PostVehiculo';
 import { tractora } from 'src/app/models/tractora';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserService } from 'src/app/services/Usuario/user.service'; 
 
 @Component({
   selector: 'app-register-detallado',
@@ -18,7 +19,8 @@ export class RegisterDetalladoComponent implements OnInit {
   constructor (public authservice: AuthService,
               private postServie : PostService,
               private tractoraService: TractoraService,
-              private _snackBar : MatSnackBar) { }
+              private _snackBar : MatSnackBar,
+              private userService:UserService) { }
   contador = 0;
   copyEnlace = window.location.toString();
 
@@ -50,11 +52,45 @@ export class RegisterDetalladoComponent implements OnInit {
     this.postServie.getPost(slug[2]).subscribe((data) => {
       this.informacionPost = data;
     })
+  }
+
+  agregarFavoritos() {
+    let idPost = this.informacionPost._id;
+    let idUser = this.userService.getInfoToken();
+    this.userService.getInfoUsuarioID(idUser).subscribe((data) => {
+      if (JSON.stringify(data.consulta.favoritos).split('"').includes(idPost.toString())) {
+        this.authservice.eliminarFavoritosUser(idPost, idUser).subscribe((data) => {
+          if (data.status === "Post EliminadoCorrectamente") {
+            this._snackBar.open('Post Eliminado de Favoritos', 'Aceptar');
+            this.postServie.eliminarFavoritosUsuario(idPost, idUser).subscribe();
+            window.location.reload();
+          }
+        })
+      }
+
+      if (!JSON.stringify(data.consulta.favoritos).split('"').includes(idPost.toString())) {
+        this.authservice.insertFavoritosUser(idPost, idUser).subscribe((data) => {
+          if (data.status === "Post AñadidoCorrectamente") {
+            this.postServie.insertarFavoritosUsuario(idPost, idUser).subscribe();
+            this._snackBar.open('Post añadido a Favoritos', 'Aceptar');
+            window.location.reload();
+          }
+        })
+      }
+    })
 
   }
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);
+  }
+
+  reportarPost(){
+    this.postServie.reportarPost(this.informacionPost._id,this.userService.getInfoToken()).subscribe((data)=>{
+      if (data.status === 'Post Reportador Correctamente') {
+        this._snackBar.open('Post Reportado Correctamente, esta acción es irreversible', 'Aceptar');
+      }
+    })
   }
 
   tipoPost(){

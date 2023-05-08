@@ -10,14 +10,14 @@ router.post('/register', newUser);
 /*POST - Login del usuario */
 router.post('/login',validationToken, loginUser)
 
+/*GET - Información de todos los usuarios */
+router.get('/getAllUsers',validationToken,getAllUsers),
+
 /*PUT - Ingreso de Post Favorito Usuario*/
 router.put('/insertPostFavorito/:idPost/:idUser',ingresarPostFavorito)
 
 /*PUT - Eliminacion de Post Favorito Usuario*/
 router.put('/eliminarPostFavorito/:idPost/:idUser',eliminarPostFavorito)
-
-/*GET - Información de todos los usuarios */
-router.get('/getAllUsers',validationToken,getAllUsers),
 
 /*GET - Informacion del usuario*/
 router.get('/getInfoUser/:id',validationToken,getinfoUser)
