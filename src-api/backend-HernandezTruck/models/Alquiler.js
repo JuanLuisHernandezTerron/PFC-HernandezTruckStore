@@ -8,9 +8,9 @@ var db = mongoose.connection;
 var alquilerSchema = new Schema({
     fecha_operacion:{type: Date, default: Date.now(),required: true},
     operacionFinalizada:{type : Boolean},
-    informacionCompra:[{
+    informacionAlquiler:[{
         idUsusarioVendedor:{type: Schema.ObjectId,ref:'Usuario'},
-        idVehiculo:{type: Schema.ObjectId,ref:'Vehiculo'},
+        idPost:{type: Schema.ObjectId,ref:'Post'},
         idUsuarioAlquilado:{type: Schema.ObjectId,ref:'Usuario'}
     }]
 })
