@@ -8,7 +8,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/services/Usuario/user.service';
 import { RemolqueService } from 'src/app/services/Vehiculos/Remolque/remolque.service';
 import { semiRemolque } from 'src/app/models/semiRemolque';
-
+import { OperacionPostService } from 'src/app/services/Operacion/operacion-post.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register-detallado',
   templateUrl: './register-detallado.component.html',
@@ -24,7 +25,10 @@ export class RegisterDetalladoComponent implements OnInit {
     private tractoraService: TractoraService,
     private _snackBar: MatSnackBar,
     private userService: UserService,
-    private remolqueService: RemolqueService) { }
+    private remolqueService: RemolqueService,
+    private operacionService: OperacionPostService,
+    private router : Router) { }
+  
   contador = 0;
   copyEnlace = window.location.toString();
 
@@ -60,10 +64,27 @@ export class RegisterDetalladoComponent implements OnInit {
     }
 
 
+
     let slug = window.location.pathname.split("/")
     this.postServie.getPost(slug[2]).subscribe((data) => {
       this.informacionPost = data;
     })
+  }
+
+  anadirOperacion(){
+    let idUser = this.userService.getInfoToken();
+    let idUserVendedor = this.informacionPost.informacionUser[0].idUsuarioVendedor._id;
+    let idPost = this.informacionPost._id;
+    console.log(idPost)
+    this.operacionService.crearOperacion(idUser,idUserVendedor,idPost).subscribe((data)=>{
+      console.log(data)
+      if (data === 'Operacion de Compra Exitosa') {
+        this._snackBar.open('Has contactado con el Cliente!', 'Aceptar');
+        setTimeout(()=>{
+          this.router.navigateByUrl('/')
+        },2000)
+      }
+    });
   }
 
   agregarFavoritos() {
@@ -127,7 +148,6 @@ export class RegisterDetalladoComponent implements OnInit {
           this.DatoRemolque = data
         })
       }
-      console.log(this.DatoRemolque)
     }
     return esCabeza;
   }
