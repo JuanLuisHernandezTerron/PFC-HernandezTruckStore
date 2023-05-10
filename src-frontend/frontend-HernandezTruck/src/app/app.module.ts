@@ -45,6 +45,7 @@ import { SemiremolqueInformacionComponent } from './components/mainInformacion/S
 import { RegisterDetalladoComponent } from './components/informacionDetalladaPost/registrado/register-detallado/register-detallado.component';
 import { BooleanSiNoPipe } from './Pipe/boolean-si-no.pipe';
 import { EliminatedNumbersPipe } from './Pipe/eliminated-numbers.pipe';
+import { ControlOperacionesComponent } from './components/controlOperaciones/control-operaciones/control-operaciones.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { EliminatedNumbersPipe } from './Pipe/eliminated-numbers.pipe';
     RegisterDetalladoComponent,
     BooleanSiNoPipe,
     EliminatedNumbersPipe,
+    ControlOperacionesComponent,
   ],
   imports: [
     BrowserModule,

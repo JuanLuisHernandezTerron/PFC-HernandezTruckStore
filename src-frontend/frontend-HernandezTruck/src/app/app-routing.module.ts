@@ -12,7 +12,8 @@ import { DatosCabezaComponent } from './components/datos-cabeza/datos-cabeza.com
 import { DatosRemolqueComponent } from './components/datos-remolque/datos-remolque.component';
 import { TractoraInformacionComponent } from './components/mainInformacion/Tractora/tractora-informacion/tractora-informacion.component';
 import { SemiremolqueInformacionComponent } from './components/mainInformacion/SemiRemolque/semiremolque-informacion/semiremolque-informacion.component';
-import { RegisterDetalladoComponent } from './components/informacionDetalladaPost/registrado/register-detallado/register-detallado.component'; 
+import { RegisterDetalladoComponent } from './components/informacionDetalladaPost/registrado/register-detallado/register-detallado.component';
+import { ControlOperacionesComponent } from './components/controlOperaciones/control-operaciones/control-operaciones.component'; 
 //Guards
 import { AuthGuard } from "./guards/auth.guard";
 import { UsersGuardGuard } from "./guards/users-guard.guard";
@@ -35,7 +36,8 @@ const routes: Routes = [{
     { path: 'datosSemiremolque', component:DatosRemolqueComponent, canActivate:[PostGuardGuard]},
     { path: 'informacionAllTractoras', component:TractoraInformacionComponent},
     { path: 'informacionAllSemiRemolques', component:SemiremolqueInformacionComponent},
-    { path: 'informacionDetalladaVehicle/:title', component:RegisterDetalladoComponent}
+    { path: 'informacionDetalladaVehicle/:title', component:RegisterDetalladoComponent},
+    { path: 'controlOperaciones', component:ControlOperacionesComponent,canActivate:[AuthGuard] },
   ]}
 ];
 

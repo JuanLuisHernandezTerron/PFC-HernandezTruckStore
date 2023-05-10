@@ -27,8 +27,8 @@ export class RegisterDetalladoComponent implements OnInit {
     private userService: UserService,
     private remolqueService: RemolqueService,
     private operacionService: OperacionPostService,
-    private router : Router) { }
-  
+    private router: Router) { }
+
   contador = 0;
   copyEnlace = window.location.toString();
 
@@ -71,20 +71,27 @@ export class RegisterDetalladoComponent implements OnInit {
     })
   }
 
-  anadirOperacion(){
+  anadirOperacion() {
     let idUser = this.userService.getInfoToken();
     let idUserVendedor = this.informacionPost.informacionUser[0].idUsuarioVendedor._id;
     let idPost = this.informacionPost._id;
+    let tipoVehiculo = this.informacionPost.informacionUser[0].idVehiculo.tipoVehiculo;
+    console.log(tipoVehiculo)
+
     console.log(idPost)
-    this.operacionService.crearOperacion(idUser,idUserVendedor,idPost).subscribe((data)=>{
-      console.log(data)
-      if (data === 'Operacion de Compra Exitosa') {
-        this._snackBar.open('Has contactado con el Cliente!', 'Aceptar');
-        setTimeout(()=>{
-          this.router.navigateByUrl('/')
-        },2000)
-      }
-    });
+    if (this.informacionPost.informacionUser[0].idUsuarioVendedor._id === idUser) {
+      this._snackBar.open('Es tu propio Post!', 'Aceptar');
+    } else {
+      this.operacionService.crearOperacion(idUser, idUserVendedor, idPost).subscribe((data) => {
+        console.log(data)
+        if (data === 'Operacion de Compra Exitosa') {
+          this._snackBar.open('Has contactado con el Cliente!', 'Aceptar');
+          setTimeout(() => {
+            this.router.navigateByUrl('/')
+          }, 2000)
+        }
+      });
+    }
   }
 
   agregarFavoritos() {
@@ -126,13 +133,13 @@ export class RegisterDetalladoComponent implements OnInit {
     })
   }
 
-  tipoOperacion(){
+  tipoOperacion() {
     return (this.informacionPost.tipo_publicacion === 'Vender') ? true : false;
   }
 
   tipoPost() {
-    let esCabeza = false;
 
+    let esCabeza = false;
     if (this.informacionPost.informacionUser[0].idVehiculo.tipoVehiculo === "cabezatractora") {
       esCabeza = true;
       if (this.contador <= 0) {
