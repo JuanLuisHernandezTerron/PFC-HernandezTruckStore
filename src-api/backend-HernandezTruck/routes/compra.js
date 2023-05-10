@@ -5,7 +5,7 @@ var db = mongoose.connection;
 const {agregarCompra, getinfoCompra,confirmarCompra, cancelarOperacion} = require('./../controllers/CompraController')
 
 /*POST - AGREGAR NUEVA OPERACION */
-router.post('/agregarOperacion/:idUserVendedor/:idUserComprador/:idPost',agregarCompra);
+router.post('/agregarOperacion/:idUserVendedor/:idUserComprador/:idPost/:tipoVehiculo',agregarCompra);
 
 /*GET - RECOGER INFORMACION DE TODAS LAS OPERACIONES */
 router.get('/getInformacionAllOperations', getinfoCompra);

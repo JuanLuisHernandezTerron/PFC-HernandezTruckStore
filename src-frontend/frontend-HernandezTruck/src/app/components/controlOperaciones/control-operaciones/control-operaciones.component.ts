@@ -3,6 +3,7 @@ import { PostService } from 'src/app/services/Post/post.service';
 import { operacion } from 'src/app/models/operacion';
 import { OperacionPostService } from 'src/app/services/Operacion/operacion-post.service';
 import { UserService } from 'src/app/services/Usuario/user.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-control-operaciones',
   templateUrl: './control-operaciones.component.html',
@@ -12,7 +13,8 @@ export class ControlOperacionesComponent implements OnInit {
 
   constructor(private postService: PostService,
     private operacionPostService: OperacionPostService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private router: Router) { }
 
   arraydatos: Array<operacion> = [];
 
@@ -29,26 +31,29 @@ export class ControlOperacionesComponent implements OnInit {
 
   cancelarOperacion(idOperacion){
      this.operacionPostService.rechazarOperacion(idOperacion).subscribe((data)=>{
-      console.log(data);
+      if (data === 'Operacion Eliminada Exitosamente'){
+        this.router.navigateByUrl('/')
+      }
      })
   }
 
   aceptarOperacion(idOperacion){
     let idPost = '';
+    let tipoVehiculo = '';
+    let idVehiculo = '';
     this.arraydatos.forEach(element => {
       if (element._id === idOperacion) {
         idPost = element.informacionCompra[0].idPost._id;
+        tipoVehiculo = element.tipoVehiculo.toString();
+        idVehiculo = element.informacionCompra[0].idPost.informacionUser[0].idVehiculo;
       }
     })
-    let post = this.postService.getPost(idPost).subscribe((data)=>{
-      console.log(data);
-    });
-    console.log(post)
 
-
-    // this.operacionPostService.aceptarOperacion().subscribe((data)=>{
-    //   console.log(data);
-    // })
+    this.operacionPostService.aceptarOperacion(tipoVehiculo,idOperacion,idVehiculo,idPost).subscribe((data)=>{
+      if (data === 'Operacion Eliminada Exitosamente'){
+        this.router.navigateByUrl('/')
+      }
+    })
   }
 
 }

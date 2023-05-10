@@ -13,6 +13,7 @@ export class OperacionPostService {
     _id: '',
     fecha_operacion: new Date(),
     operacionFinalizada: false,
+    tipoVehiculo: '',
     informacionCompra: []
   });
 
@@ -23,8 +24,8 @@ export class OperacionPostService {
     return this.OperationObservale.asObservable();
   }
 
-  crearOperacion(idUserComprador: String, idVendedor: String, idPost: String) {
-    return this.http.post<any>(this.URL + '/compras/agregarOperacion/' + idVendedor + '/' + idUserComprador + '/' + idPost, '')
+  crearOperacion(idUserComprador: String, idVendedor: String, idPost: String, tipoVehiculo: String) {
+    return this.http.post<any>(this.URL + '/compras/agregarOperacion/' + idVendedor + '/' + idUserComprador + '/' + idPost+'/'+tipoVehiculo, '')
   }
 
   getAllOperaciones() {

@@ -82,7 +82,7 @@ export class RegisterDetalladoComponent implements OnInit {
     if (this.informacionPost.informacionUser[0].idUsuarioVendedor._id === idUser) {
       this._snackBar.open('Es tu propio Post!', 'Aceptar');
     } else {
-      this.operacionService.crearOperacion(idUser, idUserVendedor, idPost).subscribe((data) => {
+      this.operacionService.crearOperacion(idUser, idUserVendedor, idPost,tipoVehiculo).subscribe((data) => {
         console.log(data)
         if (data === 'Operacion de Compra Exitosa') {
           this._snackBar.open('Has contactado con el Cliente!', 'Aceptar');

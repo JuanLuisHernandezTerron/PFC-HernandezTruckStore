@@ -8,6 +8,7 @@ var db = mongoose.connection;
 var compraSchema = new Schema({
     fecha_operacion:{type: Date, default: Date.now()},
     operacionFinalizada:{type : Boolean, default:false},
+    tipoVehiculo:{type:String},
     informacionCompra:[{
         idUsuarioVendedor:{type: Schema.ObjectId,ref:'Usuario'},
         idPost:{type: Schema.ObjectId,ref:'Post'},

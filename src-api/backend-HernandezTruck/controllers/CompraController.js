@@ -7,6 +7,7 @@ const Post = require('../models/Post');
 const agregarCompra = async function (req,res){
     try{
         const operacionCompra = ({
+            tipoVehiculo: req.params.tipoVehiculo,
             informacionCompra:[{
                 idUsuarioVendedor:req.params.idUserVendedor,
                 idPost:req.params.idPost,
