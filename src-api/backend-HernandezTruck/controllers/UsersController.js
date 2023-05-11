@@ -84,7 +84,7 @@ const getAllUsers = async function (req, res) {
 
 const getinfoUser = async function (req, res) {
   try{
-    consulta = await Usuario.findOne({'_id':req.params.id},{contrasena:0}).exec()
+    consulta = await Usuario.findOne({'_id':req.params.id},{contrasena:0}).populate('favoritos').exec()
   }catch(err){
     console.log(err)
     res.json({status:"error",error:"Error"})

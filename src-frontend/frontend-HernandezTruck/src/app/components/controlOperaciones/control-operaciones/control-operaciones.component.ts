@@ -26,13 +26,16 @@ export class ControlOperacionesComponent implements OnInit {
          }
        });
     })
-    console.log(this.arraydatos)
+  }
+
+  noOperacion(){
+    return (this.arraydatos.length === 0) ?  true : false;
   }
 
   cancelarOperacion(idOperacion){
      this.operacionPostService.rechazarOperacion(idOperacion).subscribe((data)=>{
       if (data === 'Operacion Eliminada Exitosamente'){
-        this.router.navigateByUrl('/')
+        window.location.reload();
       }
      })
   }
@@ -51,7 +54,7 @@ export class ControlOperacionesComponent implements OnInit {
 
     this.operacionPostService.aceptarOperacion(tipoVehiculo,idOperacion,idVehiculo,idPost).subscribe((data)=>{
       if (data === 'Operacion Eliminada Exitosamente'){
-        this.router.navigateByUrl('/')
+        window.location.reload();
       }
     })
   }

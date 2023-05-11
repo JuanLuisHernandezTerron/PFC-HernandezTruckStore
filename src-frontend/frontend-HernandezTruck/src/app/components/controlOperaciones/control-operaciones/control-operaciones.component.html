@@ -1,28 +1,34 @@
 <div class="container">
     <div class="row justify-content-between">
-        <div class="col-3 mt-5 mb-5" *ngFor="let informacion of arraydatos">
-            <div class="row">
-                <img src="./../../../../assets/img/Scania_Trucks_S_700_Light_Blue_533684_1920x1080.jpg"
-                    class="img-fluid p-0" alt="imagenCamion">
-            </div>
-            <div class="row fondoColor">
-                <p class="text-center mb-0">Usuario Confirmar Operacion:</p>
-                <p class="text-center negrita">{{informacion.informacionCompra[0].idUsuarioComprador.nombre}}
-                    {{informacion.informacionCompra[0].idUsuarioComprador.apellidos}}</p>
-            </div>
-            <div class="row fondoColor">
-                <h5 class="text-center">{{informacion.informacionCompra[0].idPost.titulo}}</h5>
-            </div>
-            <div class="row fondoColor ultimaFila text-center">
-                <div class="col-6 mt-2">
-                    <img src="./../../../../assets/img/Green-Tick-PNG-Photos.png" name="{{informacion._id}}"
-                        (click)="aceptarOperacion($event.target.name)" class="img-fluid w-25 mb-5" alt="tickVerde">
+        <ng-container *ngIf="!noOperacion() ; else noData">
+            <div class="col-3 mt-5 mb-5" *ngFor="let informacion of arraydatos">
+                <div class="row">
+                    <img src="./../../../../assets/img/Scania_Trucks_S_700_Light_Blue_533684_1920x1080.jpg"
+                        class="img-fluid p-0" alt="imagenCamion">
                 </div>
-                <div class="col-6 mt-2">
-                    <img src="./../../../../assets/img/Red-Cross-PNG-Photo.png" name="{{informacion._id}}"
-                        (click)="cancelarOperacion($event.target.name)" class="img-fluid w-25 mb-5" alt="crossRojo">
+                <div class="row fondoColor">
+                    <p class="text-center mb-0">Usuario Confirmar Operacion:</p>
+                    <p class="text-center negrita">{{informacion.informacionCompra[0].idUsuarioComprador.nombre}}
+                        {{informacion.informacionCompra[0].idUsuarioComprador.apellidos}}</p>
+                </div>
+                <div class="row fondoColor">
+                    <h5 class="text-center">{{informacion.informacionCompra[0].idPost.titulo}}</h5>
+                </div>
+                <div class="row fondoColor ultimaFila text-center">
+                    <div class="col-6 mt-2">
+                        <img src="./../../../../assets/img/Green-Tick-PNG-Photos.png" name="{{informacion._id}}"
+                            (click)="aceptarOperacion($event.target.name)" class="img-fluid w-25 mb-5" alt="tickVerde">
+                    </div>
+                    <div class="col-6 mt-2">
+                        <img src="./../../../../assets/img/Red-Cross-PNG-Photo.png" name="{{informacion._id}}"
+                            (click)="cancelarOperacion($event.target.name)" class="img-fluid w-25 mb-5" alt="crossRojo">
+                    </div>
                 </div>
             </div>
-        </div>
+        </ng-container>
     </div>
 </div>
+
+<ng-template #noData>
+    <h4 class="text-center mt-5 mb-5"> NO TIENES ACTUALMENTE NINGUNA OPERACIÓN PENDIENTE!</h4>
+</ng-template>
