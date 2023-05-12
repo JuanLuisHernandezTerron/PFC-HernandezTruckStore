@@ -4,6 +4,21 @@ const cabezatractora = require('../models/Tractora');
 const semiremolque = require('../models/Semiremolque')
 const Usuario = require('../models/Usuario');
 
+const eliminarPost = async function(req,res) {
+  try{
+    await Vehiculo.deleteOne({_id:req.params.idVehiculo})
+    if (req.params.tipoVehiculo === 'cabezatractora') {
+        await cabezatractora.deleteOne({_id:req.params.idVehiculo})
+       }else if(req.params.tipoVehiculo === 'semirremolque'){
+        await semiremolque.deleteOne({_id:req.params.idVehiculo})
+    }
+    await Post.deleteOne({_id:req.params.idPost})
+    res.status(200).json('Post Eliminado Correctamente')
+  }catch(err){
+    res.status(401).json({ status: "error", error: "Post eliminado" })
+  }
+}
+
 const anadirPostReport = async function (req,res){
   try {
     consulta = Post.updateOne({ _id: req.params.idPost }, {$addToSet:{Reports:req.params.idUser}}).exec();
@@ -152,5 +167,6 @@ module.exports = {
   getPost,
   insertUsuarioPostFavoritos,
   eliminarUsuarioPostFavoritos,
-  anadirPostReport
+  anadirPostReport,
+  eliminarPost
 }

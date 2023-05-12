@@ -28,6 +28,10 @@ export class PostService {
     return this.postVehicleObservale.asObservable();
   }
 
+  eliminarPost(tipoVehiculo:String,idVehiculo:String,idPost:String){
+    return this.http.delete<any>(this.URL+'/posts/eliminarPost/'+tipoVehiculo+'/'+idVehiculo+'/'+idPost+'')
+  }
+
   reportarPost(idPost:String,idUser:String){
     return this.http.put<any>(this.URL+'/posts/anadirPostReportado/'+idPost+"/"+idUser,"")
   }

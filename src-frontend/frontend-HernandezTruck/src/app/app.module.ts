@@ -13,6 +13,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {ClipboardModule} from '@angular/cdk/clipboard';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 
@@ -94,7 +95,8 @@ import { MisPostsComponent } from './components/controlOperaciones/mis-posts/mis
     MatDatepickerModule,
     MatNativeDateModule,
     MatSnackBarModule,
-    ClipboardModule
+    ClipboardModule,
+    MatMenuModule
   ],
   //Con interceptor creamos una cabecera
   providers: [UserService,AuthGuard

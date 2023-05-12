@@ -14,7 +14,8 @@ import { TractoraInformacionComponent } from './components/mainInformacion/Tract
 import { SemiremolqueInformacionComponent } from './components/mainInformacion/SemiRemolque/semiremolque-informacion/semiremolque-informacion.component';
 import { RegisterDetalladoComponent } from './components/informacionDetalladaPost/registrado/register-detallado/register-detallado.component';
 import { ControlOperacionesComponent } from './components/controlOperaciones/control-operaciones/control-operaciones.component';
-import { FavoritosComponent } from './components/controlOperaciones/favoritos/favoritos.component'; 
+import { FavoritosComponent } from './components/controlOperaciones/favoritos/favoritos.component';
+import { MisPostsComponent } from './components/controlOperaciones/mis-posts/mis-posts.component';  
 //Guards
 import { AuthGuard } from "./guards/auth.guard";
 import { UsersGuardGuard } from "./guards/users-guard.guard";
@@ -39,7 +40,8 @@ const routes: Routes = [{
     { path: 'informacionAllSemiRemolques', component:SemiremolqueInformacionComponent},
     { path: 'informacionDetalladaVehicle/:title', component:RegisterDetalladoComponent},
     { path: 'controlOperaciones', component:ControlOperacionesComponent,canActivate:[AuthGuard] },
-    { path: 'postFavoritos', component:FavoritosComponent,canActivate:[AuthGuard] }
+    { path: 'postFavoritos', component:FavoritosComponent,canActivate:[AuthGuard] },
+    { path: 'misPosts', component:MisPostsComponent,canActivate:[AuthGuard] }
   ]}
 ];
 

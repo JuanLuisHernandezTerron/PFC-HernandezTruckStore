@@ -1,1 +1,42 @@
-<p>mis-posts works!</p>
+<div class="container">
+    <h1 class="mt-2 text-center">MIS POSTS</h1>
+    <div class="row justify-content-between">
+        <ng-container *ngIf="!noOperacion() ; else noData">
+            <div class="col-12 col-md-3 ms-md-3  mt-5 mb-5" *ngFor="let informacion of arraydatos">
+                <div class="row">
+                    <img src="./../../../../assets/img/Scania_Trucks_S_700_Light_Blue_533684_1920x1080.jpg"
+                        class="img-fluid p-0 primeraFila" alt="imagenCamion">
+                </div>
+                <div class="row">
+                    <div class="col-12 fondoColor ">
+                        <h5 class="text-center mt-2 mb-4">{{informacion.titulo}}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2 fondoColor izq">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <mat-icon>edit</mat-icon>
+                                <span>Editar Post</span>
+                            </button>
+                            <button mat-menu-item name="{{informacion._id}}">
+                                <mat-icon name="{{informacion._id}}" (click)="eliminarPost($event.target.name)">delete</mat-icon>
+                                <span name="{{informacion._id}}" (click)="eliminarPost($event.target.name)">Eliminar Post</span>
+                            </button>
+                        </mat-menu>
+                    </div>
+                    <div class="col-10 fondoColor derecha">
+                        <button mat-raised-button class="mb-4 p-2 w-50 mt-2 ms-5 botonPost" routerLink="/informacionDetalladaVehicle/{{informacion._id}}">Visitar Post</button>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<ng-template #noData>
+    <h4 class="text-center mt-5 mb-5"> NO TIENES ACTUALMENTE NINGUN POST PUBLICADO!</h4>
+</ng-template>
