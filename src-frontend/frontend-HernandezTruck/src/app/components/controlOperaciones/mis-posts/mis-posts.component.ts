@@ -35,21 +35,20 @@ export class MisPostsComponent implements OnInit{
   }
 
   eliminarPost(idPost){
-    // let tipoVehiculo = '';
-    // let idVehiculo = '';
-    // console.log(idPost)
-    // this.arraydatos.forEach(element => {
-    //   if (element._id === idPost) {
-    //     idVehiculo = element.informacionUser[0].idVehiculo._id;
-    //     tipoVehiculo = element.informacionUser[0].idVehiculo.tipoVehiculo;
-    //   }
-    // })
-    // this.postService.eliminarPost(tipoVehiculo,idVehiculo,idPost).subscribe((data)=>{
-    //   if (data.status === 'Post Eliminado Correctamente') {
-    //     this._snackBar.open('Post Eliminado de Favoritos', 'Aceptar');
-    //     window.location.reload();
-    //   }
-    // })
+    let tipoVehiculo = '';
+    let idVehiculo = '';
+    this.arraydatos.forEach(element => {
+      if (element._id === idPost) {
+        idVehiculo = element.informacionUser[0].idVehiculo._id;
+        tipoVehiculo = element.informacionUser[0].idVehiculo.tipoVehiculo;
+      }
+    })
+    this.postService.eliminarPost(tipoVehiculo,idVehiculo,idPost).subscribe((data)=>{
+      if (data.status === 'Post Eliminado Correctamente') {
+        this._snackBar.open('Post Eliminado de Favoritos', 'Aceptar');
+        window.location.reload();
+      }
+    })
   }
 
 
