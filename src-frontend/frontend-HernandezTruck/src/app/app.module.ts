@@ -47,6 +47,7 @@ import { BooleanSiNoPipe } from './Pipe/boolean-si-no.pipe';
 import { EliminatedNumbersPipe } from './Pipe/eliminated-numbers.pipe';
 import { ControlOperacionesComponent } from './components/controlOperaciones/control-operaciones/control-operaciones.component';
 import { FavoritosComponent } from './components/controlOperaciones/favoritos/favoritos.component';
+import { MisPostsComponent } from './components/controlOperaciones/mis-posts/mis-posts.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { FavoritosComponent } from './components/controlOperaciones/favoritos/fa
     EliminatedNumbersPipe,
     ControlOperacionesComponent,
     FavoritosComponent,
+    MisPostsComponent,
   ],
   imports: [
     BrowserModule,

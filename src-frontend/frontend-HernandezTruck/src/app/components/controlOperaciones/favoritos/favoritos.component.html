@@ -4,15 +4,22 @@
             <div class="col-3 mt-5 mb-5" *ngFor="let informacion of arraydatos">
                 <div class="row">
                     <img src="./../../../../assets/img/Scania_Trucks_S_700_Light_Blue_533684_1920x1080.jpg"
-                        class="img-fluid p-0" alt="imagenCamion">
+                        class="img-fluid p-0 primeraFila" alt="imagenCamion">
                 </div>
-                <div class="row">
+                <div class="row fondoColor">
                     <div class="col-12 justify-content-start">
-                        <img src="./../../../../assets/img/image 11.png" alt="like" >
+                        <img class="mt-2" mat-stroked-button (click)="agregarFavoritos(informacion._id)" src="./../../../../assets/img/image 11.png" alt="like" >
                     </div>
                 </div>
                 <div class="row">
-                    
+                    <div class="col-12 fondoColor ">
+                        <h5 class="text-center mt-2 mb-4">{{informacion.titulo}}</h5>
+                    </div>
+                </div>
+                <div class="row ultimaFila fondoColor">
+                    <div class="col-12 text-center">
+                        <button class="mb-4 p-2 w-50" routerLink="/informacionDetalladaVehicle/{{informacion._id}}">Visitar Post</button>
+                    </div>
                 </div>
             </div>
         </ng-container>
@@ -20,5 +27,5 @@
 </div>
 
 <ng-template #noData>
-    <h4 class="text-center mt-5 mb-5"> NO TIENES ACTUALMENTE NINGUNA OPERACIÓN PENDIENTE!</h4>
+    <h4 class="text-center mt-5 mb-5"> NO TIENES ACTUALMENTE NINGUNA POST FAVORITO!</h4>
 </ng-template>

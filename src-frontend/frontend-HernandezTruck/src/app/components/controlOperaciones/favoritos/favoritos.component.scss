@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'RadioGrotesk';
+    src: url('./../../../../../src/assets/RadioGrotesk-Regular.otf') format("opentype");
+}
+
+*{
+    font-family: "RadioGrotesk";
+}
+
+.primeraFila{
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.fondoColor{
+    background-color: #E1D7C6;
+}
+
+.ultimaFila{
+    border-bottom-left-radius: 30px;    
+    border-bottom-right-radius: 30px;    
+}
+
+button{
+    background-color: #73A9BF;
+}
