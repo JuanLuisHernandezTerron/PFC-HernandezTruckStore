@@ -72,19 +72,6 @@ export class EditarUserComponent implements OnInit{
   }
 
   registro():void{
-    this.authservice.registro(this.user)
-      .subscribe(
-        res =>{
-          console.log(res)
-          if (res.status === 'Ingresado Correctamente') {
-            localStorage.setItem('token',res.token);
-            this.router.navigate(['/mainUser']);
-          }else{
-            this.router.navigate(['/register']);
-          }
-        },
-        err =>
-          console.log(err),
-      )
+
   }
 }
