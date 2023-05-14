@@ -18,6 +18,7 @@ import { FavoritosComponent } from './components/controlOperaciones/favoritos/fa
 import { MisPostsComponent } from './components/controlOperaciones/mis-posts/mis-posts.component';  
 import { EditarPostComponent } from './components/controlOperaciones/editar-post/editar-post.component';
 import { EditarPostRemolqueComponent } from './components/controlOperaciones/editar-post-remolque/editar-post-remolque.component';
+import { EditarUserComponent } from './components/controlOperaciones/editar-user/editar-user.component';
 //Guards
 import { AuthGuard } from "./guards/auth.guard";
 import { UsersGuardGuard } from "./guards/users-guard.guard";
@@ -45,7 +46,8 @@ const routes: Routes = [{
     { path: 'postFavoritos', component:FavoritosComponent,canActivate:[AuthGuard] },
     { path: 'misPosts', component:MisPostsComponent,canActivate:[AuthGuard] },
     { path: 'editarPostTractora/:id', component:EditarPostComponent,canActivate:[AuthGuard] },
-    { path: 'editarPostRemolque/:id', component:EditarPostRemolqueComponent,canActivate:[AuthGuard] }
+    { path: 'editarPostRemolque/:id', component:EditarPostRemolqueComponent,canActivate:[AuthGuard] },
+    { path: 'editarUser', component:EditarUserComponent,canActivate:[AuthGuard] },
   ]}
 ];
 

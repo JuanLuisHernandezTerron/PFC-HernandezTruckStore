@@ -51,6 +51,7 @@ import { FavoritosComponent } from './components/controlOperaciones/favoritos/fa
 import { MisPostsComponent } from './components/controlOperaciones/mis-posts/mis-posts.component';
 import { EditarPostComponent } from './components/controlOperaciones/editar-post/editar-post.component';
 import { EditarPostRemolqueComponent } from './components/controlOperaciones/editar-post-remolque/editar-post-remolque.component';
+import { EditarUserComponent } from './components/controlOperaciones/editar-user/editar-user.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { EditarPostRemolqueComponent } from './components/controlOperaciones/edi
     MisPostsComponent,
     EditarPostComponent,
     EditarPostRemolqueComponent,
+    EditarUserComponent,
   ],
   imports: [
     BrowserModule,

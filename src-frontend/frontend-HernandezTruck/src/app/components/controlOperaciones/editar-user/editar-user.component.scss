@@ -1,0 +1,65 @@
+@font-face {
+    font-family: 'RadioGrotesk';
+    src: url('./../../../../assets/RadioGrotesk-Regular.otf') format("opentype");
+}
+
+
+h1{
+    font-family: "RadioGrotesk";
+}
+
+.passwd{
+    color: rgb(109, 109, 205);
+}
+
+.registro{
+    border: 2px solid black;
+    background-color: #f7f0dd;
+
+}
+
+.example-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+}
+
+.width{
+    width: 75%;
+    height: 70px;
+}
+
+.title-registro{
+    font-size: 70px;
+    font-family: "RadioGrotesk";
+}
+
+.tittle-bienvenido{
+    font-size: 50px;
+    font-family: "RadioGrotesk";
+
+}
+
+.img-camion{
+    max-width: 20vw;
+}
+
+.buttonSubmit{
+    width: 60%;
+    height: 50px;
+    background-color: #73A9BF;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: "RadioGrotesk";
+}
+
+label{
+    font-weight: bold;
+    font-size: 20px;
+    font-family: "RadioGrotesk";
+}
+
+@media only screen and (max-width: 1200px){
+    .inpustCenter{
+        text-align: center;
+        justify-content: center;
+    }
+}
