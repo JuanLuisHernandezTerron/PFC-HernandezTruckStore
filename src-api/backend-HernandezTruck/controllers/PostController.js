@@ -90,6 +90,73 @@ const getPostVehicle = async function (req, res) {
   }
 }
 
+const updatePost = async function (req, res) {
+  try {
+    const vehicle = ({
+      _id: req.body._id,
+      ejes: req.body.ejes,
+      mma: req.body.mma,
+      tipoVehiculo: req.body.tipoVehiculo,
+      fechaMatriculacion: req.body.fechaMatriculacion,
+      Marca: req.body.Marca,
+      modelo: req.body.modelo,
+      precio: req.body.precio,
+      color: req.body.color
+    })
+    await Vehiculo.findByIdAndUpdate({_id:req.params.idVehiculo},vehicle).exec();
+    const post = {
+      titulo: req.body.titulo,
+      fecha_post: req.body.fecha_post,
+      tipo_publicacion: req.body.tipo_publicacion,
+      localizacion: req.body.localizacion,
+      // media:'http://localhost:3000/uploads/'+req.file.filename,
+      informacionUser: [{
+        idUsuarioVendedor: req.body.idUsuarioVendedor,
+        idVehiculo: req.body.idVehiculo
+      }]
+    }
+    await Post.findByIdAndUpdate({_id:req.params.idPost},post).exec();
+
+    res.json({ status: "Actualizado Correctamente" })
+    if (req.body.tipoVehiculo === "cabezatractora") {
+      try {
+        const cabezaTractoraVehiculo = {
+          _id: req.body._id,
+          cv: req.body.cv,
+          adblue: req.body.adblue,
+          numeroDepositos: req.body.numeroDepositos,
+          kms: req.body.kms,
+          combustible: req.body.combustible,
+          retarder: req.body.retarde,
+          vehiculo: req.body._id
+        }
+        await cabezatractora.findByIdAndUpdate({_id:req.params.idVehiculo},cabezaTractoraVehiculo).exec()
+
+      } catch (e) {
+        console.log(e)
+        res.json({ status: "error", error: "Usuario no registrado tractora" })
+      }
+    } else if (req.body.tipoVehiculo === 'semirremolque') {
+      try {
+        const SemiremolqueVehiculo = {
+          _id: req.body._id,
+          tipoSemiremolque: req.body.tipoSemiremolque,
+          tipoEje: req.body.tipoEje,
+          ADR: req.body.ADR,
+          vehiculo: req.body._id
+        }
+        await semiremolque.findByIdAndUpdate({_id:req.params.idVehiculo},SemiremolqueVehiculo).exec()
+
+      } catch (err) {
+        res.json({ status: "error", error: "Usuario no registrado Semiremolque" })
+      }
+    }
+  } catch (err) {
+    console.log(err)
+    res.json({ status: "error", error: "Usuario no registrado" })
+  }
+}
+
 const newPost = async function (req, res) {
   try {
     const vehicle = ({
@@ -168,5 +235,6 @@ module.exports = {
   insertUsuarioPostFavoritos,
   eliminarUsuarioPostFavoritos,
   anadirPostReport,
-  eliminarPost
+  eliminarPost,
+  updatePost
 }

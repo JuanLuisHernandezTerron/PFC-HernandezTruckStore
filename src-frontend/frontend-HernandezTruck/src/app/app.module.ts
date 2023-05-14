@@ -49,6 +49,8 @@ import { EliminatedNumbersPipe } from './Pipe/eliminated-numbers.pipe';
 import { ControlOperacionesComponent } from './components/controlOperaciones/control-operaciones/control-operaciones.component';
 import { FavoritosComponent } from './components/controlOperaciones/favoritos/favoritos.component';
 import { MisPostsComponent } from './components/controlOperaciones/mis-posts/mis-posts.component';
+import { EditarPostComponent } from './components/controlOperaciones/editar-post/editar-post.component';
+import { EditarPostRemolqueComponent } from './components/controlOperaciones/editar-post-remolque/editar-post-remolque.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +77,8 @@ import { MisPostsComponent } from './components/controlOperaciones/mis-posts/mis
     ControlOperacionesComponent,
     FavoritosComponent,
     MisPostsComponent,
+    EditarPostComponent,
+    EditarPostRemolqueComponent,
   ],
   imports: [
     BrowserModule,

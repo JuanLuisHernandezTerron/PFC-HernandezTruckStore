@@ -16,6 +16,8 @@ import { RegisterDetalladoComponent } from './components/informacionDetalladaPos
 import { ControlOperacionesComponent } from './components/controlOperaciones/control-operaciones/control-operaciones.component';
 import { FavoritosComponent } from './components/controlOperaciones/favoritos/favoritos.component';
 import { MisPostsComponent } from './components/controlOperaciones/mis-posts/mis-posts.component';  
+import { EditarPostComponent } from './components/controlOperaciones/editar-post/editar-post.component';
+import { EditarPostRemolqueComponent } from './components/controlOperaciones/editar-post-remolque/editar-post-remolque.component';
 //Guards
 import { AuthGuard } from "./guards/auth.guard";
 import { UsersGuardGuard } from "./guards/users-guard.guard";
@@ -41,7 +43,9 @@ const routes: Routes = [{
     { path: 'informacionDetalladaVehicle/:title', component:RegisterDetalladoComponent},
     { path: 'controlOperaciones', component:ControlOperacionesComponent,canActivate:[AuthGuard] },
     { path: 'postFavoritos', component:FavoritosComponent,canActivate:[AuthGuard] },
-    { path: 'misPosts', component:MisPostsComponent,canActivate:[AuthGuard] }
+    { path: 'misPosts', component:MisPostsComponent,canActivate:[AuthGuard] },
+    { path: 'editarPostTractora/:id', component:EditarPostComponent,canActivate:[AuthGuard] },
+    { path: 'editarPostRemolque/:id', component:EditarPostRemolqueComponent,canActivate:[AuthGuard] }
   ]}
 ];
 

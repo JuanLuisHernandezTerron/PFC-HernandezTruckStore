@@ -20,7 +20,7 @@
                         <mat-menu #menu="matMenu">
                             <button mat-menu-item>
                                 <mat-icon>edit</mat-icon>
-                                <span>Editar Post</span>
+                                <span (click)="editarPost(informacion._id,informacion.informacionUser[0].idVehiculo.tipoVehiculo)">Editar Post</span>
                             </button>
                             <button mat-menu-item name="{{informacion._id}}">
                                 <mat-icon name="{{informacion._id}}" (click)="eliminarPost($event.target.name)">delete</mat-icon>

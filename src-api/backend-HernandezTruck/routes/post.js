@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var db = mongoose.connection;
 const Post = require('../models/Post');
 const MediaMiddleware = require('./../middleware/media')
-const { newPost, getPostVehicle, getVehicleAlquilar, getVehicleVenta, getPost, insertUsuarioPostFavoritos, eliminarUsuarioPostFavoritos, anadirPostReport, eliminarPost} = require('./../controllers/PostController')
+const { newPost, getPostVehicle, getVehicleAlquilar, getVehicleVenta, getPost, insertUsuarioPostFavoritos, eliminarUsuarioPostFavoritos, anadirPostReport, eliminarPost, updatePost} = require('./../controllers/PostController')
 const validationToken = require('./../middleware/ValidacionToken')
 
 /*POST - Creacion de un nuevo Post*/
@@ -30,6 +30,9 @@ router.get('/getPost/:id',getPost)
 
 /*DEL - Borra el Post seleccionado por el usuario */
 router.delete('/eliminarPost/:tipoVehiculo/:idVehiculo/:idPost',eliminarPost)
+
+/*PUT - Actualizacion de un Post*/
+router.put('/updatePost/:idPost/:idVehiculo',validationToken,MediaMiddleware.upload,updatePost);
 
 /*PUT - Añade al array de Reports el usuario */
 router.put('/anadirPostReportado/:idPost/:idUser',anadirPostReport)

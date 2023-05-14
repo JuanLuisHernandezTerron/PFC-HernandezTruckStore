@@ -28,6 +28,14 @@ export class PostService {
     return this.postVehicleObservale.asObservable();
   }
 
+  actualizarPostTractora(idPost:String,idVehiculo:String,tractora:Object){
+    return this.http.put<any>(this.URL+'/posts/updatePost/'+idPost+'/'+idVehiculo,tractora);
+  }
+
+  actualizarPostRemolque(idPost:String,idVehiculo:String,remolque:Object){
+    return this.http.put<any>(this.URL+'/posts/updatePost/'+idPost+'/'+idVehiculo,remolque);
+  }
+
   eliminarPost(tipoVehiculo:String,idVehiculo:String,idPost:String){
     return this.http.delete<any>(this.URL+'/posts/eliminarPost/'+tipoVehiculo+'/'+idVehiculo+'/'+idPost+'')
   }

@@ -3,7 +3,7 @@ import { UserService } from 'src/app/services/Usuario/user.service';
 import { PostService } from 'src/app/services/Post/post.service';
 import { PostVehicle } from 'src/app/models/PostVehiculo';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-mis-posts',
   templateUrl: './mis-posts.component.html',
@@ -12,7 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class MisPostsComponent implements OnInit{
   constructor (private userService: UserService,
               private postService: PostService,
-              private _snackBar:MatSnackBar) {}
+              private _snackBar:MatSnackBar,
+              private route:Router) {}
 
   arraydatos: Array<PostVehicle> = [];
 
@@ -27,6 +28,10 @@ export class MisPostsComponent implements OnInit{
       })
       console.log(this.arraydatos);
       
+  }
+
+  editarPost(idPost:String, tipoVehiculo:String){
+    (tipoVehiculo === 'cabezatractora') ? this.route.navigateByUrl('/editarPostTractora/'+idPost) : this.route.navigateByUrl('/editarPostRemolque/'+idPost);
   }
 
 
@@ -46,9 +51,9 @@ export class MisPostsComponent implements OnInit{
     this.postService.eliminarPost(tipoVehiculo,idVehiculo,idPost).subscribe((data)=>{
       if (data.status === 'Post Eliminado Correctamente') {
         this._snackBar.open('Post Eliminado de Favoritos', 'Aceptar');
-        window.location.reload();
       }
     })
+    window.location.reload();
   }
 
 
