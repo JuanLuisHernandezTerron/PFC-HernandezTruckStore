@@ -6,13 +6,33 @@ const SALT_WORK_FACTOR = 10;
 const updateUser = async function (req, res) {
   try {
     const data = req.body
-    consulta = Usuario.findByIdAndUpdate({ _id: req.params.idUser },data).exec();
+    consulta = Usuario.findOneAndUpdate({ email: req.body.email }, data).exec();
     res.status(200).json({ status: "Usuario Actualizado Correctamente" })
   } catch (err) {
     res.status(401).json({ status: "error", error: "Usuario no registrado" })
   }
 }
 
+const updatePasswd = async function (req,res) {
+  try {
+    console.log('entro en update');
+    const data = req.body;
+    const ConsultaUsuario = await Usuario.findOne({ "email": data.email }).exec();
+     comparePassword = await bcrypt.compare(data.contrasenaAntigua, ConsultaUsuario.contrasena);
+    console.log(ConsultaUsuario);
+    console.log(comparePassword);
+    console.log(data.contrasenaAntigua);
+    if (ConsultaUsuario.email == data.email && comparePassword) {
+      console.log('entro if')
+      bcrypt.hash(req.body.contrasenaActual, SALT_WORK_FACTOR, async function (err, hash){
+        consulta = Usuario.findOneAndUpdate({ email: req.body.email }, {contrasena:hash}).exec();
+        res.status(200).json({ status: "Password Actualizado Correctamente" })
+      })
+    }
+  } catch (err) {
+    res.status(401).json({ status: "error", error: "Password no Actualizada" })
+  }
+}
 
 const eliminarPostFavorito = async function (req, res) {
 
@@ -119,5 +139,6 @@ module.exports = {
   getinfoUser,
   ingresarPostFavorito,
   eliminarPostFavorito,
-  updateUser
+  updateUser,
+  updatePasswd
 };

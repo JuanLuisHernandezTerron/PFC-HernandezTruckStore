@@ -4,6 +4,7 @@ import { AuthService } from "./../../../services/auth.service";
 import { Router } from "@angular/router";
 import { Validate } from "./../../registro/matchPWD";
 import { UserService } from 'src/app/services/Usuario/user.service';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-editar-user',
@@ -19,17 +20,23 @@ export class EditarUserComponent implements OnInit{
     nombre: '',
     apellidos : '',
     email: '',
-    contrasena: '',
-    contrasenaAUX: '',
     dni:'',
     telefono:'',
     direccion:''
   }
 
+  passwd={
+    contrasenaAntigua: '',
+    contrasenaActual:'',
+    email:''
+  }
+
   constructor (private authservice: AuthService,
               private router: Router,
               private fb: FormBuilder,
-              private userService: UserService) {
+              private userService: UserService,
+              private cdref: ChangeDetectorRef,
+              ) {
     this.validatorRegister();
   }
 
@@ -45,6 +52,7 @@ export class EditarUserComponent implements OnInit{
       this.user.dni = data.consulta.dni;
       this.user.telefono = data.consulta.telefono;
       this.user.direccion = data.consulta.direccion;
+      this.cdref.detectChanges();
     })
   }
 
@@ -58,8 +66,6 @@ export class EditarUserComponent implements OnInit{
       DNI : new FormControl('', [Validators.required,Validators.pattern('^[0-9]{8,8}[A-Za-z]$')]),
       telefono : new FormControl('',[Validators.required, Validators.pattern("^[0-9]{9}$")]),
       direccion : new FormControl('', [Validators.required])
-    },{
-      validator: Validate.MatchPassword,
     });
   }
 
@@ -71,7 +77,20 @@ export class EditarUserComponent implements OnInit{
     return this.formGroup.controls[valueInput].hasError(typeError)
   }
 
-  registro():void{
+  changePasswd(){
+    console.log(this.passwd)
+    this.userService.updatePassword(this.passwd).subscribe((data)=>{
+      if(data.status == 'Password Actualizado Correctamente'){
+        window.location.reload();
+      }
+    })
+  }
 
+  registro():void{
+    this.userService.updateUser(this.user).subscribe((data)=>{
+      if(data.status === 'Usuario Actualizado Correctamente'){
+        window.location.reload();
+      }
+    })
   }
 }

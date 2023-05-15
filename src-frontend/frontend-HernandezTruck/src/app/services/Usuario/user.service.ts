@@ -48,6 +48,13 @@ export class UserService {
     }
   }
 
+  updateUser(data:Object):Observable<any>{
+    return this.http.put<any>(this.URL+'/usuarios/updateUser',data)
+  }
+
+  updatePassword(data:Object):Observable<any>{
+    return this.http.put<any>(this.URL+'/usuarios/updatePasswd',data)
+  }
 
    getInfoUsuario(rol:any):Observable<any[]>{
      return this.http.get<any>(this.URL+'/usuarios/getAllUsers?rol='+rol)
