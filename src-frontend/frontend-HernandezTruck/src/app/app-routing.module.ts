@@ -19,6 +19,7 @@ import { MisPostsComponent } from './components/controlOperaciones/mis-posts/mis
 import { EditarPostComponent } from './components/controlOperaciones/editar-post/editar-post.component';
 import { EditarPostRemolqueComponent } from './components/controlOperaciones/editar-post-remolque/editar-post-remolque.component';
 import { EditarUserComponent } from './components/controlOperaciones/editar-user/editar-user.component';
+import { ReportPostAdminComponent } from './components/admin/report-post-admin/report-post-admin.component';
 //Guards
 import { AuthGuard } from "./guards/auth.guard";
 import { UsersGuardGuard } from "./guards/users-guard.guard";
@@ -48,6 +49,7 @@ const routes: Routes = [{
     { path: 'editarPostTractora/:id', component:EditarPostComponent,canActivate:[AuthGuard] },
     { path: 'editarPostRemolque/:id', component:EditarPostRemolqueComponent,canActivate:[AuthGuard] },
     { path: 'editarUser', component:EditarUserComponent,canActivate:[AuthGuard] },
+    { path: 'reportPost', component:ReportPostAdminComponent,canActivate:[UsersGuardGuard] },
   ]}
 ];
 

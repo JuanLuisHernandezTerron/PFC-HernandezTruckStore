@@ -31,7 +31,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-6">
+        <div class="col-lg-6 col-12">
             <ng-container *ngIf="tipoPost(); else postSemi">
                 <h2 class="text-center">Información Detallada</h2>
                 <hr class="m-auto w-50">
@@ -89,7 +89,7 @@
                 </div>
             </ng-container>
         </div>
-        <div class="col-6">
+        <div class="col-lg-6 col-12">
             <ng-container *ngIf="authservice.loggedIn(); else informacionVendedor">
                 <div class="row">
                     <h2 class="col-12 text-center">Información Vendedor</h2>

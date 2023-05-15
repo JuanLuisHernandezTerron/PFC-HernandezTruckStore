@@ -1,0 +1,42 @@
+<div class="container">
+    <h1 class="text-center mt-5 mb-5">POST REPORTADOS</h1>
+    <div class="row">
+        <ng-container *ngIf="!noOperacion() ; else noData">
+            <div *ngFor="let informacion of arraydatos">
+                <div class="col-12 border p-4 mb-5">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="./../../../../assets/img/Scania_Trucks_S_700_Light_Blue_533684_1920x1080.jpg"
+                                class="img-fluid imgVehiculo" alt="imagenVehiculo">
+                        </div>
+                        <div class="col-9">
+                            <div class="row">
+                                <p class="ms-5 col-12 titulo">{{informacion.titulo}}</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-1">
+                                    <img src="./../../../../assets/img/image 24.png" class="ms-5 mt-3 img-fluid w-50"
+                                        alt="imagen-warning">
+                                </div>
+                                <div class="mt-3 col-10">
+                                    <p>{{informacion.Reports.length}}</p>
+                                </div>
+                            </div>
+                            <div class="row d-flex justify-content-evenly">
+                                <button mat-raised-button class="col-6 w-25 ms-5 mt-5 mb-2" color="primary"
+                                    routerLink="/informacionDetalladaVehicle/{{informacion._id}}">Ver Post</button>
+                                <button mat-raised-button class="col-6 w-25 ms-5 mt-5 mb-2" color="warn"><span
+                                        name="{{informacion._id}}"
+                                        (click)="eliminarPost($event.target.name)">Eliminar</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<ng-template #noData>
+    <h4 class="text-center mt-5 mb-5"> NO HAY NINGUN POST REPORTADO!</h4>
+</ng-template>
