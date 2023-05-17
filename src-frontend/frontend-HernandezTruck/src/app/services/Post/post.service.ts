@@ -28,6 +28,18 @@ export class PostService {
     return this.postVehicleObservale.asObservable();
   }
 
+  getAllPost(){
+    return this.http.get<any>(this.URL+'/posts/getAllPost/',{});
+  }
+
+  getCountAlquiler(){
+    return this.http.get<Number>(this.URL+'/posts/getCountAlquiler/',{});
+  }
+
+  getCountVenta(){
+    return this.http.get<Number>(this.URL+'/posts/getCountVenta/',{});
+  }
+
   actualizarPostTractora(idPost:String,idVehiculo:String,tractora:Object){
     return this.http.put<any>(this.URL+'/posts/updatePost/'+idPost+'/'+idVehiculo,tractora);
   }

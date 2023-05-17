@@ -4,6 +4,39 @@ const cabezatractora = require('../models/Tractora');
 const semiremolque = require('../models/Semiremolque')
 const Usuario = require('../models/Usuario');
 
+const getAllPost = async function(req,res){
+  try {
+    consultaPost = await Post.find({}).populate('informacionUser.idUsuarioVendedor').populate('informacionUser.idVehiculo').exec()
+    if (consultaPost) {
+      res.status(200).json(consultaPost);
+    }
+  } catch (err) {
+    res.json({ status: "error", error: "No se ha encontrado ningun contador de vehiculos" })
+  }
+}
+
+const getCountAlquiler = async function (req,res){
+  try {
+    consultaAlquilerPost = await Post.count({}).where('tipo_publicacion').equals('Alquilar').populate('informacionUser.idUsuarioVendedor').populate('informacionUser.idVehiculo').exec()
+    if (consultaAlquilerPost) {
+      res.status(200).json(consultaAlquilerPost);
+    }
+  } catch (err) {
+    res.json({ status: "error", error: "No se ha encontrado ningun contador de vehiculos" })
+  }
+}
+
+const getCountVenta = async function (req,res){
+  try {
+    consultaAlquilerPost = await Post.count({}).where('tipo_publicacion').equals('Vender').populate('informacionUser.idUsuarioVendedor').populate('informacionUser.idVehiculo').exec()
+    if (consultaAlquilerPost) {
+      res.status(200).json(consultaAlquilerPost);
+    }
+  } catch (err) {
+    res.json({ status: "error", error: "No se ha encontrado ningun contador de vehiculos" })
+  }
+}
+
 const eliminarPost = async function(req,res) {
   try{
     await Vehiculo.deleteOne({_id:req.params.idVehiculo})
@@ -236,5 +269,8 @@ module.exports = {
   eliminarUsuarioPostFavoritos,
   anadirPostReport,
   eliminarPost,
-  updatePost
+  updatePost,
+  getCountAlquiler,
+  getCountVenta,
+  getAllPost
 }

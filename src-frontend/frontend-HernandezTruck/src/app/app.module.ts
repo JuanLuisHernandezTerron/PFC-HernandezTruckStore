@@ -53,6 +53,7 @@ import { EditarPostComponent } from './components/controlOperaciones/editar-post
 import { EditarPostRemolqueComponent } from './components/controlOperaciones/editar-post-remolque/editar-post-remolque.component';
 import { EditarUserComponent } from './components/controlOperaciones/editar-user/editar-user.component';
 import { ReportPostAdminComponent } from './components/admin/report-post-admin/report-post-admin.component';
+import { EstadisticasAdminComponent } from './components/admin/estadisticas-admin/estadisticas-admin.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { ReportPostAdminComponent } from './components/admin/report-post-admin/r
     EditarPostRemolqueComponent,
     EditarUserComponent,
     ReportPostAdminComponent,
+    EstadisticasAdminComponent,
   ],
   imports: [
     BrowserModule,

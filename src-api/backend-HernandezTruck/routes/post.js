@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var db = mongoose.connection;
 const Post = require('../models/Post');
 const MediaMiddleware = require('./../middleware/media')
-const { newPost, getPostVehicle, getVehicleAlquilar, getVehicleVenta, getPost, insertUsuarioPostFavoritos, eliminarUsuarioPostFavoritos, anadirPostReport, eliminarPost, updatePost} = require('./../controllers/PostController')
+const { newPost, getPostVehicle, getVehicleAlquilar, getVehicleVenta, getPost, insertUsuarioPostFavoritos, eliminarUsuarioPostFavoritos, anadirPostReport, eliminarPost, updatePost, getCountAlquiler, getCountVenta, getAllPost} = require('./../controllers/PostController')
 const validationToken = require('./../middleware/ValidacionToken')
 
 /*POST - Creacion de un nuevo Post*/
@@ -37,6 +37,13 @@ router.put('/updatePost/:idPost/:idVehiculo',validationToken,MediaMiddleware.upl
 /*PUT - Añade al array de Reports el usuario */
 router.put('/anadirPostReportado/:idPost/:idUser',anadirPostReport)
 
+/*GET - Devuelve cuantos Vehiculos en Alquiler hay en la BD */
+router.get('/getCountAlquiler',getCountAlquiler)
 
+/*GET - Devuelve cuantos Vehiculos en Venta hay en la BD */
+router.get('/getCountVenta',getCountVenta)
+
+/*GET - Devuelve cuantos Vehiculos en Venta hay en la BD */
+router.get('/getAllPost',getAllPost)
 
 module.exports = router;

@@ -1,0 +1,35 @@
+<div class="container">
+    <h1 class="text-center mt-5">Estadísticas</h1>
+    <hr>
+    <div class="row">
+        <div class="col-4 text-center mt-3">
+            <div class="row">
+                <h3 class="col-12"> Vehículos Totales Web</h3>
+            </div>
+            <div class="row">
+                <h4 class="col-12">{{arraydatos.length}}</h4>
+            </div>
+        </div>
+        <div class="col-4 text-center mt-3">
+            <div class="row">
+                <h3 class="col-12"> Vehículos - Compra</h3>
+            </div>
+            <div class="row">
+                <h4 class="col-12">{{this.contadorVehiculoVenta}}</h4>
+            </div>
+        </div>
+        <div class="col-4 text-center mt-3">
+            <div class="row">
+                <h3 class="col-12"> Vehículos - Alquiler</h3>
+            </div>
+            <div class="row">
+                <h4 class="col-12">{{this.contadorVehiculoAlquiler}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="d-flex col-12 justify-content-center mt-5 mb-5">
+            <canvas #mychart></canvas>
+        </div>
+    </div>
+</div>
