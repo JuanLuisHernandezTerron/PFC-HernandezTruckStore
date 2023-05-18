@@ -3,6 +3,7 @@ import { TractoraService } from 'src/app/services/Vehiculos/Tractora/tractora.se
 import { RemolqueService } from 'src/app/services/Vehiculos/Remolque/remolque.service';
 import { PostService } from 'src/app/services/Post/post.service';
 import { PostVehicle } from 'src/app/models/PostVehiculo';
+
 @Component({
   selector: 'app-main-user',
   templateUrl: './main-user.component.html',
@@ -17,6 +18,7 @@ export class MainUserComponent implements OnInit {
   contadorTractora: Number;
   contadorRemolque: Number;
   arraydatos: Array<PostVehicle> = [];
+  arraydatosLikes: Array<PostVehicle> = [];
 
   ngOnInit(): void {
     this.tractoraService.getCountTractora().subscribe((data) => {
@@ -30,13 +32,16 @@ export class MainUserComponent implements OnInit {
     this.postService.getAllPost().subscribe((data) => {
       data.forEach(element => {
         this.arraydatos.push(element)
+        this.arraydatosLikes.push(element)
       });
     })
-
-    let array = this.arraydatos.sort((a,b) => a.likes.length - b.likes.length)
-
-    console.log(array);
     
+    setTimeout(()=>{
+      this.arraydatosLikes.sort((a,b) =>{return b.likes.length - a.likes.length});
+      this.arraydatosLikes.splice(3,this.arraydatosLikes.length);
+      this.arraydatos.splice(3,this.arraydatos.length);
+    },200)
+
   }
 
 }

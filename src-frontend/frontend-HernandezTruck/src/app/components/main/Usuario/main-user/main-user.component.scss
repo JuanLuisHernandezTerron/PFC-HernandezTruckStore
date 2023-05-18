@@ -28,3 +28,25 @@
 hr{
     border: 1px solid black;
 }
+
+.borde{
+    border: 1px solid black;
+}
+
+.primeraFila{
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.ultimaFila{
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.background{
+    background-color: #E1D7C6;
+}
+
+.titulo{
+    font-size: 18px;
+}
