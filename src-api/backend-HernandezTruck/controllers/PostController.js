@@ -209,7 +209,7 @@ const newPost = async function (req, res) {
       fecha_post: req.body.fecha_post,
       tipo_publicacion: req.body.tipo_publicacion,
       localizacion: req.body.localizacion,
-      // media:'http://localhost:3000/uploads/'+req.file.filename,
+      media:'http://localhost:3000/uploads/'+req.file.filename,
       informacionUser: [{
         idUsuarioVendedor: req.body.idUsuarioVendedor,
         idVehiculo: req.body.idVehiculo

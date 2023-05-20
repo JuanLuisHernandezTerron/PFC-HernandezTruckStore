@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-12 text-center">
             <img class="imagenVehiculo img-fluid"
-                src="./../../../../../assets/img/Volvo-FH-modelo-vendido_1617448247_707516_1200x675.jpg"
+                src="{{informacionPost.media}}"
                 alt="imagenVehiculo">
         </div>
     </div>
@@ -144,7 +144,7 @@
             </ng-container>
             <ng-container *ngIf="authservice.loggedIn(); else login">
                 <div class="row">
-                    <button class="mt-4 mb-5 p-2 col-5 m-auto" mat-stroked-button (click)="anadirOperacion()">
+                    <button mat-raised-button class="mt-4 mb-5 p-2 col-5 m-auto" mat-stroked-button (click)="anadirOperacion()">
                         Contactar
                     </button>
                 </div>

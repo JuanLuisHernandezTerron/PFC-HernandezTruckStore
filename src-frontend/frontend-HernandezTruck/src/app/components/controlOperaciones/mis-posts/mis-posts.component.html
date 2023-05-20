@@ -4,7 +4,7 @@
         <ng-container *ngIf="!noOperacion() ; else noData">
             <div class="col-12 col-md-3 ms-md-3  mt-5 mb-5" *ngFor="let informacion of arraydatos">
                 <div class="row">
-                    <img src="./../../../../assets/img/Scania_Trucks_S_700_Light_Blue_533684_1920x1080.jpg"
+                    <img src="{{informacion.media}}"
                         class="img-fluid p-0 primeraFila" alt="imagenCamion">
                 </div>
                 <div class="row">

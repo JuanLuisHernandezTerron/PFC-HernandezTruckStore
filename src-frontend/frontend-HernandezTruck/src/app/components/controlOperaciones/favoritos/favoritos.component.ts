@@ -60,8 +60,6 @@ export class FavoritosComponent implements OnInit{
     }else{
       this.router.navigateByUrl('/register');
     }
-
-
   }
 
 }
