@@ -13,21 +13,21 @@
     <div class="row mt-4">
         <form [formGroup]="formGroup" (submit)="ingresarTractora()" class="col-12 text-center">
             <div class="row">
-                <div class="col-4">
+                <div class="col-6 col-lg-4">
                     <label for="marcaTractora" name="marcaLabel">Marca *</label><br>
                     <mat-form-field class="width" appearance="fill">
                         <input type="text" id="marcaInput" [(ngModel)] = "cabezaTractora.Marca" formControlName="marca" name="marca" matInput placeholder="Inserte Marca Por Favor..." required>
                         <mat-error>Ingrese Correctamente la Marca</mat-error>
                     </mat-form-field>
                 </div>
-                <div class="col-4">
+                <div class="col-6 col-lg-4">
                     <label for="ModeloTractora" name="Modelolabel">Modelo *</label><br>
                     <mat-form-field class="width" appearance="fill">
                         <input type="text" id="ModeloInput" [(ngModel)] = "cabezaTractora.modelo" formControlName="modelo" name="modelo" matInput placeholder="Inserte Modelo Por favor..." required>
                         <mat-error>Ingrese Correctamente el Modelo</mat-error>
                     </mat-form-field>
                 </div>
-                <div class="col-4">
+                <div class="col-12 col-lg-4">
                     <label for="MatriculaUser" name="Matriculalabel">Matrícula *</label><br>
                     <mat-form-field class="width" appearance="fill">
                         <input type="text" id="MatriculaInput" [(ngModel)] = "cabezaTractora._id" [(ngModel)] = "cabezaTractora.idVehiculo" [(ngModel)] = "cabezaTractora.vehiculo" formControlName="_id" name="matricula" matInput placeholder="Inserte Matricula Por favor..." required>
@@ -37,14 +37,14 @@
             </div>
 
             <div class="row mt-4">
-                <div class="col-4">
+                <div class="col-6 col-lg-4">
                     <label for="MMAUser" name="MMAlabel">MMA (Peso Máximo) *</label><br>
                     <mat-form-field class="width" appearance="fill">
                         <input type="number" id="MMAInput" [(ngModel)] = "cabezaTractora.mma" formControlName="mma" name="mma" matInput placeholder="Inserte el Peso Máximo Por favor..." required>
                         <mat-error>Ingrese Correctamente el Peso</mat-error>
                     </mat-form-field>
                 </div>
-                <div class="col-4">
+                <div class="col-6 col-lg-4">
                     <label for="AnoMatriculaTractora" name="AnoMatriculalabel">Año Matriculacion *</label><br>
                     <mat-form-field class="width" appearance="fill">
                         <input matInput id="AnoMatriculaInput" [(ngModel)] = "cabezaTractora.fechaMatriculacion" formControlName="fechaMatriculacion" name="fechaMatriculacion" matInput placeholder="Inserte la Fecha de Matriculación Por favor..." required [matDatepicker]="picker">
@@ -54,7 +54,7 @@
                         <mat-error>Ingrese Correctamente la Fecha de Matrículacion</mat-error>
                     </mat-form-field>
                 </div>
-                <div class="col-4">
+                <div class="col-12 col-lg-4">
                     <label for="ColorTractora" name="ColorTractoraLabel">Color *</label><br>
                     <mat-form-field class="width" appearance="fill">
                         <input type="text" id="ColorInput" [(ngModel)] = "cabezaTractora.color" formControlName="color" name="color" matInput placeholder="Inserte el color Por favor..." required>
@@ -64,21 +64,21 @@
             </div>
             
             <div class="row mt-4">
-                <div class="col-4">
+                <div class="col-6 col-lg-4">
                     <label for="PotenciaTractora" name="Potencialabel">Potencia (CV) *</label><br>
                     <mat-form-field class="width" appearance="fill">
                         <input type="number" id="CVInput" [(ngModel)] = "cabezaTractora.cv" formControlName="cv" name="cv" matInput placeholder="Inserte la Potencia(CV) Por favor..." required>
                         <mat-error>Ingrese Correctamente la Potencia</mat-error>
                     </mat-form-field>
                 </div>
-                <div class="col-4">
+                <div class="col-6 col-lg-4">
                     <label for="EjesTractora" name="Ejeslabel">Ejes *</label><br>
                     <mat-form-field class="width" appearance="fill">
                         <input type="number" id="EjesInput" [(ngModel)] = "cabezaTractora.ejes" formControlName="ejes" name="ejes" matInput placeholder="Inserte los ejes Por favor..." required>
                         <mat-error>Ingrese Correctamente los ejes</mat-error>
                     </mat-form-field>
                 </div>
-                <div class="col-4">
+                <div class="col-12 col-lg-4">
                     <label for="numDepositosTractora" name="DepositosTractoraLabel">Numero Depositos *</label><br>
                     <mat-form-field class="width" appearance="fill">
                         <input type="Number" id="EjesInput" [(ngModel)] = "cabezaTractora.numeroDepositos" formControlName="numeroDepositos" name="numeroDepositos" matInput placeholder="Inserte los depositos Por favor..." required>
@@ -88,14 +88,14 @@
             </div>
 
             <div class="row mt-4 justify-content-around">
-                <div class="col-4">
+                <div class="col-6 col-lg-4">
                     <label for="KMsTractora" name="KMslabel">Kilometros (KM´s) *</label><br>
                     <mat-form-field class="width" appearance="fill">
                         <input type="number" id="KMsInput" [(ngModel)] = "cabezaTractora.kms" formControlName="kms" name="kms" matInput placeholder="Inserte los Kilometros(KMs) Por favor..." required>
                         <mat-error>Ingrese Correctamente los Kilómetros</mat-error>
                     </mat-form-field>
                 </div>
-                <div class="col-4">
+                <div class="col-6 col-lg-4">
                     <label for="EjesTractora" name="Ejeslabel">Combustible *</label><br>
                     <mat-form-field class="width" appearance="fill">
                         <mat-label>Inserte el combustible Por favor...</mat-label>
@@ -111,32 +111,32 @@
             </div>
 
             <div class="row mt-4 mb-3 justify-content-around">
-                 <div class="col-4">
+                 <div class="col-6 col-lg-4">
                     <label for="RetarderTractora" name="Retarderlabel">Retarde *</label><br>
                     <input type="checkbox" id="RetarderInput" [(ngModel)] = "cabezaTractora.retarde" formControlName="retarde" name="retarde" required/>
                 </div>
-                <div class="col-4">
+                <div class="col-6 col-lg-4">
                     <label for="AdblueTractora" name="Adbluelabel">AdBlue *</label><br>
                     <input type="checkbox" id="AdBlueInput" [(ngModel)] = "cabezaTractora.adblue" formControlName="adblue" name="adblue" required/>
                 </div>
             </div>
             <hr>
             <div class="row mt-5 mb-5">
-                <div class="col-4">
+                <div class="col-6 col-lg-4">
                     <label for="PrecioTractora" name="Preciolabel">Precio Tractora *</label><br>
                     <mat-form-field class="width" appearance="fill">
                         <input type="Number" id="PrecioInput" [(ngModel)] = "cabezaTractora.precio" formControlName="precio" name="precio" matInput placeholder="Inserte el Precio Por favor..." required>
                         <mat-error>Ingrese Correctamente el Precio</mat-error>
                     </mat-form-field>
                 </div>
-                <div class="col-4">
+                <div class="col-6 col-lg-4">
                     <label for="TituloPostTractora" name="Titulolabel">Titulo Post *</label><br>
                     <mat-form-field class="width" appearance="fill">
                         <input type="text" id="tituloInput" [(ngModel)] = "cabezaTractora.titulo" formControlName="titulo" name="titulo" matInput placeholder="Inserte el Titulo Por favor..." required>
                         <mat-error>Ingrese Correctamente el Titulo</mat-error>
                     </mat-form-field>
                 </div>
-                <div class="col-4">
+                <div class="col-12 col-lg-4">
                     <label for="TipoPublicacionTractora" name="TipoPublicacionlabel">Tipo Publicación *</label><br>
                     <mat-form-field class="width" appearance="fill">
                         <mat-label>Inserte el tipo de publicación Por favor...</mat-label>
@@ -156,7 +156,7 @@
             </div>
             <div class="row mt-5 mb-5">
                 <div class="col-12">
-                    <button type="submit" class="botonEnviar"><span>!Publicar!</span></button>
+                    <button mat-raised-button type="submit" class="botonEnviar"><span>!Publicar!</span></button>
                 </div>
             </div>
         </form>

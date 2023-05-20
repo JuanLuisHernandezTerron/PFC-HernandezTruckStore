@@ -19,7 +19,7 @@
             </form>
         </div>
         <div class="col-9 ms-5 ms-lg-0 mt-lg-2 col-lg-4 justify-content-center">
-            <button class="boton" routerLink="/publicacionStep1"><span>+</span> Publique nuevo anuncio</button>
+            <button mat-raised-button color="primary" class="boton" routerLink="/publicacionStep1"><span>+</span> Publique nuevo anuncio</button>
         </div>
         <div class="col-6 col-lg-2 mt-4 mt-lg-0 justify-content-center">
           <ng-container *ngIf= "!authservice.loggedIn(); else login">

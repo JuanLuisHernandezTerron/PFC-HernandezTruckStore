@@ -15,3 +15,7 @@ button{
     border: 1px solid black;
     border-radius: 5px;
 }
+
+.mat-mdc-raised-button.mat-primary{
+    --mdc-protected-button-container-color:#186988 !important;
+}

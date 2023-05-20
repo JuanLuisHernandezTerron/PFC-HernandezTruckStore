@@ -36,7 +36,7 @@ span{
     max-width: 50%;
     min-width: 50%;
     max-height: 70px;
-    background-color: #B5FFB8;
+    background-color: #81d753;
 }
 
 nav{
@@ -73,4 +73,8 @@ h3{
     .boton{
         max-width: 110%;
     }
+}
+
+.mat-mdc-raised-button.mat-primary{
+    --mdc-protected-button-container-color:#186988 !important;
 }

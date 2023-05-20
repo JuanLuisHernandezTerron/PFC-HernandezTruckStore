@@ -7,10 +7,6 @@
     font-family: "RadioGrotesk";
 }
 
-button{
-    background-color: #73A9BF;
-}
-
 .divTractora{
     border: 1px solid black;
     border-radius: 5px;
@@ -18,4 +14,13 @@ button{
 
 .mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled){
     color: var(#fff, transparent) !important;
+}
+
+.img-veh{
+    border-radius: 5px;
+    height: fit-content;
+}
+
+.mat-mdc-raised-button.mat-primary{
+    --mdc-protected-button-container-color:#186988 !important;
 }

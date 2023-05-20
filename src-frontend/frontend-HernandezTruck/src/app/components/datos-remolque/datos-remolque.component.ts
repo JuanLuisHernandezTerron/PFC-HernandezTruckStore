@@ -18,8 +18,10 @@ export class DatosRemolqueComponent implements OnInit{
     private route : Router,
 ){ }
 
-
+  imagenesArray:string;
   formRemolque !: FormGroup;
+  formData = new FormData();
+
   ngOnInit(): void {
     this.validateSemiremolque()
   }
@@ -66,7 +68,25 @@ export class DatosRemolqueComponent implements OnInit{
 
 
   ingresarRemolque(){
-    this.postservice.registroPostSemiRemolque(this.semiremolque).subscribe(
+    this.formData.append('_id',this.semiremolque._id),
+    this.formData.append('tipoSemiremolque',this.semiremolque.tipoSemiremolque),
+    this.formData.append('tipoEje',this.semiremolque.tipoEje),
+    this.formData.append('ADR',JSON.stringify(this.semiremolque.ADR)),
+    this.formData.append('titulo',this.semiremolque.titulo),
+    this.formData.append('tipo_publicacion',this.semiremolque.tipo_publicacion),
+    this.formData.append('idVehiculo',this.semiremolque.idVehiculo),
+    this.formData.append('mma',this.semiremolque.mma),
+    this.formData.append('fechaMatriculacion',this.semiremolque.fechaMatriculacion),
+    this.formData.append('Marca',this.semiremolque.Marca),
+    this.formData.append('modelo',this.semiremolque.modelo),
+    this.formData.append('precio',this.semiremolque.precio),
+    this.formData.append('color',this.semiremolque.color),
+    this.formData.append('idUsuarioVendedor',this.semiremolque.idUsuarioVendedor),
+    this.formData.append('vehiculo',this.semiremolque.vehiculo),
+    this.formData.append('tipoVehiculo',this.semiremolque.tipoVehiculo),
+    this.formData.append('ejes',this.semiremolque.ejes),    
+
+    this.postservice.registroPostSemiRemolque(this.formData).subscribe(
       res =>{
         if (res.status === 'Ingresado Correctamente') {
           this.route.navigate(['/mainUser']); 
@@ -75,5 +95,13 @@ export class DatosRemolqueComponent implements OnInit{
       err=>
         console.log(err)
     )
+  }
+
+  imagenesChange(event){
+    for (let index = 0; index < event.target.files.length; index++) {
+      console.log(event.target.files);
+      this.imagenesArray = event.target.files[index];
+      this.formData.append('media',this.imagenesArray);
+    }
   }
 }

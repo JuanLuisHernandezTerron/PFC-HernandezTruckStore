@@ -70,3 +70,7 @@ nav{
         max-width: 110%;
     }
 }
+
+.mat-mdc-raised-button.mat-primary{
+    --mdc-protected-button-container-color:#81d753 !important;
+}

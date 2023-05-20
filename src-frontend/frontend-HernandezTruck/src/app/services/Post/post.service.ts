@@ -84,7 +84,7 @@ export class PostService {
     return this.http.get<any>(this.URL+'/posts/getVehiclesVenta')
   }
   
-  registroPostSemiRemolque(postSemiremolque:any){
+  registroPostSemiRemolque(postSemiremolque:FormData){
     return this.http.post<any>(this.URL+'/posts/newPost',postSemiremolque);
   }
 

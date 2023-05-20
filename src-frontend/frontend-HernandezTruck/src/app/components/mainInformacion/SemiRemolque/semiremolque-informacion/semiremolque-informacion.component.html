@@ -1,8 +1,8 @@
 <div class="container">
     <div class="row">
         <div class="col-12 d-flex justify-content-end mt-3">
-            <button (click)="getPostCompraTractora()" class="botonFiltro p-2">Compra</button>
-            <button (click)="getPostAlquilerTractora()" class="botonFiltro ms-3 p-2">Alquiler</button>
+            <button mat-raised-button color="primary" (click)="getPostCompraTractora()" class="botonFiltro p-2">Compra</button>
+            <button mat-raised-button color="primary" (click)="getPostAlquilerTractora()" class="botonFiltro ms-3 p-2">Alquiler</button>
         </div>
     </div>
     <div class="row">
@@ -12,7 +12,7 @@
         <div class="col-10">
             <div class="divTractora mt-3 mb-5" *ngFor="let remolque of arraydatos">
                 <div class="row">
-                    <div class="col-3 mt-3">
+                    <div class="col-3">
                         <img class="img-fluid" src="{{remolque.media}}" alt="img">
                     </div>
                     <div class="col-8">
@@ -36,7 +36,7 @@
                                 <h4>{{remolque.informacionUser[0].idVehiculo.precio}}€</h4>
                             </div>
                             <div class="col-6 d-flex mb-3 justify-content-end">
-                                <button class="botonFiltro p-2" routerLink="/informacionDetalladaVehicle/{{remolque._id}}" (click)="idBoton(remolque.titulo)"
+                                <button mat-raised-button color="primary" class="botonFiltro p-2" routerLink="/informacionDetalladaVehicle/{{remolque._id}}" (click)="idBoton(remolque.titulo)"
                                     name={{remolque.titulo}}>Contactar</button>
                             </div>
                         </div>
