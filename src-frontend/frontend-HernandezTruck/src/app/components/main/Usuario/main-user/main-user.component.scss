@@ -13,7 +13,6 @@
 }
 
 .eleccion{
-    width: 40%;
     min-height: 500px;
     border-radius: 5px;
     border: 1px solid #579BB1;
@@ -49,4 +48,9 @@ hr{
 
 .titulo{
     font-size: 18px;
+}
+
+.mat-mdc-raised-button.mat-primary{
+    --mdc-protected-button-container-color:#186988 !important;
+    --mdc-protected-button-label-text-color: rgb(255, 255, 255) !important;
 }

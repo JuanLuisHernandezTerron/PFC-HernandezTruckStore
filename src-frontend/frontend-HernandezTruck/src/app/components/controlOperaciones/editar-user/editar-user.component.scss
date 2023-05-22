@@ -67,3 +67,8 @@ label{
         justify-content: center;
     }
 }
+
+.mat-mdc-raised-button.mat-primary{
+    --mdc-protected-button-container-color:#186988 !important;
+    --mdc-protected-button-label-text-color: black !important;
+}

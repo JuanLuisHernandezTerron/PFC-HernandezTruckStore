@@ -3,7 +3,6 @@
     src: url('./../../../assets/RadioGrotesk-Regular.otf') format("opentype");
 }
 
-
 *{
     font-family: "RadioGrotesk";
 }
@@ -49,4 +48,9 @@ hr{
         max-width: 80%;
 
     }
+}
+
+.mat-mdc-raised-button.mat-primary{
+    --mdc-protected-button-container-color:#186988 !important;
+    --mdc-protected-button-label-text-color: black !important;
 }

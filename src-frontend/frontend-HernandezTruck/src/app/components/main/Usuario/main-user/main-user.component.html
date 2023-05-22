@@ -3,7 +3,7 @@
         <app-slider-noticias></app-slider-noticias>
     </div>
     <div class="row d-flex justify-content-around">
-        <div class="eleccion mt-5 text-center mb-5" routerLink="/informacionAllTractoras">
+        <div class="col-12 col-lg-5 eleccion mt-5 text-center mb-5" routerLink="/informacionAllTractoras">
             <div class="m-5">
                 <h1>Cabezas<br>Tratoras</h1>
             </div>
@@ -14,7 +14,7 @@
                 <p class="contador">{{contadorTractora}}</p>
             </div>
         </div>
-        <div class="eleccion mt-5 text-center mb-5"  routerLink="/informacionAllSemiRemolques">
+        <div class="col-12 col-lg-5 ms-2 eleccion mt-5 text-center mb-5"  routerLink="/informacionAllSemiRemolques">
             <div class="m-5">
                 <h1>Semi-<br>Remolques</h1>
             </div>
@@ -32,7 +32,7 @@
             <h1 class="text-center">Te Puede Interesar...</h1>
         </div>
         <div class="row justify-content-center mt-5">
-            <div class="col-3 ms-5 borde primeraFila ultimaFila mb-5" *ngFor="let informacion of arraydatos">
+            <div class="col-7 col-xl-3 m-2 m-lg-5 borde primeraFila ultimaFila mb-5" *ngFor="let informacion of arraydatos">
                 <div class="row ">
                     <div class="col-12 p-0">
                         <img src="{{informacion.media}}"  class="img-fluid primeraFila" alt="">
@@ -54,7 +54,7 @@
         </div>
         <div class="col-12 mb-5">
             <div class="row justify-content-center mt-5">
-                <div class="col-3 ms-5 borde primeraFila ultimaFila mb-5" *ngFor="let informacion of arraydatosLikes">
+                <div class="col-7 col-xl-3 m-2 m-lg-5 borde primeraFila ultimaFila mb-5" *ngFor="let informacion of arraydatosLikes">
                     <div class="row ">
                         <div class="col-12 p-0">
                             <img src="{{informacion.media}}"  class="img-fluid primeraFila" alt="">
