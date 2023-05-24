@@ -11,7 +11,7 @@ router.post('/register', newUser);
 router.put('/updateUser',updateUser);
 
 /*POST - Login del usuario */
-router.post('/login',validationToken, loginUser)
+router.post('/login', loginUser)
 
 /*GET - Información de todos los usuarios */
 router.get('/getAllUsers',validationToken,getAllUsers),

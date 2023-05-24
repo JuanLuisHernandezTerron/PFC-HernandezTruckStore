@@ -17,7 +17,6 @@ export class AppComponent implements OnInit{
     let infoToken = this.userService.getInfoToken();
     if (infoToken) {
     this.userService.getInfoUsuarioID(infoToken).subscribe((data)=>{
-      console.log('prueba');
       this.userService.setUsuario(data.consulta);
     })
     }

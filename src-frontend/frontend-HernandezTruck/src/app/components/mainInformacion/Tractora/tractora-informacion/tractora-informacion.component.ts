@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: 'app-tractora-informacion',
   templateUrl: './tractora-informacion.component.html',
-  styleUrls: ['./tractora-informacion.component.scss']
+  styleUrls: ['./tractora-informacion.component.scss'],
 })
 export class TractoraInformacionComponent {
   constructor(private servicePost: PostService,
@@ -25,6 +25,11 @@ export class TractoraInformacionComponent {
 
 
   ngOnInit() {
+    this.cargarInfo();
+  }
+
+  cargarInfo() {
+    this.arraydatos = [];
     this.servicePost.getPostsVehicle().subscribe((data) => {
       this.post = data;
       data.forEach(v => {
@@ -33,6 +38,38 @@ export class TractoraInformacionComponent {
         }
       });
     })
+  }
+
+  filtrar(marcaCamion: String, evento) {
+    if (evento.checked) {
+      setTimeout(() => {
+        this.arraydatos.forEach(element => {
+          if (element.informacionUser[0].idVehiculo.Marca.toLowerCase() === marcaCamion.toLowerCase()) {
+            this.arraydatos = [];
+            this.arraydatos.push(element);
+          }
+        })
+      }, 100)
+    } else {
+      this.arraydatos = [];
+      this.cargarInfo();
+    }
+  }
+
+  filtroPrecio() {
+    let preciosMin = (document.getElementById("precioMin") as HTMLInputElement).value;
+    let preciosMax = (document.getElementById("precioMax") as HTMLInputElement).value;
+    let arrayFiltrado = this.arraydatos.flatMap(e => e.informacionUser.filter(v => (v.idVehiculo.precio >= preciosMin && v.idVehiculo.precio <= preciosMax) || (v.idVehiculo.precio <= preciosMin) || (v.idVehiculo.precio < preciosMax)));
+    console.log(arrayFiltrado);
+    
+    for (let i = 0; i < this.arraydatos.length; i++) {
+      for (let index = 0; index < arrayFiltrado.length; index++) {
+        this.arraydatos = this.arraydatos.filter(e=>e.informacionUser[0].idVehiculo._id);
+      }
+      if (arrayFiltrado.length == 0) {
+        this.arraydatos = [];
+      }
+    }
   }
 
   getPostAlquilerTractora() {
@@ -70,7 +107,7 @@ export class TractoraInformacionComponent {
             }
           })
         }
-  
+
         if (!JSON.stringify(data.consulta.favoritos).split('"').includes(idPost)) {
           this.authservice.insertFavoritosUser(idPost, idUser).subscribe((data) => {
             if (data.status === "Post AñadidoCorrectamente") {
@@ -81,7 +118,7 @@ export class TractoraInformacionComponent {
           })
         }
       })
-    }else{
+    } else {
       this.router.navigateByUrl('/register');
     }
 

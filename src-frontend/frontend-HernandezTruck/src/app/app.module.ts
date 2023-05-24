@@ -14,6 +14,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -106,7 +107,8 @@ import { EstadisticasAdminComponent } from './components/admin/estadisticas-admi
     MatNativeDateModule,
     MatSnackBarModule,
     ClipboardModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCheckboxModule
   ],
   //Con interceptor creamos una cabecera
   providers: [UserService,AuthGuard

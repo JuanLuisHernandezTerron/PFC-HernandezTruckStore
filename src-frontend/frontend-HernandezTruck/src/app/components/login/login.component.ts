@@ -42,14 +42,12 @@ user = {
 
 
 login(){
-  console.log(this.user);
   if (this.user.contrasena === "" || this.user.email === "") {
-    return "Introduce Correctamente los datos de login, por favor";
+    return false;
   }else{
     this.authservice.login(this.user)
     .subscribe(
       res =>{
-      console.log(res),
       localStorage.setItem('token',res.token);
       if (this.userService.getRol() === 'administrador') {
         this.router.navigateByUrl('/DashboardAdmin').then(()=>{window.location.reload()});
@@ -58,8 +56,12 @@ login(){
       }
 
       },
-      err =>
-      console.log(err),
+      err =>{        
+      if (err.error.error === 'Email incorrecto o contraseña incorrecta') {
+        let warning = document.getElementById('dangerWarning');
+        warning.classList.add('credentails');
+      }
+    }
     )
     return true;
   }

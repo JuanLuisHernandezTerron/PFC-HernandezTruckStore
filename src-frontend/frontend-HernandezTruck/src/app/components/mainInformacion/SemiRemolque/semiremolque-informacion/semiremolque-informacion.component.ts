@@ -89,7 +89,6 @@ export class SemiremolqueInformacionComponent {
     }
   
     idBoton(e) {
-      console.log(e)
       return e;
     }
 }

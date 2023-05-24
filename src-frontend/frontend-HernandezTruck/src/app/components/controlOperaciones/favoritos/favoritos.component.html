@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row justify-content-between">
         <ng-container *ngIf="!noOperacion() ; else noData">
-            <div class="col-3 mt-5 mb-5" *ngFor="let informacion of arraydatos">
+            <div class="col-3 ms-1 mt-5 mb-5" *ngFor="let informacion of arraydatos">
                 <div class="row">
                     <img src="{{informacion.media}}"
                         class="img-fluid p-0 primeraFila" alt="imagenCamion">
@@ -18,7 +18,7 @@
                 </div>
                 <div class="row ultimaFila fondoColor">
                     <div class="col-12 text-center">
-                        <button class="mb-4 p-2 w-50" routerLink="/informacionDetalladaVehicle/{{informacion._id}}">Visitar Post</button>
+                        <button class="mb-4 p-2 w-50" mat-raised-button color="primary" routerLink="/informacionDetalladaVehicle/{{informacion._id}}">Visitar Post</button>
                     </div>
                 </div>
             </div>

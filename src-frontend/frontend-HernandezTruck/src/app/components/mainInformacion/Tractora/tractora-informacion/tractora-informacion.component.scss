@@ -1,26 +1,48 @@
 @font-face {
     font-family: 'RadioGrotesk';
     src: url('./../../../../../assets/RadioGrotesk-Regular.otf') format("opentype");
+    font-family: 'Material Icons';
+    src: url(https://example.com/MaterialIcons-Regular.eot);
 }
 
-*{
+.material-icons {
+    font-family: 'Material Icons';
+}
+* {
     font-family: "RadioGrotesk";
 }
 
-.divTractora{
+.divTractora {
     border: 1px solid black;
     border-radius: 5px;
 }
 
-.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled){
+.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
     color: var(#fff, transparent) !important;
 }
 
-.img-veh{
+.img-veh {
     border-radius: 5px;
     height: fit-content;
 }
 
-.mat-mdc-raised-button.mat-primary{
-    --mdc-protected-button-container-color:#186988 !important;
+.mat-mdc-raised-button.mat-primary {
+    --mdc-protected-button-container-color: #186988 !important;
 }
+
+.mat-mdc-checkbox.mat-accent{
+    --mdc-checkbox-selected-icon-color: #186988 !important;
+    --mdc-checkbox-selected-hover-icon-color: #186988 !important;
+    --mdc-checkbox-selected-pressed-icon-color:#186988 !important;
+    --mdc-checkbox-selected-focus-icon-color: #537c8d !important;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }

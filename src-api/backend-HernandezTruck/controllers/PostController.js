@@ -181,7 +181,7 @@ const updatePost = async function (req, res) {
         await semiremolque.findByIdAndUpdate({_id:req.params.idVehiculo},SemiremolqueVehiculo).exec()
 
       } catch (err) {
-        res.json({ status: "error", error: "Usuario no registrado Semiremolque" })
+        res.json({ status: "error", error: "No se ha podido registrar el Semiremolque" })
       }
     }
   } catch (err) {
@@ -233,7 +233,6 @@ const newPost = async function (req, res) {
         await cabezatractora.create(cabezaTractoraVehiculo)
 
       } catch (e) {
-        console.log(e)
         res.json({ status: "error", error: "Usuario no registrado tractora" })
       }
     } else if (req.body.tipoVehiculo === 'semirremolque') {
@@ -246,14 +245,12 @@ const newPost = async function (req, res) {
           vehiculo: req.body._id
         }
         await semiremolque.create(SemiremolqueVehiculo)
-
       } catch (err) {
         res.json({ status: "error", error: "Usuario no registrado Semiremolque" })
       }
     }
   } catch (err) {
-    console.log(err)
-    res.json({ status: "error", error: "Usuario no registrado" })
+    res.status(401).json({ status: "error", error: "Vehiculo no Introducido,La matrícula ya está ingresada en nuestra Base de Datos" })
   }
 }
 

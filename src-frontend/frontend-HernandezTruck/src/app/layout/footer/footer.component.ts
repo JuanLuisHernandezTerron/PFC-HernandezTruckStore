@@ -9,6 +9,5 @@ export class FooterComponent implements OnInit {
   constructor(){ }
 
   ngOnInit():void {
-    console.log("En este instante el componente ha cargado")
   }
 }

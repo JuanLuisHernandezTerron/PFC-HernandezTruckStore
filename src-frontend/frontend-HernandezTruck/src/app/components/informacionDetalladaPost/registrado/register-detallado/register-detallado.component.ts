@@ -140,7 +140,7 @@ export class RegisterDetalladoComponent implements OnInit {
   tipoPost() {
 
     let esCabeza = false;
-    if (this.informacionPost.informacionUser[0].idVehiculo.tipoVehiculo === "cabezatractora") {
+    if (this.informacionPost.informacionUser[0]?.idVehiculo.tipoVehiculo === "cabezatractora") {
       esCabeza = true;
       if (this.contador <= 0) {
         this.contador++;
@@ -148,7 +148,7 @@ export class RegisterDetalladoComponent implements OnInit {
           this.DatoTractora = data
         })
       }
-    } else if (this.informacionPost.informacionUser[0].idVehiculo.tipoVehiculo === "semirremolque") {
+    } else if (this.informacionPost.informacionUser[0]?.idVehiculo.tipoVehiculo === "semirremolque") {
       if (this.contador <= 0) {
         this.contador++;
         this.remolqueService.getInfoVehiculoRemolque(this.informacionPost.informacionUser[0].idVehiculo._id).subscribe((data) => {

@@ -100,8 +100,13 @@ export class DatosCabezaComponent implements OnInit{
               this.route.navigate(['/mainUser']); 
             }
         },
-          err=>
-            console.log(err)
+          err=>{
+            if (err.error.error === 'Vehiculo no Introducido,La matrícula ya está ingresada en nuestra Base de Datos') {
+              let warning = document.getElementById('dangerWarning');
+              warning.classList.add('credentails');
+            }
+          }
+            
     )
   }
 

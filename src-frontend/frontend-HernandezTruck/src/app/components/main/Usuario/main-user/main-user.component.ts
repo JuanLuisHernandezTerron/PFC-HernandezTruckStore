@@ -19,8 +19,11 @@ export class MainUserComponent implements OnInit {
   contadorRemolque: Number;
   arraydatos: Array<PostVehicle> = [];
   arraydatosLikes: Array<PostVehicle> = [];
-
+  contador: number = 0;
   ngOnInit(): void {
+    if (this.contador < 1) {
+      this.contador++
+    }
     this.tractoraService.getCountTractora().subscribe((data) => {
       this.contadorTractora = data;
     })
@@ -40,7 +43,7 @@ export class MainUserComponent implements OnInit {
       this.arraydatosLikes.sort((a,b) =>{return b.likes.length - a.likes.length});
       this.arraydatosLikes.splice(3,this.arraydatosLikes.length);
       this.arraydatos.splice(3,this.arraydatos.length);
-    },200)
+    },300)
 
   }
 

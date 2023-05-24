@@ -69,6 +69,9 @@
                         <mat-error *ngIf="validatorInput('ConfirmPassword','MatchPassword')">Las contraseñas no coinciden</mat-error>
                     </mat-form-field>
                 </div>
+                <div class="alert alert-danger col-10 mt-3 mb-5 d-none" id="dangerWarning" role="alert">
+                    Email / DNI ya registrados en la Base de Datos
+                </div>
                 <div class="row col-12 ms-xl-5 m-auto  inpustCenter mb-5">
                     <button mat-raised-button color="primary" class="ms-xl-5 mt-5" class="buttonSubmit" type="submit">Registrarme</button>
                 </div>

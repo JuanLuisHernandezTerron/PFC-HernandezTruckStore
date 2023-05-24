@@ -72,7 +72,13 @@ export class RegistroComponent implements OnInit {
           }
         },
         err =>
-          console.log(err),
+          {
+            console.log(err);
+            if (err.error === 'Email ya existente' || err.error === 'Usuario no registrado') {
+              let warning = document.getElementById('dangerWarning');
+              warning.classList.add('credentails');
+            }
+          }
       )
   }
 }

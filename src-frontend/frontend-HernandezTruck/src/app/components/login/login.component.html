@@ -36,11 +36,11 @@
               </mat-form-field>
           </div>
         </div>
-        <!-- <ng-container *ngIf= "login">
-          {{login()}}
-        </ng-container> -->
         <div class="row">
-          <p class="olvpswd text-center">¿Has olvidado tu contraseña?</p>
+          <p class="col-12 olvpswd text-center">¿Has olvidado tu contraseña?</p>
+          <div class="alert alert-danger col-6 mt-3 mb-3 m-auto d-none" id="dangerWarning" role="alert">
+            Introduzca sus Crendeciales Correctamente
+          </div>
         </div>
         <div class="modal-footer  mt-4">
           <button id="boton"  mat-raised-button color="primary" class="boton p-2 m-auto">Login</button>

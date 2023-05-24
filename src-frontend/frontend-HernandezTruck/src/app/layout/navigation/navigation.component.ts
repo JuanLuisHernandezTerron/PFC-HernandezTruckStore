@@ -40,12 +40,10 @@ export class NavigationComponent implements OnInit{
 
     this.Userservice.userInformacion.subscribe((data)=>{
       this.userInfo = data;
-      console.log(this.userInfo)
     })
 
     this.Userservice.getInfoUsuario(this.getRol()).subscribe((data) => {
       this.users = data;
-      console.log(this.users.consulta[0].nombre);
     });
 
 
