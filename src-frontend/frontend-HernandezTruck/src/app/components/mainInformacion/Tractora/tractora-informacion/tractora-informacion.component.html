@@ -94,6 +94,22 @@
                     <mat-checkbox class="ms-1" name="vehiculo" (change)="filtrar('Ford',$event)">Ford</mat-checkbox>
                 </div>
             </div>
+            <hr class="mt-4 mb-4">
+            <div class="row justify-content-center">
+                <span class="text-center">CV</span>
+                <div class="mt-2 d-flex justify-content-evenly">
+                    <mat-form-field class="ms-2 example-full-width">
+                        <mat-label>MIN</mat-label>
+                        <input matInput type="number" id="cvMin" placeholder="CV Min">
+                    </mat-form-field>
+                    <mat-form-field class="ms-2 me-2 example-full-width">
+                        <mat-label>MAX</mat-label>
+                        <input matInput type="number" id="cvMax" placeholder="CV Max">
+                    </mat-form-field>
+                </div>
+                <button class="col-6" (click)="filtroCV()" mat-raised-button color="primary">Aplicar CV</button>
+            </div>
+            <hr class="mt-4 mb-4">
             <div class="row justify-content-center">
                 <span class="text-center">Precio</span>
                 <div class="mt-2 d-flex justify-content-evenly">

@@ -40,15 +40,17 @@ export class TractoraInformacionComponent {
     })
   }
 
-  filtrar(marcaCamion: String, evento) {
+  filtrar(marcaCamion: String, evento) {   
+    let contador = 0; 
     if (evento.checked) {
       setTimeout(() => {
         this.arraydatos.forEach(element => {
           if (element.informacionUser[0].idVehiculo.Marca.toLowerCase() === marcaCamion.toLowerCase()) {
-            this.arraydatos = [];
+            contador ++;
             this.arraydatos.push(element);
           }
         })
+        this.arraydatos.splice(0,this.arraydatos.length-contador);
       }, 100)
     } else {
       this.arraydatos = [];
@@ -57,18 +59,25 @@ export class TractoraInformacionComponent {
   }
 
   filtroPrecio() {
-    let preciosMin = (document.getElementById("precioMin") as HTMLInputElement).value;
-    let preciosMax = (document.getElementById("precioMax") as HTMLInputElement).value;
-    let arrayFiltrado = this.arraydatos.flatMap(e => e.informacionUser.filter(v => (v.idVehiculo.precio >= preciosMin && v.idVehiculo.precio <= preciosMax) || (v.idVehiculo.precio <= preciosMin) || (v.idVehiculo.precio < preciosMax)));
-    console.log(arrayFiltrado);
-    
-    for (let i = 0; i < this.arraydatos.length; i++) {
-      for (let index = 0; index < arrayFiltrado.length; index++) {
-        this.arraydatos = this.arraydatos.filter(e=>e.informacionUser[0].idVehiculo._id);
-      }
-      if (arrayFiltrado.length == 0) {
-        this.arraydatos = [];
-      }
+    let preciosMin = Number((document.getElementById("precioMin") as HTMLInputElement).value);
+    let preciosMax = Number((document.getElementById("precioMax") as HTMLInputElement).value);
+
+    if (preciosMin > preciosMax) {
+      this.arraydatos = this.arraydatos.filter(e=>((e.informacionUser[0].idVehiculo.precio > preciosMin)))
+    }else if(preciosMin < preciosMax){
+      this.arraydatos = this.arraydatos.filter(e=>((e.informacionUser[0].idVehiculo.precio < preciosMax) || (e.informacionUser[0].idVehiculo.precio <= preciosMax && e.informacionUser[0].idVehiculo.precio >= preciosMin && e.informacionUser[0].id))
+      );
+    }
+  }
+  filtroCV() {
+    let cvMin = Number((document.getElementById("precioMin") as HTMLInputElement).value);
+    let cvMax = Number((document.getElementById("precioMax") as HTMLInputElement).value);
+
+    if (cvMin > cvMax) {
+      this.arraydatos = this.arraydatos.filter(e=>((e.informacionUser[0].idVehiculo.precio > cvMin)))
+    }else if(cvMin < cvMax){
+      this.arraydatos = this.arraydatos.filter(e=>((e.informacionUser[0].idVehiculo.precio < cvMax) || (e.informacionUser[0].idVehiculo.precio <= cvMax && e.informacionUser[0].idVehiculo.precio >= cvMin && e.informacionUser[0].id))
+      );
     }
   }
 

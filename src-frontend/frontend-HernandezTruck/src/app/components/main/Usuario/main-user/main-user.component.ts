@@ -19,11 +19,9 @@ export class MainUserComponent implements OnInit {
   contadorRemolque: Number;
   arraydatos: Array<PostVehicle> = [];
   arraydatosLikes: Array<PostVehicle> = [];
-  contador: number = 0;
+  
   ngOnInit(): void {
-    if (this.contador < 1) {
-      this.contador++
-    }
+
     this.tractoraService.getCountTractora().subscribe((data) => {
       this.contadorTractora = data;
     })
