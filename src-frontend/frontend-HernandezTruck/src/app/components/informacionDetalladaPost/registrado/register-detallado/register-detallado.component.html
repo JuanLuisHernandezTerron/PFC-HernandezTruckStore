@@ -33,52 +33,54 @@
     <div class="row mt-3 mt-lg-0">
         <div class="col-lg-6 col-12">
             <ng-container *ngIf="tipoPost(); else postSemi">
-                <h2 class="text-center">Información Detallada</h2>
+                <div class="row col-12 text-center">
+                    <h2>Información Detallada</h2>
+                </div>
                 <hr class="m-auto w-50">
                 <div class="row text-center">
                     <div class="col-12">
-                        <p>Matricula . . . . . . . . . . . . . . . . . . . . . . . . . {{DatoTractora._id}}</p>
+                        <p>Matricula . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  {{DatoTractora._id}}</p>
                     </div>
                     <div class="col-12">
-                        <p>Ejes . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+                        <p>Ejes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
                             {{informacionPost.informacionUser[0].idVehiculo?.ejes}}</p>
                     </div>
                     <div class="col-12">
-                        <p> MMA .. . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+                        <p> MMA .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
                             {{informacionPost.informacionUser[0]?.idVehiculo?.mma}} T</p>
                     </div>
                     <div class="col-12">
-                        <p>Año Matriculacion . . . . . . . . . . . . . . . . .
+                        <p>Año Matriculacion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
                             {{informacionPost.informacionUser[0]?.idVehiculo?.fechaMatriculacion | date:'longDate'}}</p>
                     </div>
                     <div class="col-12">
-                        <p>Marca . . . . . . . . . . . . . . . . . . . . . . . . . . .
+                        <p>Marca . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
                             {{informacionPost.informacionUser[0]?.idVehiculo?.Marca}}</p>
                     </div>
                     <div class="col-12">
-                        <p>Modelo . . . . . . . . . . . . . . . . . . . . . . . . . .
+                        <p>Modelo . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
                             {{informacionPost.informacionUser[0]?.idVehiculo?.modelo}}</p>
                     </div>
                     <div class="col-12">
-                        <p>Potencia (CV) . . . . . . . . . . . . . . . . . . . . . . . {{DatoTractora.cv}} CV</p>
+                        <p>Potencia (CV) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . {{DatoTractora.cv}} CV</p>
                     </div>
                     <div class="col-12">
-                        <p>AdBlue . . . . . . . . . . . . . . . . . . . . . . . . . . . {{DatoTractora.adblue |
+                        <p>AdBlue . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . {{DatoTractora.adblue |
                             booleanSiNo}}</p>
                     </div>
                     <div class="col-12">
-                        <p><span class="me-3">Numero Depositos</span>. . . . . . . . . . . . . . . . . .
+                        <p><span class="me-3">Numero Depositos</span>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
                             {{DatoTractora.numeroDepositos}}</p>
                     </div>
                     <div class="col-12">
-                        <p>Kilómetros (KMS) . . . . . . . . . . . . . . . . . . . . . . . . {{DatoTractora.kms}} Km</p>
+                        <p>Kilómetros (KMS) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . {{DatoTractora.kms}} Km</p>
                     </div>
                     <div class="col-12">
-                        <p>Combustible . . . . . . . . . . . . . . . . . . . . . . . . . . .
+                        <p>Combustible . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  
                             {{DatoTractora.combustible}}</p>
                     </div>
                     <div class="col-12">
-                        <p>Retarder . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+                        <p>Retarder . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
                             {{DatoTractora.retarder | booleanSiNo}}</p>
                     </div>
                     <div class="col-12">
@@ -175,36 +177,36 @@
     <hr class="m-auto w-50">
     <div class="row text-center">
         <div class="col-12">
-            <p>Matricula . . . . . . . . . . . . . . . . . . . . . . . . . {{DatoRemolque._id}}</p>
+            <p>Matricula . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .{{DatoRemolque._id}}</p>
         </div>
         <div class="col-12">
-            <p>Ejes . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+            <p>Ejes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
                 {{informacionPost.informacionUser[0]?.idVehiculo.ejes}}</p>
         </div>
         <div class="col-12">
-            <p> MMA .. . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+            <p> MMA . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
                 {{informacionPost.informacionUser[0]?.idVehiculo.mma}} T</p>
         </div>
         <div class="col-12">
-            <p>Año Matriculacion . . . . . . . . . . . . . . . . .
+            <p>Año Matriculacion . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
                 {{informacionPost.informacionUser[0]?.idVehiculo.fechaMatriculacion | date:'longDate'}}</p>
         </div>
         <div class="col-12">
-            <p>Marca . . . . . . . . . . . . . . . . . . . . . . . . . . .
+            <p>Marca . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
                 {{informacionPost.informacionUser[0]?.idVehiculo.Marca}}</p>
         </div>
         <div class="col-12">
-            <p>Modelo . . . . . . . . . . . . . . . . . . . . . . . . . .
+            <p>Modelo . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
                 {{informacionPost.informacionUser[0]?.idVehiculo.modelo}}</p>
         </div>
         <div class="col-12">
-            <p>Tipo Semirremolque . . . . . . . . . . . . . . . . . . . . . . . {{DatoRemolque.tipoSemiremolque}}</p>
+            <p>Tipo Semirremolque . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . {{DatoRemolque.tipoSemiremolque}}</p>
         </div>
         <div class="col-12">
-            <p>Tipo Eje . . . . . . . . . . . . . . . . . . . . . . . . . . . {{DatoRemolque.tipoEje}}</p>
+            <p>Tipo Eje . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . {{DatoRemolque.tipoEje}}</p>
         </div>
         <div class="col-12">
-            <p><span class="me-3">ADR</span>. . . . . . . . . . . . . . . . . . . {{DatoRemolque.ADR | booleanSiNo}}</p>
+            <p><span class="me-3">ADR</span>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . {{DatoRemolque.ADR | booleanSiNo}}</p>
         </div>
         <div class="col-12">
             <ng-container *ngIf="tipoOperacion() ; else alquiler">

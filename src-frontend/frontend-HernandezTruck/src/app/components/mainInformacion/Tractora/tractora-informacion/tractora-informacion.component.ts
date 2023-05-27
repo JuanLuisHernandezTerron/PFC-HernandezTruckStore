@@ -69,6 +69,7 @@ export class TractoraInformacionComponent {
       );
     }
   }
+  
   filtroCV() {
     let cvMin = Number((document.getElementById("precioMin") as HTMLInputElement).value);
     let cvMax = Number((document.getElementById("precioMax") as HTMLInputElement).value);

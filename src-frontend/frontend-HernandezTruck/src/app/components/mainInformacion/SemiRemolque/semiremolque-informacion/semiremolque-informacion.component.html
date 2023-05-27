@@ -1,8 +1,10 @@
 <div class="container">
     <div class="row">
         <div class="col-12 d-flex justify-content-end mt-3">
-            <button mat-raised-button color="primary" (click)="getPostCompraTractora()" class="botonFiltro p-2">Compra</button>
-            <button mat-raised-button color="primary" (click)="getPostAlquilerTractora()" class="botonFiltro ms-3 p-2">Alquiler</button>
+            <button mat-raised-button color="primary" (click)="getPostCompraTractora()"
+                class="botonFiltro p-2">Compra</button>
+            <button mat-raised-button color="primary" (click)="getPostAlquilerTractora()"
+                class="botonFiltro ms-3 p-2">Alquiler</button>
         </div>
     </div>
     <div class="row">
@@ -10,43 +12,52 @@
             FILTROS
         </div>
         <div class="col-10">
-            <div class="divTractora mt-3 mb-5" *ngFor="let remolque of arraydatos">
-                <div class="row">
-                    <div class="col-3 align-items-center p-lg-3">
-                        <img class="img-fluid img-veh" src="{{remolque.media}}" alt="img">
-                    </div>
-                    <div class="col-8">
-                        <div class="row">
-                            <div class="col-12 mt-3">
-                                <h4>{{remolque.titulo}}</h4>
+            <ng-container *ngIf="arraydatos?.length > 0; else noData">
+                <div class="divTractora mt-3 mb-5" *ngFor="let remolque of arraydatos">
+                    <div class="row">
+                        <div class="col-3 align-items-center p-lg-3">
+                            <img class="img-fluid img-veh" src="{{remolque.media}}" alt="img">
+                        </div>
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col-12 mt-3">
+                                    <h4>{{remolque.titulo}}</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1">
+                                    <img src="./../../../../../assets/img/image 10.png" class="img-fluid"
+                                        alt="imagen-localizador">
+                                </div>
+                                <div class="col-11">
+                                    <h4>{{remolque.informacionUser[0].idUsuarioVendedor.direccion}}</h4>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h4>{{remolque.informacionUser[0].idVehiculo.precio}}€</h4>
+                                </div>
+                                <div class="col-6 d-flex mb-3 justify-content-end">
+                                    <button mat-raised-button color="primary" class="botonFiltro p-2"
+                                        routerLink="/informacionDetalladaVehicle/{{remolque._id}}"
+                                        (click)="idBoton(remolque.titulo)" name={{remolque.titulo}}>Contactar</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-1">
-                                <img src="./../../../../../assets/img/image 10.png" class="img-fluid"
-                                    alt="imagen-localizador">
-                            </div>
-                            <div class="col-11">
-                                <h4>{{remolque.informacionUser[0].idUsuarioVendedor.direccion}}</h4>
-                            </div>
+                        <div class="col-1 mt-3">
+                            <img mat-stroked-button name="{{remolque._id}}"
+                                src="./../../../../../assets/img/image 11.png"
+                                (click)="agregarFavoritos($event.target.name)" alt="Likes">
+                            <span>{{remolque.likes.length}}</span>
                         </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-6">
-                                <h4>{{remolque.informacionUser[0].idVehiculo.precio}}€</h4>
-                            </div>
-                            <div class="col-6 d-flex mb-3 justify-content-end">
-                                <button mat-raised-button color="primary" class="botonFiltro p-2" routerLink="/informacionDetalladaVehicle/{{remolque._id}}" (click)="idBoton(remolque.titulo)"
-                                    name={{remolque.titulo}}>Contactar</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-1 mt-3">
-                        <img mat-stroked-button name="{{remolque._id}}" src="./../../../../../assets/img/image 11.png" (click)="agregarFavoritos($event.target.name)" alt="Likes">
-                        <span>{{remolque.likes.length}}</span>
                     </div>
                 </div>
-            </div>
+            </ng-container>
         </div>
     </div>
 </div>
+
+<ng-template #noData>
+    <h4 class="text-center mt-5 mb-5">NO HAY NINGUN SEMIRREMOLQUE!</h4>
+</ng-template>
