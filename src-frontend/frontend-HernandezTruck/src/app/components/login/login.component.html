@@ -10,7 +10,7 @@
     </div>
     <hr class="m-auto">
     <div class="row mt-5">
-      <form [formGroup]= "formLogin" (submit)="login()">
+      <form [formGroup]="formLogin" (submit)="login()">
         <div class="row justify-content-center">
           <div class="col-12 text-center">
             <label for="CorreoUser" name="Correolabel">Correo Electrónico</label>
@@ -18,37 +18,65 @@
           <div class="row col-12 col-lg-6">
             <mat-form-field class="width" appearance="fill">
               <mat-label>Introduce tu Email</mat-label>
-              <input type="email" id="CorreoInput" [(ngModel)] = "user.email" formControlName="email" name="email" matInput placeholder="example@example.es" required>
+              <input type="email" id="CorreoInput" [(ngModel)]="user.email" formControlName="email" name="email"
+                matInput placeholder="example@example.es" required>
               <mat-error>Ingrese Correctamente el Email</mat-error>
             </mat-form-field>
           </div>
         </div>
-          <!--Password-->
+        <!--Password-->
         <div class="mb-4 row justify-content-center">
           <div class="col-12 text-center">
             <label for="CorreoUser" name="Correolabel">Contraseña</label>
           </div>
           <div class="row col-12 col-lg-6">
-              <mat-form-field class="width" appearance="fill">
-                <mat-label>Introduce tu contraseña</mat-label>
-                <input matInput id="Passwdinput" [(ngModel)] = "user.contrasena" name="password" placeholder="Xxxxx12." formControlName="password" [type]="hide ? 'password' : 'text'" required>
-                <mat-error>Introduce Correctamente su contraseña</mat-error>
-              </mat-form-field>
+            <mat-form-field class="width" appearance="fill">
+              <mat-label>Introduce tu contraseña</mat-label>
+              <input matInput id="Passwdinput" [(ngModel)]="user.contrasena" name="password" placeholder="Xxxxx12."
+                formControlName="password" [type]="hide ? 'password' : 'text'" required>
+              <mat-error>Introduce Correctamente su contraseña</mat-error>
+            </mat-form-field>
           </div>
         </div>
-        <div class="row">
-          <p class="col-12 olvpswd text-center">¿Has olvidado tu contraseña?</p>
+        <div class="row justify-content-center">
+          <span class="mb-3 ms-5 ms-lg-0 botonLogin col-12 text-center" data-bs-toggle="modal" data-dismiss="modal" data-backdrop="false"
+            data-bs-target="#olvidatePswd">¿Te has olvidado tu contraseña?
+          </span>
           <div class="alert alert-danger col-6 mt-3 mb-3 m-auto d-none" id="dangerWarning" role="alert">
             Introduzca sus Crendeciales Correctamente
           </div>
         </div>
         <div class="modal-footer  mt-4">
-          <button id="boton"  mat-raised-button color="primary" class="boton p-2 m-auto">Login</button>
+          <button id="boton" mat-raised-button color="primary" class="boton p-2 m-auto">Login</button>
         </div>
         <div class="text-center mb-5">
           <p>No estas registrado?<a href="/register"> Registrate!</a></p>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="olvidatePswd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 ms-2 d-flex text-center" id="exampleModalLabel">
+          ¿Has olvidado tu contraseña?</h1>
+      </div>
+      <div class="row justify-content-center">
+        <p class="col-7">Introduce tu Correo Electrónico</p>
+        <mat-form-field class="width col-9" appearance="fill">
+          <mat-label>Introduce tu Email</mat-label>
+          <input type="email" id="CorreoInput" name="email" matInput
+            placeholder="example@example.es" required>
+          <mat-error>Ingrese Correctamente el Email</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row justify-content-center">
+        <button class="col-6 mb-3" mat-raised-button color="primary" (click)="envioPasswd()">Enviar Correo</button>
+      </div>
     </div>
   </div>
 </div>

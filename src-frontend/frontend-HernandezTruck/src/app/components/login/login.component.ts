@@ -39,6 +39,9 @@ user = {
   contrasena: ''
 }
 
+envioPasswd(){
+    
+}
 
 
 login(){

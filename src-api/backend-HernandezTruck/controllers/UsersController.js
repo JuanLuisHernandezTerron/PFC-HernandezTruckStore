@@ -1,7 +1,49 @@
 const Usuario = require('../models/Usuario')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const nodemailer = require('nodemailer')
 const SALT_WORK_FACTOR = 10;
+
+const envioCorreoOlvidatePasswd = async function (req, res) {
+  let config = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: 'hernandeztruckstore@gmail.com',
+      pass: process.env.passwdAplication
+    }
+  })
+
+  let chars = "abcdefghijklmnopqrstubwsyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+  let password = '';
+  //Crea la password aleatoria
+   for (i = 0; i < 7; i++) {
+     password += chars.charAt(Math.floor(Math.random() * chars.length));
+   }
+  console.log(password);
+
+  try {
+    let email = await Usuario.find({ email: req.body.email }).exec();
+    if (email.length > 0) {
+      await config.sendMail({
+        from: 'Area Seguridad Hernandez Truck Store',
+        to: req.body.email,
+        subject: 'Cambio de Contraseña',
+        text: 'Tu nueva contraseña es: ' + password + '\n Se recomienda Actualizar la contraseña \n ATT: Departamento de Seguridad Hernandez Truck Store'
+      })
+
+      bcrypt.hash(password, SALT_WORK_FACTOR, async function (err, hash) {
+        await Usuario.findOneAndUpdate({ email: req.body.email }, { contrasena: hash }).exec();
+      })
+      return res.status(200).json({ status: 'Email Enviado Correctameente' })
+    } else {
+      return res.status(401).json({ status: 'Email No Enviado Correctamente | No existe en la BD' })
+    }
+  } catch (err) {
+    return res.status(401).json({ status: 'Email No Enviado Correctamente | No existe en la BD' })
+  }
+}
 
 const updateUser = async function (req, res) {
   try {
@@ -13,19 +55,17 @@ const updateUser = async function (req, res) {
   }
 }
 
-const updatePasswd = async function (req,res) {
+const updatePasswd = async function (req, res) {
   try {
-    console.log('entro en update');
     const data = req.body;
     const ConsultaUsuario = await Usuario.findOne({ "email": data.email }).exec();
-     comparePassword = await bcrypt.compare(data.contrasenaAntigua, ConsultaUsuario.contrasena);
+    comparePassword = await bcrypt.compare(data.contrasenaAntigua, ConsultaUsuario.contrasena);
     console.log(ConsultaUsuario);
     console.log(comparePassword);
     console.log(data.contrasenaAntigua);
     if (ConsultaUsuario.email == data.email && comparePassword) {
-      console.log('entro if')
-      bcrypt.hash(req.body.contrasenaActual, SALT_WORK_FACTOR, async function (err, hash){
-        consulta = Usuario.findOneAndUpdate({ email: req.body.email }, {contrasena:hash}).exec();
+      bcrypt.hash(req.body.contrasenaActual, SALT_WORK_FACTOR, async function (err, hash) {
+        consulta = Usuario.findOneAndUpdate({ email: req.body.email }, { contrasena: hash }).exec();
         res.status(200).json({ status: "Password Actualizado Correctamente" })
       })
     }
@@ -140,5 +180,6 @@ module.exports = {
   ingresarPostFavorito,
   eliminarPostFavorito,
   updateUser,
-  updatePasswd
+  updatePasswd,
+  envioCorreoOlvidatePasswd
 };

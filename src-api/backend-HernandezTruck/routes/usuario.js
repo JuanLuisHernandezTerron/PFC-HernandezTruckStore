@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const validationToken = require('./../middleware/ValidacionToken')
 
-const { newUser, getAllUsers, loginUser, getinfoUser, ingresarPostFavorito,eliminarPostFavorito, updateUser, updatePasswd } = require('./../controllers/UsersController')
+const { newUser, getAllUsers, loginUser, getinfoUser, ingresarPostFavorito,eliminarPostFavorito, updateUser, updatePasswd, envioCorreoOlvidatePasswd } = require('./../controllers/UsersController')
 
 /*POST - Ingreso del usuario */
 router.post('/register', newUser);
@@ -27,5 +27,8 @@ router.put('/updatePasswd',updatePasswd)
 
 /*GET - Informacion del usuario*/
 router.get('/getInfoUser/:id',validationToken,getinfoUser)
+
+/*POST - Olvido de contraseña*/
+router.post('/olvidatePassword',envioCorreoOlvidatePasswd)
 
 module.exports = router;
