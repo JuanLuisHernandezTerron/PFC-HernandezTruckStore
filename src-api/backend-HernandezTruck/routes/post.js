@@ -20,22 +20,22 @@ router.get('/getVehiclesAlquiler',getVehicleAlquilar)
 router.get('/getVehiclesVenta',getVehicleVenta)
 
 /*PUT - Inserta los usuario que han dado MG a las publicaciones*/
-router.put('/insertUsuarioFavoritos/:idPost/:idUser',insertUsuarioPostFavoritos)
+router.put('/insertUsuarioFavoritos/:idPost/:idUser',validationToken,insertUsuarioPostFavoritos)
 
 /*PUT - Eliminar los usuario que han dado MG a las publicaciones*/
-router.put('/eliminarUsuarioFavoritos/:idPost/:idUser',eliminarUsuarioPostFavoritos)
+router.put('/eliminarUsuarioFavoritos/:idPost/:idUser',validationToken,eliminarUsuarioPostFavoritos)
 
 /*GET - Devuelve mediante su id el post*/
 router.get('/getPost/:id',getPost)
 
 /*DEL - Borra el Post seleccionado por el usuario */
-router.delete('/eliminarPost/:tipoVehiculo/:idVehiculo/:idPost',eliminarPost)
+router.delete('/eliminarPost/:tipoVehiculo/:idVehiculo/:idPost',validationToken,eliminarPost)
 
 /*PUT - Actualizacion de un Post*/
 router.put('/updatePost/:idPost/:idVehiculo',validationToken,MediaMiddleware.upload,updatePost);
 
 /*PUT - Añade al array de Reports el usuario */
-router.put('/anadirPostReportado/:idPost/:idUser',anadirPostReport)
+router.put('/anadirPostReportado/:idPost/:idUser',validationToken,anadirPostReport)
 
 /*GET - Devuelve cuantos Vehiculos en Alquiler hay en la BD */
 router.get('/getCountAlquiler',getCountAlquiler)

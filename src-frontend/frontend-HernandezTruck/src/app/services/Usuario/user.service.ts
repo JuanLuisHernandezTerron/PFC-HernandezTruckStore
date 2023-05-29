@@ -25,6 +25,10 @@ export class UserService {
     return this.userObservable.asObservable();
   }
 
+  cambioPwdOlvidate(email:any){
+    return this.http.post(this.URL+'/usuarios/olvidatePassword',email)
+  }
+
   setUsuario(usuario:Usuario){
     this.userObservable.next(usuario);
   }

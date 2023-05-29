@@ -36,12 +36,12 @@ const envioCorreoOlvidatePasswd = async function (req, res) {
       bcrypt.hash(password, SALT_WORK_FACTOR, async function (err, hash) {
         await Usuario.findOneAndUpdate({ email: req.body.email }, { contrasena: hash }).exec();
       })
-      return res.status(200).json({ status: 'Email Enviado Correctameente' })
+      res.json({ status: 'Email Enviado Correctameente' })
     } else {
-      return res.status(401).json({ status: 'Email No Enviado Correctamente | No existe en la BD' })
+      res.json({ status: 'Email No Enviado Correctamente | No existe en la BD' })
     }
   } catch (err) {
-    return res.status(401).json({ status: 'Email No Enviado Correctamente | No existe en la BD' })
+    res.json({ status: 'Email No Enviado Correctamente | No existe en la BD' })
   }
 }
 

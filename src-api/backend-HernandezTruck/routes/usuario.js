@@ -8,7 +8,7 @@ const { newUser, getAllUsers, loginUser, getinfoUser, ingresarPostFavorito,elimi
 router.post('/register', newUser);
 
 /*PUT - Modificacion del Usuario */
-router.put('/updateUser',updateUser);
+router.put('/updateUser',validationToken,updateUser);
 
 /*POST - Login del usuario */
 router.post('/login', loginUser)
@@ -17,13 +17,13 @@ router.post('/login', loginUser)
 router.get('/getAllUsers',validationToken,getAllUsers),
 
 /*PUT - Ingreso de Post Favorito Usuario*/
-router.put('/insertPostFavorito/:idPost/:idUser',ingresarPostFavorito)
+router.put('/insertPostFavorito/:idPost/:idUser',validationToken,ingresarPostFavorito)
 
 /*PUT - Eliminacion de Post Favorito Usuario*/
-router.put('/eliminarPostFavorito/:idPost/:idUser',eliminarPostFavorito)
+router.put('/eliminarPostFavorito/:idPost/:idUser',validationToken,eliminarPostFavorito)
 
 /*PUT - ACTUALIZACION DE PASSWD */
-router.put('/updatePasswd',updatePasswd)
+router.put('/updatePasswd',validationToken,updatePasswd)
 
 /*GET - Informacion del usuario*/
 router.get('/getInfoUser/:id',validationToken,getinfoUser)

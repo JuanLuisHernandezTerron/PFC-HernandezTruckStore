@@ -39,7 +39,7 @@
           </div>
         </div>
         <div class="row justify-content-center">
-          <span class="mb-3 ms-5 ms-lg-0 botonLogin col-12 text-center" data-bs-toggle="modal" data-dismiss="modal" data-backdrop="false"
+          <span class="mb-3 ms-5 ms-lg-0 botonLogin col-12 text-center puntero" data-bs-toggle="modal" data-dismiss="modal" data-backdrop="false"
             data-bs-target="#olvidatePswd">¿Te has olvidado tu contraseña?
           </span>
           <div class="alert alert-danger col-6 mt-3 mb-3 m-auto d-none" id="dangerWarning" role="alert">
@@ -73,6 +73,9 @@
             placeholder="example@example.es" required>
           <mat-error>Ingrese Correctamente el Email</mat-error>
         </mat-form-field>
+        <div class="alert alert-danger col-9 mt-3 mb-3 m-auto d-none" id="dangerWarningPasswd" role="alert">
+          Introduzca sus Crendeciales Correctamente
+        </div>
       </div>
       <div class="row justify-content-center">
         <button class="col-6 mb-3" mat-raised-button color="primary" (click)="envioPasswd()">Enviar Correo</button>
