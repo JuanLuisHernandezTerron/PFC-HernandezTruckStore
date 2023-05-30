@@ -6,6 +6,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from './../../../../services/Usuario/user.service';
 import { Router } from "@angular/router";
+import { TractoraService } from 'src/app/services/Vehiculos/Tractora/tractora.service';
+import { tractora } from 'src/app/models/tractora';
 
 @Component({
   selector: 'app-tractora-informacion',
@@ -17,10 +19,12 @@ export class TractoraInformacionComponent {
     private _snackBar: MatSnackBar,
     public authservice: AuthService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private tractoraService: TractoraService
   ) { }
   post: PostVehicle;
   arraydatos: Array<PostVehicle> = [];
+  arrayTractora: Array<tractora> = [];
   estaPost = false;
 
 
@@ -30,6 +34,8 @@ export class TractoraInformacionComponent {
 
   cargarInfo() {
     this.arraydatos = [];
+    this.arrayTractora = [];
+
     this.servicePost.getPostsVehicle().subscribe((data) => {
       this.post = data;
       data.forEach(v => {
@@ -38,19 +44,37 @@ export class TractoraInformacionComponent {
         }
       });
     })
+
+    this.tractoraService.getInfoAllTractora().subscribe((data) => {
+      data.forEach(e => {
+        this.arrayTractora.push(e);
+      });
+    })
   }
 
-  filtrar(marcaCamion: String, evento) {   
-    let contador = 0; 
+  filtrar(marcaCamion: String, evento) {
+    let contador = 0;
+    let inputs = document.querySelectorAll('mat-checkbox');
+    
+    inputs.forEach(m=>{
+      if (m.textContent != marcaCamion) {
+        console.log(m.attributes);
+        
+        m.attributes[5].value = 'true';
+      }
+      console.log(m.attributes);
+    })
+    
+    
     if (evento.checked) {
       setTimeout(() => {
         this.arraydatos.forEach(element => {
           if (element.informacionUser[0].idVehiculo.Marca.toLowerCase() === marcaCamion.toLowerCase()) {
-            contador ++;
+            contador++;
             this.arraydatos.push(element);
           }
         })
-        this.arraydatos.splice(0,this.arraydatos.length-contador);
+        this.arraydatos.splice(0, this.arraydatos.length - contador);
       }, 100)
     } else {
       this.arraydatos = [];
@@ -63,24 +87,41 @@ export class TractoraInformacionComponent {
     let preciosMax = Number((document.getElementById("precioMax") as HTMLInputElement).value);
 
     if (preciosMin > preciosMax) {
-      this.arraydatos = this.arraydatos.filter(e=>((e.informacionUser[0].idVehiculo.precio > preciosMin)))
-    }else if(preciosMin < preciosMax){
-      this.arraydatos = this.arraydatos.filter(e=>((e.informacionUser[0].idVehiculo.precio < preciosMax) || (e.informacionUser[0].idVehiculo.precio <= preciosMax && e.informacionUser[0].idVehiculo.precio >= preciosMin && e.informacionUser[0].id))
+      this.arraydatos = this.arraydatos.filter(e => ((e.informacionUser[0].idVehiculo.precio > preciosMin)))
+    } else if (preciosMin < preciosMax) {
+      this.arraydatos = this.arraydatos.filter(e => ((e.informacionUser[0].idVehiculo.precio < preciosMax) || (e.informacionUser[0].idVehiculo.precio <= preciosMax && e.informacionUser[0].idVehiculo.precio >= preciosMin && e.informacionUser[0].id))
       );
     }
   }
-  
-  filtroCV() {
-    let cvMin = Number((document.getElementById("precioMin") as HTMLInputElement).value);
-    let cvMax = Number((document.getElementById("precioMax") as HTMLInputElement).value);
 
+  filtroCV() {
+    let cvMin = Number((document.getElementById("cvMin") as HTMLInputElement).value);
+    let cvMax = Number((document.getElementById("cvMax") as HTMLInputElement).value);
+    let arrayAux = [];
     if (cvMin > cvMax) {
-      this.arraydatos = this.arraydatos.filter(e=>((e.informacionUser[0].idVehiculo.precio > cvMin)))
-    }else if(cvMin < cvMax){
-      this.arraydatos = this.arraydatos.filter(e=>((e.informacionUser[0].idVehiculo.precio < cvMax) || (e.informacionUser[0].idVehiculo.precio <= cvMax && e.informacionUser[0].idVehiculo.precio >= cvMin && e.informacionUser[0].id))
+      this.arrayTractora = this.arrayTractora.filter(e => ((Number(e.cv) >= cvMin)))
+    } else if (cvMin < cvMax) {
+      this.arrayTractora = this.arrayTractora.filter(e => (((Number(e.cv) <= cvMax) || (Number(e.cv) <= cvMax && Number(e.cv) >= cvMin)))
       );
     }
+
+    for (let i = 0; i < this.arrayTractora.length; i++) {
+      for (let j = 0; j < this.arraydatos.length; j++) {
+        if (this.arrayTractora[i]._id == this.arraydatos[j].informacionUser[0].idVehiculo._id) {
+          arrayAux.push(this.arraydatos[j])
+        }
+      }
+    }
+
+    if (this.arrayTractora.length > 0) {
+      this.arraydatos = arrayAux;
+    }
+
+    console.log(this.arrayTractora);
+    console.log(this.arraydatos);
   }
+
+
 
   getPostAlquilerTractora() {
     this.arraydatos = [];

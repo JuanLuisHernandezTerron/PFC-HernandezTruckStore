@@ -18,4 +18,8 @@ export class TractoraService {
   getCountTractora():Observable<Number>{
     return this.http.get<Number>(this.URL+'/tractoras/allTractoras')
   }
+
+  getInfoAllTractora():Observable<any>{
+    return this.http.get<any>(this.URL+'/tractoras/informacionTractora')
+  }
 }

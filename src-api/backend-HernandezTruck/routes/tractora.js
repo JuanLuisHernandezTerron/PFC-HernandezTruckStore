@@ -5,7 +5,7 @@ var db = mongoose.connection;
 const validationToken = require('./../middleware/ValidacionToken')
 const { getAllTractorasCount,getAllInfoTractoras, getInfoTractora } = require('./../controllers/TractoraController')
 
-/*GET - Recojo todas las tractoras insertardas en la Base de Datos */
+/*GET - Recojo el count de todas las tractoras insertardas en la Base de Datos */
 router.get('/allTractoras', getAllTractorasCount);
 
 /*GET - Recojo la información completa de los vehiculos*/

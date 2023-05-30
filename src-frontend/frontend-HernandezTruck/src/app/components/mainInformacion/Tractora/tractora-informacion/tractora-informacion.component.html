@@ -70,30 +70,30 @@
             <div class="row">
                 <span class="text-center">Marca</span>
                 <div class="col-12">
-                    <mat-checkbox class="ms-1" name="vehiculo" (change)="filtrar('Scania',$event)">Scania</mat-checkbox>
+                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="Scania" (change)="filtrar('Scania',$event)" [disabled]="true">Scania</mat-checkbox>
                 </div>
                 <div class="col-12">
-                    <mat-checkbox class="ms-1" name="vehiculo"
-                        (change)="filtrar('Mercedes',$event)">Mercedes</mat-checkbox>
+                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="Mercedes"
+                        (change)="filtrar('Mercedes',$event)" [disabled]="false">Mercedes</mat-checkbox>
                 </div>
                 <div class="col-12">
-                    <mat-checkbox class="ms-1" name="vehiculo" (change)="filtrar('DAF',$event)">DAF</mat-checkbox>
+                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="DAF" (change)="filtrar('DAF',$event)" [disabled]="false">DAF</mat-checkbox>
                 </div>
                 <div class="col-12">
-                    <mat-checkbox class="ms-1" name="vehiculo" (change)="filtrar('Man',$event)">Man</mat-checkbox>
+                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="Man" (change)="filtrar('Man',$event)" [disabled]="false">Man</mat-checkbox>
                 </div>
                 <div class="col-12">
-                    <mat-checkbox class="ms-1" name="vehiculo"
-                        (change)="filtrar('Renault',$event)">Renault</mat-checkbox>
+                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="Renault"
+                        (change)="filtrar('Renault',$event)" [disabled]="false">Renault</mat-checkbox>
                 </div>
                 <div class="col-12">
-                    <mat-checkbox class="ms-1" name="vehiculo" (change)="filtrar('Volvo',$event)">Volvo</mat-checkbox>
+                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="Volvo" (change)="filtrar('Volvo',$event)" [disabled]="false">Volvo</mat-checkbox>
                 </div>
                 <div class="col-12">
-                    <mat-checkbox class="ms-1" name="vehiculo" (change)="filtrar('Iveco',$event)">Iveco</mat-checkbox>
+                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="Iveco" (change)="filtrar('Iveco',$event)" [disabled]="false">Iveco</mat-checkbox>
                 </div>
                 <div class="col-12">
-                    <mat-checkbox class="ms-1" name="vehiculo" (change)="filtrar('Ford',$event)">Ford</mat-checkbox>
+                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="Ford" (change)="filtrar('Ford',$event)" [disabled]="false">Ford</mat-checkbox>
                 </div>
             </div>
             <hr class="mt-4 mb-4">
@@ -124,7 +124,7 @@
                         <input matInput type="number" id="precioMax" placeholder="Precio Max">
                     </mat-form-field>
                 </div>
-                <button class="col-6" (click)="filtroPrecio()" mat-raised-button color="primary">Aplicar Precio</button>
+                <button class="col-6 mb-3" (click)="filtroPrecio()" mat-raised-button color="primary">Aplicar Precio</button>
             </div>
         </div>
     </div>
