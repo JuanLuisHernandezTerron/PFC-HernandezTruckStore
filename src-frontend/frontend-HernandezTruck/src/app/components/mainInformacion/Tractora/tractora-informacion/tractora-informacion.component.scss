@@ -46,3 +46,9 @@
   .example-full-width {
     width: 100%;
   }
+
+.mdc-checkbox--disabled{
+    cursor: default !important;
+    pointer-events: none !important;
+    color: aqua;
+}

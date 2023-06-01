@@ -35,6 +35,11 @@ export class TractoraInformacionComponent {
   cargarInfo() {
     this.arraydatos = [];
     this.arrayTractora = [];
+    (document.getElementById("precioMin") as HTMLInputElement).value = '';
+    (document.getElementById("precioMax") as HTMLInputElement).value = '';
+  
+    (document.getElementById("cvMin") as HTMLInputElement).value = '';
+    (document.getElementById("cvMax") as HTMLInputElement).value = '';
 
     this.servicePost.getPostsVehicle().subscribe((data) => {
       this.post = data;
@@ -55,18 +60,18 @@ export class TractoraInformacionComponent {
   filtrar(marcaCamion: String, evento) {
     let contador = 0;
     let inputs = document.querySelectorAll('mat-checkbox');
-    
-    inputs.forEach(m=>{
-      if (m.textContent != marcaCamion) {
-        console.log(m.attributes);
-        
-        m.attributes[5].value = 'true';
-      }
-      console.log(m.attributes);
-    })
-    
-    
+
     if (evento.checked) {
+      inputs.forEach(m => {
+        m.classList.remove('mdc-checkbox--disabled')
+        if (m.textContent != marcaCamion) {
+          console.log(m.attributes);
+          m.attributes[5].value = 'true';
+          m.classList.add('mdc-checkbox--disabled')
+        }
+        console.log(m.attributes);
+      })
+
       setTimeout(() => {
         this.arraydatos.forEach(element => {
           if (element.informacionUser[0].idVehiculo.Marca.toLowerCase() === marcaCamion.toLowerCase()) {
@@ -79,6 +84,11 @@ export class TractoraInformacionComponent {
     } else {
       this.arraydatos = [];
       this.cargarInfo();
+
+      inputs.forEach(m => {
+        m.attributes[5].value = 'false';
+        m.classList.remove('mdc-checkbox--disabled')
+      })
     }
   }
 

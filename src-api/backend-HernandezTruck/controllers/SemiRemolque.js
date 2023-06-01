@@ -1,10 +1,17 @@
 const Vehiculo = require('../models/Vehiculo');
 const semiRemolque = require('../models/Semiremolque'); 
 
+const getAllInfoRemolques = async function(req,res){
+    try{
+        consultaAllInfoRemolques = await semiRemolque.find({}).populate('vehiculo').exec();
+        res.status(200).json(consultaAllInfoRemolques);
+    }catch(err){
+        res.json({status:"error",message:"No se ha encontrado cabezas tractora"})
+    }
+}
 
 const getinfoRemolque = async function(req,res){
     try{
-        console.log(req.params.idVehicle)
         consultaInfoRemolque = await semiRemolque.findById({_id:req.params.idVehicle}).populate('vehiculo').exec();
         res.status(200).json(consultaInfoRemolque);
     }catch(err){
@@ -23,5 +30,6 @@ const getAllRemolque = async function(req,res){
 
 module.exports = {
     getAllRemolque,
-    getinfoRemolque
+    getinfoRemolque,
+    getAllInfoRemolques
 }
