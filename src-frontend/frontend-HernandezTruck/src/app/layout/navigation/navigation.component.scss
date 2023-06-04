@@ -12,7 +12,7 @@ h3{
 }
 
 .navbar-toggler{
-    background-color: #F8F4EA;
+    background-color: #c5c3be;
 }
 
 .botonLogin{
@@ -20,6 +20,10 @@ h3{
     height: 40px;
     border-radius: 15px;
     background-color: #D9D9D9;
+}
+
+.mat-mdc-raised-button.mat-unthemed{
+    --mdc-protected-button-container-color:#d8dadb !important;
 }
 
 *{

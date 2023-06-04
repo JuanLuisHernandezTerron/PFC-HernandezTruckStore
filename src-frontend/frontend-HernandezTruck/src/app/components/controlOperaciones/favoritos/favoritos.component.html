@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row justify-content-between">
         <ng-container *ngIf="!noOperacion() ; else noData">
-            <div class="col-3 ms-1 mt-5 mb-5" *ngFor="let informacion of arraydatos">
+            <div class="col-12 col-lg-3 ms-1 mt-5 mb-5" *ngFor="let informacion of arraydatos">
                 <div class="row">
                     <img src="{{informacion.media}}"
                         class="img-fluid p-0 primeraFila" alt="imagenCamion">

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { Router } from "@angular/router";
-import { BehaviorSubject, Observable } from "rxjs";
+import { Observable } from "rxjs";
 import { tractora } from 'src/app/models/tractora';
 
 @Injectable({

@@ -15,7 +15,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { PathLocationStrategy } from '@angular/common';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -108,7 +109,8 @@ import { EstadisticasAdminComponent } from './components/admin/estadisticas-admi
     MatSnackBarModule,
     ClipboardModule,
     MatMenuModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule
   ],
   //Con interceptor creamos una cabecera
   providers: [UserService,AuthGuard
@@ -116,8 +118,9 @@ import { EstadisticasAdminComponent } from './components/admin/estadisticas-admi
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
-    }
+    },
+    { provide: PathLocationStrategy }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

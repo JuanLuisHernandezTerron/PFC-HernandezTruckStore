@@ -52,3 +52,13 @@
     pointer-events: none !important;
     color: aqua;
 }
+
+@media (max-width:989px){
+    .text{
+        text-align: center;
+    }
+
+    .localizador{
+        max-width: 150px;
+    }
+}

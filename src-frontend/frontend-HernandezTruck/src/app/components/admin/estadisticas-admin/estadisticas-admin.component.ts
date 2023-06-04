@@ -1,9 +1,8 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PostService } from 'src/app/services/Post/post.service';
 import { PostVehicle } from 'src/app/models/PostVehiculo';
 import { Chart } from 'chart.js/auto';
-import * as ChartJs from 'chart.js';
-import { elementAt } from 'rxjs';
+
 
 @Component({
   selector: 'app-estadisticas-admin',

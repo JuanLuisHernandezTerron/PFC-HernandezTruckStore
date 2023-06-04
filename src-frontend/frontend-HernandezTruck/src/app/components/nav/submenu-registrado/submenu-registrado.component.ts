@@ -20,6 +20,10 @@ export class SubmenuRegistradoComponent implements OnInit{
     this.userService.userInformacion.subscribe((data)=>{
       this.user = data
     })
+
+    if (!localStorage.getItem('token')) {
+      this.logout()
+    }
   }
 
   logout(){

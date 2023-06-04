@@ -1,17 +1,35 @@
-FROM node:latest as build-step
+# FROM node:latest as build-step
 
-RUN mkdir -p /app
+# WORKDIR /app
 
-WORKDIR /app
+# COPY package.json ./
 
-COPY package.json /app
+# RUN npm install
 
-RUN npm install
+# COPY . .
 
+# EXPOSE 4200
+
+# CMD ["npm", "start"]
+
+# Imagen de node que se va a usar (establecer vuestra versión, en el ejemplo es la 14)
+FROM node:14 as builder
+# Directorio de trabajo en el contenedor
+WORKDIR /app 
+# Copiar el archivo package.json y package-lock.json al contenedor para que se puedan instalar las dependencias
+COPY package*.json ./ 
+# Instalar las dependencias
+RUN npm install 
 COPY . /app
 
-RUN npm run build --prod
-
+# Construir la aplicación Angular
+RUN npm run build
+# Establecer una imagen más liviana arrancar la aplicación Angular
 FROM nginx:latest
-
-COPY --from=build-step /app/dist/frontend-hernandez-truck /usr/share/nginx/html
+# Copiar los archivos compilados al directorio de contenido estático de Nginx
+COPY --from=builder /app/dist/* /usr/share/nginx/html/
+ADD nginx.conf .
+# Expone el puerto en el que se ejecutará el frontend
+EXPOSE 80
+# Define el comando de inicio del contenedor
+CMD ["nginx", "-g", "daemon off;"]

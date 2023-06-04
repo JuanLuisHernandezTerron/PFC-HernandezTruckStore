@@ -66,9 +66,11 @@ export class RegisterDetalladoComponent implements OnInit {
 
 
     let slug = window.location.pathname.split("/")
+    
     this.postServie.getPost(slug[2]).subscribe((data) => {
       this.informacionPost = data;
     })
+    console.log(window.location.pathname);
   }
 
   anadirOperacion() {
@@ -137,8 +139,7 @@ export class RegisterDetalladoComponent implements OnInit {
     return (this.informacionPost.tipo_publicacion === 'Vender') ? true : false;
   }
 
-  tipoPost() {
-
+  tipoPost() {    
     let esCabeza = false;
     if (this.informacionPost.informacionUser[0]?.idVehiculo.tipoVehiculo === "cabezatractora") {
       esCabeza = true;

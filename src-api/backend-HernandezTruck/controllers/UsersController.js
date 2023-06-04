@@ -47,7 +47,7 @@ const envioCorreoOlvidatePasswd = async function (req, res) {
 
 const updateUser = async function (req, res) {
   try {
-    const data = req.body
+    const data = req.body;
     consulta = Usuario.findOneAndUpdate({ email: req.body.email }, data).exec();
     res.status(200).json({ status: "Usuario Actualizado Correctamente" })
   } catch (err) {
@@ -60,9 +60,6 @@ const updatePasswd = async function (req, res) {
     const data = req.body;
     const ConsultaUsuario = await Usuario.findOne({ "email": data.email }).exec();
     comparePassword = await bcrypt.compare(data.contrasenaAntigua, ConsultaUsuario.contrasena);
-    console.log(ConsultaUsuario);
-    console.log(comparePassword);
-    console.log(data.contrasenaAntigua);
     if (ConsultaUsuario.email == data.email && comparePassword) {
       bcrypt.hash(req.body.contrasenaActual, SALT_WORK_FACTOR, async function (err, hash) {
         consulta = Usuario.findOneAndUpdate({ email: req.body.email }, { contrasena: hash }).exec();

@@ -17,37 +17,43 @@
             <ng-container *ngIf="arraydatos?.length > 0; else noData">
                 <div class="divTractora mt-3 mb-5" *ngFor="let remolque of arraydatos">
                     <div class="row">
-                        <div class="col-3 align-items-center p-lg-3">
+                        <div class="col-12 col-lg-3 align-items-center p-lg-3">
                             <img class="img-fluid img-veh" src="{{remolque.media}}" alt="img">
                         </div>
-                        <div class="col-8">
+                        <div class="col-12 text col-lg-8">
                             <div class="row">
                                 <div class="col-12 mt-3">
                                     <h4>{{remolque.titulo}}</h4>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-1">
+                                <div class="col-2 col-lg-1">
                                     <img src="./../../../../../assets/img/image 10.png" class="img-fluid"
                                         alt="imagen-localizador">
                                 </div>
-                                <div class="col-11">
-                                    <h4>{{remolque.informacionUser[0].idUsuarioVendedor.direccion}}</h4>
+                                <div class="col-10 col-lg-11">
+                                    <h4 class="me-5">{{remolque.informacionUser[0].idUsuarioVendedor.direccion}}</h4>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-5">
                                     <h4>{{remolque.informacionUser[0].idVehiculo.precio}}€</h4>
                                 </div>
-                                <div class="col-6 d-flex mb-3 justify-content-end">
+                                <div class="col-5 d-flex mb-3 justify-content-end">
                                     <button mat-raised-button color="primary" class="botonFiltro p-2"
                                         routerLink="/informacionDetalladaVehicle/{{remolque._id}}"
                                         (click)="idBoton(remolque.titulo)" name={{remolque.titulo}}>Contactar</button>
                                 </div>
+                                <div class="col-2 d-lg-none">
+                                    <img mat-stroked-button name="{{remolque._id}}"
+                                        src="./../../../../../assets/img/image 11.png"
+                                        (click)="agregarFavoritos($event.target.name)" alt="Likes">
+                                    <span>{{remolque.likes.length}}</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-1 mt-3">
+                        <div class="col-1 d-none d-lg-block mt-3">
                             <img mat-stroked-button name="{{remolque._id}}"
                                 src="./../../../../../assets/img/image 11.png"
                                 (click)="agregarFavoritos($event.target.name)" alt="Likes">
@@ -71,24 +77,28 @@
             <div class="row">
                 <span class="text-center">Marca</span>
                 <div class="col-12">
-                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="LeciTrailer" (change)="filtrar('LeciTrailer',$event)" [disabled]="false">LeciTrailer</mat-checkbox>
+                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="LeciTrailer"
+                        (change)="filtrar('LeciTrailer',$event)" [disabled]="false">LeciTrailer</mat-checkbox>
                 </div>
                 <div class="col-12">
-                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="Schmitz"
-                        (change)="filtrar('Schmitz',$event)" [disabled]="false">Schmitz</mat-checkbox>
+                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="Schmitz" (change)="filtrar('Schmitz',$event)"
+                        [disabled]="false">Schmitz</mat-checkbox>
                 </div>
                 <div class="col-12">
-                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="Krone" (change)="filtrar('Krone',$event)" [disabled]="false">Krone</mat-checkbox>
+                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="Krone" (change)="filtrar('Krone',$event)"
+                        [disabled]="false">Krone</mat-checkbox>
                 </div>
                 <div class="col-12">
-                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="Sor Iberia" (change)="filtrar('Sor Iberia',$event)" [disabled]="false">Sor Iberia</mat-checkbox>
+                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="Sor Iberia"
+                        (change)="filtrar('Sor Iberia',$event)" [disabled]="false">Sor Iberia</mat-checkbox>
                 </div>
                 <div class="col-12">
-                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="Granalu"
-                        (change)="filtrar('Granalu',$event)" [disabled]="false">Granalu</mat-checkbox>
+                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="Granalu" (change)="filtrar('Granalu',$event)"
+                        [disabled]="false">Granalu</mat-checkbox>
                 </div>
                 <div class="col-12">
-                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="Koegel" (change)="filtrar('Koegel',$event)" [disabled]="false">Koegel</mat-checkbox>
+                    <mat-checkbox class="ms-1" name="vehiculo" aria-label="Koegel" (change)="filtrar('Koegel',$event)"
+                        [disabled]="false">Koegel</mat-checkbox>
                 </div>
             </div>
             <hr class="mt-4 mb-4">
@@ -104,7 +114,8 @@
                         <input matInput type="number" id="precioMax" placeholder="Precio Max">
                     </mat-form-field>
                 </div>
-                <button class="col-6 mb-3" (click)="filtroPrecio()" mat-raised-button color="primary">Aplicar Precio</button>
+                <button class="col-6 mb-3" (click)="filtroPrecio()" mat-raised-button color="primary">Aplicar
+                    Precio</button>
             </div>
         </div>
     </div>

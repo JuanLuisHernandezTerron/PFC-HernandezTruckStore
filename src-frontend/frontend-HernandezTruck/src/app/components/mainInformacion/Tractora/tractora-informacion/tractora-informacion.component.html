@@ -17,37 +17,42 @@
             <ng-container *ngIf= "arraydatos?.length > 0; else noData">
             <div class="divTractora mt-3 mb-5" *ngFor="let Tractoras of arraydatos">
                 <div class="row">
-                    <div class="col-3 d-flex align-items-center p-lg-3">
+                    <div class="col-12 col-lg-3 d-flex align-items-center p-lg-3">
                         <img class="img-fluid img-veh" src="{{Tractoras.media}}" alt="img">
                     </div>
-                    <div class="col-8">
+                    <div class="col-12 text col-lg-8">
                         <div class="row">
                             <div class="col-12 mt-3">
                                 <h4>{{Tractoras.titulo}}</h4>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-1">
+                            <div class="col-2 col-lg-1 localizador">
                                 <img src="./../../../../../assets/img/image 10.png" class="img-fluid"
                                     alt="imagen-localizador">
                             </div>
-                            <div class="col-11">
-                                <h4>{{Tractoras.informacionUser[0].idUsuarioVendedor.direccion}}</h4>
+                            <div class="col-10 col-lg-10">
+                                <h4 class="me-5">{{Tractoras.informacionUser[0].idUsuarioVendedor.direccion}}</h4>
                             </div>
                         </div>
                         <hr>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-5">
                                 <h4>{{Tractoras.informacionUser[0].idVehiculo.precio}}€</h4>
                             </div>
-                            <div class="col-6 d-flex mb-3 justify-content-end">
+                            <div class="col-5 d-flex mb-3 justify-content-end">
                                 <button mat-raised-button color="primary"
                                     routerLink="/informacionDetalladaVehicle/{{Tractoras._id}}" class="botonFiltro p-2"
                                     (click)="idBoton(Tractoras.titulo)" id={{Tractoras.titulo}}>Contactar</button>
                             </div>
+                            <div class="col-2 d-lg-none">
+                                <img mat-stroked-button name="{{Tractoras._id}}" (click)="agregarFavoritos($event.target.name)"
+                                    src="./../../../../../assets/img/image 11.png" alt="Likes">
+                                <span>{{Tractoras.likes.length}}</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-1 mt-3">
+                    <div class="col-1 mt-3 d-none d-lg-block">
                         <img mat-stroked-button name="{{Tractoras._id}}" (click)="agregarFavoritos($event.target.name)"
                             src="./../../../../../assets/img/image 11.png" alt="Likes">
                         <span>{{Tractoras.likes.length}}</span>

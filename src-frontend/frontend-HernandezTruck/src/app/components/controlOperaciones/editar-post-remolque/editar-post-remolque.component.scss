@@ -17,6 +17,11 @@
     width: 25%;
 }
 
-button > span{
-    font-size: 30px;
+.mat-mdc-raised-button.mat-primary{
+    --mdc-protected-button-container-color:#73A9BF !important;
+    --mdc-protected-button-label-text-color: black !important;
+}
+
+span{
+    font-size: 32px;
 }

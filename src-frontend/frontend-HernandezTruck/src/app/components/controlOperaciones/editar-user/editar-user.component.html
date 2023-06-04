@@ -39,7 +39,7 @@
                         <label for="DNIUser" name="DNIlabel">DNI *</label>
                         <mat-form-field class="width" hintLabel="Máximo 9 características" appearance="fill">
                             <input matInput id="DNIinput" [(ngModel)]="user.dni" name="DNI" formControlName="DNI" #input
-                                maxlength="9" placeholder="12345678X" required>
+                                maxlength="9" placeholder="12345678X"  required/>
                             <mat-hint align="end">{{input.value.length}}/9</mat-hint>
                             <mat-error>Ingrese Correctamente el DNI</mat-error>
                         </mat-form-field>
@@ -91,8 +91,8 @@
                                         <input matInput id="PasswRepeatdinput" [(ngModel)]="passwd.contrasenaActual"
                                             formControlName="ConfirmPassword" name="ConfirmPassword"
                                             [type]="hide ? 'password' : 'text'" required>
-                                        <mat-error *ngIf="validatorInput('ConfirmPassword','MatchPassword')">Las contraseñas no
-                                            coinciden</mat-error>
+                                        <mat-error *ngIf="validatorInput('ConfirmPassword','MatchPassword')">
+                                            Las contraseñas no coinciden</mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="modal-footer m-auto">

@@ -37,3 +37,9 @@ button{
     border-radius: 5px;
     height: fit-content;
 }
+
+@media (max-width:989px){
+    .text{
+        text-align: center;
+    }
+}

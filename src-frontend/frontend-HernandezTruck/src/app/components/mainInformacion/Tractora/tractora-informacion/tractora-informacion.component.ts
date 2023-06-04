@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { PostService } from 'src/app/services/Post/post.service';
 import { PostVehicle } from 'src/app/models/PostVehiculo';
-import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from './../../../../services/Usuario/user.service';
@@ -65,7 +64,6 @@ export class TractoraInformacionComponent {
       inputs.forEach(m => {
         m.classList.remove('mdc-checkbox--disabled')
         if (m.textContent != marcaCamion) {
-          console.log(m.attributes);
           m.attributes[5].value = 'true';
           m.classList.add('mdc-checkbox--disabled')
         }
@@ -126,9 +124,6 @@ export class TractoraInformacionComponent {
     if (this.arrayTractora.length > 0) {
       this.arraydatos = arrayAux;
     }
-
-    console.log(this.arrayTractora);
-    console.log(this.arraydatos);
   }
 
 

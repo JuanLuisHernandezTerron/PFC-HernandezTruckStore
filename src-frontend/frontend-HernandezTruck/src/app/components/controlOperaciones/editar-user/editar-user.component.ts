@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+
 import { AuthService } from "./../../../services/auth.service";
 import { Router } from "@angular/router";
-import { Validate } from "./../../registro/matchPWD";
 import { UserService } from 'src/app/services/Usuario/user.service';
 import { ChangeDetectorRef } from '@angular/core';
 
@@ -37,10 +37,8 @@ export class EditarUserComponent implements OnInit{
               private userService: UserService,
               private cdref: ChangeDetectorRef,
               ) {
-    this.validatorRegister();
+        this.validatorRegister();
   }
-
-
 
   ngOnInit(): void {
     let idUser = this.userService.getInfoToken()
@@ -63,7 +61,7 @@ export class EditarUserComponent implements OnInit{
       email : new FormControl('', [Validators.required, Validators.email]),
       password : new FormControl('', [Validators.required,Validators.pattern('^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$')]),
       ConfirmPassword : new FormControl('', [Validators.required]),
-      DNI : new FormControl('', [Validators.required,Validators.pattern('^[0-9]{8,8}[A-Za-z]$')]),
+      DNI : new FormControl({value:'',disabled:true}, [Validators.required,Validators.pattern('^[0-9]{8,8}[A-Za-z]$')]),
       telefono : new FormControl('',[Validators.required, Validators.pattern("^[0-9]{9}$")]),
       direccion : new FormControl('', [Validators.required])
     });
