@@ -25,10 +25,10 @@ COPY . /app
 # Construir la aplicación Angular
 RUN npm run build
 # Establecer una imagen más liviana arrancar la aplicación Angular
-FROM nginx:latest
+FROM nginx:alpine
 # Copiar los archivos compilados al directorio de contenido estático de Nginx
 COPY --from=builder /app/dist/* /usr/share/nginx/html/
-ADD nginx.conf .
+COPY ./nginx.conf  /etc/nginx/conf.d/default.conf
 # Expone el puerto en el que se ejecutará el frontend
 EXPOSE 80
 # Define el comando de inicio del contenedor

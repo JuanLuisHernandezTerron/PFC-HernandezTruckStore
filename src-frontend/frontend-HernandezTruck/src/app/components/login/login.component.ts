@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
   }
 
   envioPasswd() {
-    let emailValue = document.querySelectorAll('input')[3].value;
+    let emailValue = document.querySelectorAll('input')[2].value;
     let warning = document.getElementById('dangerWarningPasswd');
     let emailObject = {
       email: emailValue

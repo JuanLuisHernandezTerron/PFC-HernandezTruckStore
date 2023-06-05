@@ -41,7 +41,7 @@ export class MainUserComponent implements OnInit {
       this.arraydatosLikes.sort((a,b) =>{return b.likes.length - a.likes.length});
       this.arraydatosLikes.splice(3,this.arraydatosLikes.length);
       this.arraydatos.splice(3,this.arraydatos.length);
-    },300)
+    },500)
 
   }
 

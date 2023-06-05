@@ -66,7 +66,7 @@ export class RegistroComponent implements OnInit {
           console.log(res)
           if (res.status === 'Ingresado Correctamente') {
             localStorage.setItem('token',res.token);
-            this.router.navigateByUrl('/mainUser');
+            this.router.navigateByUrl('/mainUser').then(()=>{window.location.reload()});
           }else{
             this.router.navigateByUrl('/register');
           }

@@ -42,9 +42,11 @@ export class NavigationComponent implements OnInit{
       this.userInfo = data;
     })
 
-    this.Userservice.getInfoUsuario(this.getRol()).subscribe((data) => {
-      this.users = data;
-    });
+    if (this.getRol()) {
+      this.Userservice.getInfoUsuario(this.getRol()).subscribe((data) => {
+        this.users = data;
+      });
+    }
 
 
     let backdrop = document.querySelector('.modal-backdrop') as HTMLDivElement;
