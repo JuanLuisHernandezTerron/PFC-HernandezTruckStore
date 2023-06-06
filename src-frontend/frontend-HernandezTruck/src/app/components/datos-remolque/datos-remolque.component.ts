@@ -68,6 +68,7 @@ export class DatosRemolqueComponent implements OnInit{
 
 
   ingresarRemolque(){
+    this.formData = new FormData();
     this.formData.append('_id',this.semiremolque._id),
     this.formData.append('tipoSemiremolque',this.semiremolque.tipoSemiremolque),
     this.formData.append('tipoEje',this.semiremolque.tipoEje),
@@ -85,6 +86,7 @@ export class DatosRemolqueComponent implements OnInit{
     this.formData.append('vehiculo',this.semiremolque.vehiculo),
     this.formData.append('tipoVehiculo',this.semiremolque.tipoVehiculo),
     this.formData.append('ejes',this.semiremolque.ejes),    
+    this.formData.append('media',this.imagenesArray);
 
     this.postservice.registroPostSemiRemolque(this.formData).subscribe(
       res =>{
@@ -96,6 +98,7 @@ export class DatosRemolqueComponent implements OnInit{
         if (err.error.error === 'Vehiculo no Introducido,La matrícula ya está ingresada en nuestra Base de Datos') {
           let warning = document.getElementById('dangerWarning');
           warning.classList.add('credentails');
+          this.formData = new FormData()
         }
       }
     )
@@ -105,7 +108,6 @@ export class DatosRemolqueComponent implements OnInit{
     for (let index = 0; index < event.target.files.length; index++) {
       console.log(event.target.files);
       this.imagenesArray = event.target.files[index];
-      this.formData.append('media',this.imagenesArray);
     }
   }
 }

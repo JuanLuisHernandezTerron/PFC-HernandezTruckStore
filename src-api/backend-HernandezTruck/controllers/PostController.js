@@ -4,7 +4,7 @@ const cabezatractora = require('../models/Tractora');
 const semiremolque = require('../models/Semiremolque')
 const Usuario = require('../models/Usuario');
 
-const getAllPost = async function(req,res){
+const getAllPost = async function (req, res) {
   try {
     consultaPost = await Post.find({}).populate('informacionUser.idUsuarioVendedor').populate('informacionUser.idVehiculo').exec()
     if (consultaPost) {
@@ -15,7 +15,7 @@ const getAllPost = async function(req,res){
   }
 }
 
-const getCountAlquiler = async function (req,res){
+const getCountAlquiler = async function (req, res) {
   try {
     consultaAlquilerPost = await Post.count({}).where('tipo_publicacion').equals('Alquilar').populate('informacionUser.idUsuarioVendedor').populate('informacionUser.idVehiculo').exec()
     if (consultaAlquilerPost) {
@@ -26,7 +26,7 @@ const getCountAlquiler = async function (req,res){
   }
 }
 
-const getCountVenta = async function (req,res){
+const getCountVenta = async function (req, res) {
   try {
     consultaAlquilerPost = await Post.count({}).where('tipo_publicacion').equals('Vender').populate('informacionUser.idUsuarioVendedor').populate('informacionUser.idVehiculo').exec()
     if (consultaAlquilerPost) {
@@ -37,24 +37,24 @@ const getCountVenta = async function (req,res){
   }
 }
 
-const eliminarPost = async function(req,res) {
-  try{
-    await Vehiculo.deleteOne({_id:req.params.idVehiculo})
+const eliminarPost = async function (req, res) {
+  try {
+    await Vehiculo.deleteOne({ _id: req.params.idVehiculo })
     if (req.params.tipoVehiculo === 'cabezatractora') {
-        await cabezatractora.deleteOne({_id:req.params.idVehiculo})
-       }else if(req.params.tipoVehiculo === 'semirremolque'){
-        await semiremolque.deleteOne({_id:req.params.idVehiculo})
+      await cabezatractora.deleteOne({ _id: req.params.idVehiculo })
+    } else if (req.params.tipoVehiculo === 'semirremolque') {
+      await semiremolque.deleteOne({ _id: req.params.idVehiculo })
     }
-    await Post.deleteOne({_id:req.params.idPost})
+    await Post.deleteOne({ _id: req.params.idPost })
     res.status(200).json('Post Eliminado Correctamente')
-  }catch(err){
+  } catch (err) {
     res.status(401).json({ status: "error", error: "Post eliminado" })
   }
 }
 
-const anadirPostReport = async function (req,res){
+const anadirPostReport = async function (req, res) {
   try {
-    consulta = Post.updateOne({ _id: req.params.idPost }, {$addToSet:{Reports:req.params.idUser}}).exec();
+    consulta = Post.updateOne({ _id: req.params.idPost }, { $addToSet: { Reports: req.params.idUser } }).exec();
     res.status(200).json({ status: "Post Reportador Correctamente" })
   } catch (err) {
     res.status(401).json({ status: "error", error: "Post no ingresado" })
@@ -63,7 +63,7 @@ const anadirPostReport = async function (req,res){
 
 const eliminarUsuarioPostFavoritos = async function (req, res) {
   try {
-    consulta = Post.updateOne({ _id: req.params.idPost }, {$pull:{likes:req.params.idUser}}).exec();
+    consulta = Post.updateOne({ _id: req.params.idPost }, { $pull: { likes: req.params.idUser } }).exec();
     res.status(200).json({ status: "Post Eliminado Correctamente" })
   } catch (err) {
     res.status(401).json({ status: "error", error: "Post no ingresado" })
@@ -72,7 +72,7 @@ const eliminarUsuarioPostFavoritos = async function (req, res) {
 
 const insertUsuarioPostFavoritos = async function (req, res) {
   try {
-    consulta = Post.updateOne({ _id: req.params.idPost }, {$push:{likes:[req.params.idUser]}}).exec();
+    consulta = Post.updateOne({ _id: req.params.idPost }, { $push: { likes: [req.params.idUser] } }).exec();
     res.status(200).json({ status: "Post IngresadoCorrectamente" })
   } catch (err) {
     res.status(401).json({ status: "error", error: "Post no ingresado" })
@@ -136,7 +136,7 @@ const updatePost = async function (req, res) {
       precio: req.body.precio,
       color: req.body.color
     })
-    await Vehiculo.findByIdAndUpdate({_id:req.params.idVehiculo},vehicle).exec();
+    await Vehiculo.findByIdAndUpdate({ _id: req.params.idVehiculo }, vehicle).exec();
     const post = {
       titulo: req.body.titulo,
       fecha_post: req.body.fecha_post,
@@ -148,7 +148,7 @@ const updatePost = async function (req, res) {
         idVehiculo: req.body.idVehiculo
       }]
     }
-    await Post.findByIdAndUpdate({_id:req.params.idPost},post).exec();
+    await Post.findByIdAndUpdate({ _id: req.params.idPost }, post).exec();
 
     res.json({ status: "Actualizado Correctamente" })
     if (req.body.tipoVehiculo === "cabezatractora") {
@@ -163,7 +163,7 @@ const updatePost = async function (req, res) {
           retarder: req.body.retarde,
           vehiculo: req.body._id
         }
-        await cabezatractora.findByIdAndUpdate({_id:req.params.idVehiculo},cabezaTractoraVehiculo).exec()
+        await cabezatractora.findByIdAndUpdate({ _id: req.params.idVehiculo }, cabezaTractoraVehiculo).exec()
 
       } catch (e) {
         console.log(e)
@@ -178,7 +178,7 @@ const updatePost = async function (req, res) {
           ADR: req.body.ADR,
           vehiculo: req.body._id
         }
-        await semiremolque.findByIdAndUpdate({_id:req.params.idVehiculo},SemiremolqueVehiculo).exec()
+        await semiremolque.findByIdAndUpdate({ _id: req.params.idVehiculo }, SemiremolqueVehiculo).exec()
 
       } catch (err) {
         res.json({ status: "error", error: "No se ha podido registrar el Semiremolque" })
@@ -192,65 +192,77 @@ const updatePost = async function (req, res) {
 
 const newPost = async function (req, res) {
   try {
-    const vehicle = ({
-      _id: req.body._id,
-      ejes: req.body.ejes,
-      mma: req.body.mma,
-      tipoVehiculo: req.body.tipoVehiculo,
-      fechaMatriculacion: req.body.fechaMatriculacion,
-      Marca: req.body.Marca,
-      modelo: req.body.modelo,
-      precio: req.body.precio,
-      color: req.body.color
-    })
-    await Vehiculo.create(vehicle)
-    const post = {
-      titulo: req.body.titulo,
-      fecha_post: req.body.fecha_post,
-      tipo_publicacion: req.body.tipo_publicacion,
-      localizacion: req.body.localizacion,
-      media:'http://localhost:3000/uploads/'+req.file.filename,
-      informacionUser: [{
-        idUsuarioVendedor: req.body.idUsuarioVendedor,
-        idVehiculo: req.body.idVehiculo
-      }]
-    }
-    await Post.create(post)
+    consultaVehiculo = await Vehiculo.findById({ '_id': req.body._id });
+    if (consultaVehiculo == null) {
+      const vehicle =({
+        _id: req.body._id,
+        ejes: req.body.ejes,
+        mma: req.body.mma,
+        tipoVehiculo: req.body.tipoVehiculo,
+        fechaMatriculacion: req.body.fechaMatriculacion,
+        Marca: req.body.Marca,
+        modelo: req.body.modelo,
+        precio: req.body.precio,
+        color: req.body.color
+      })
+      await Vehiculo.create(vehicle)
+      console.log('ANTES DATOS');
+      console.log(req.body.titulo);
+      console.log(req.body.tipo_publicacion);
+      console.log(req.file);
+      console.log(req.body.idUsuarioVendedor);
+      console.log(req.body.idVehiculo);
+      const post = ({
+        titulo: req.body.titulo,
+        tipo_publicacion: req.body.tipo_publicacion,
+        media: 'http://localhost:3000/uploads/' + req.file.filename,
+        informacionUser: [{
+          idUsuarioVendedor: req.body.idUsuarioVendedor,
+          idVehiculo: req.body.idVehiculo
+        }]
+      })
+      await Post.create(post)
+      console.log('INGRESADO POST');
+      res.json({ status: "Ingresado Correctamente" })
+      if (req.body.tipoVehiculo === "cabezatractora") {
+        try {
+          const cabezaTractoraVehiculo = {
+            _id: req.body._id,
+            cv: req.body.cv,
+            adblue: req.body.adblue,
+            numeroDepositos: req.body.numeroDepositos,
+            kms: req.body.kms,
+            combustible: req.body.combustible,
+            retarder: req.body.retarde,
+            vehiculo: req.body._id
+          }
+          console.log(cabezaTractoraVehiculo);
+          await cabezatractora.create(cabezaTractoraVehiculo)
 
-    res.json({ status: "Ingresado Correctamente" })
-    if (req.body.tipoVehiculo === "cabezatractora") {
-      try {
-        const cabezaTractoraVehiculo = {
-          _id: req.body._id,
-          cv: req.body.cv,
-          adblue: req.body.adblue,
-          numeroDepositos: req.body.numeroDepositos,
-          kms: req.body.kms,
-          combustible: req.body.combustible,
-          retarder: req.body.retarde,
-          vehiculo: req.body._id
+        } catch (e) {
+          res.json({ status: "error", error: "Usuario no registrado tractora" })
         }
-        await cabezatractora.create(cabezaTractoraVehiculo)
-
-      } catch (e) {
-        res.json({ status: "error", error: "Usuario no registrado tractora" })
-      }
-    } else if (req.body.tipoVehiculo === 'semirremolque') {
-      try {
-        const SemiremolqueVehiculo = {
-          _id: req.body._id,
-          tipoSemiremolque: req.body.tipoSemiremolque,
-          tipoEje: req.body.tipoEje,
-          ADR: req.body.ADR,
-          vehiculo: req.body._id
+      } else if (req.body.tipoVehiculo === 'semirremolque') {
+        try {
+          const SemiremolqueVehiculo = {
+            _id: req.body._id,
+            tipoSemiremolque: req.body.tipoSemiremolque,
+            tipoEje: req.body.tipoEje,
+            ADR: req.body.ADR,
+            vehiculo: req.body._id
+          }
+          console.log(SemiremolqueVehiculo);
+          await semiremolque.create(SemiremolqueVehiculo)
+        } catch (err) {
+          res.json({ status: "error", error: "Usuario no registrado Semiremolque" })
         }
-        await semiremolque.create(SemiremolqueVehiculo)
-      } catch (err) {
-        res.json({ status: "error", error: "Usuario no registrado Semiremolque" })
       }
+    }else{
+      res.status(404).json({ status: "error", error: "Vehiculo no Introducido,La matrícula ya está ingresada en nuestra Base de Datos" })
     }
+
   } catch (err) {
-    res.status(401).json({ status: "error", error: "Vehiculo no Introducido,La matrícula ya está ingresada en nuestra Base de Datos" })
+    res.status(404).json({ status: "error", error: "Vehiculo no Introducido,La matrícula ya está ingresada en nuestra Base de Datos" })
   }
 }
 

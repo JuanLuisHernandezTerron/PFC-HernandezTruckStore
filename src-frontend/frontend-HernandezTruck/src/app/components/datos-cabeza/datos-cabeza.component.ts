@@ -71,6 +71,7 @@ export class DatosCabezaComponent implements OnInit{
   }
 
   ingresarTractora():void{
+    this.formData = new FormData()
     this.formData.append('_id',this.cabezaTractora._id);
     this.formData.append('ejes',this.cabezaTractora.ejes);
     this.formData.append('mma',this.cabezaTractora.mma);
@@ -81,7 +82,7 @@ export class DatosCabezaComponent implements OnInit{
     this.formData.append('precio',this.cabezaTractora.precio);
     this.formData.append('color',this.cabezaTractora.color);
     this.formData.append('cv',this.cabezaTractora.cv);
-    this.formData.append('media',this.cabezaTractora.media);
+    this.formData.append('media',this.imagenesArray);
     this.formData.append('adblue',JSON.stringify(this.cabezaTractora.adblue));
     this.formData.append('numeroDepositos',this.cabezaTractora.numeroDepositos);
     this.formData.append('kms',this.cabezaTractora.kms);
@@ -92,29 +93,27 @@ export class DatosCabezaComponent implements OnInit{
     this.formData.append('idUsuarioVendedor',this.cabezaTractora.idUsuarioVendedor);
     this.formData.append('idVehiculo',this.cabezaTractora.idVehiculo);
     this.formData.append('vehiculo',this.cabezaTractora.vehiculo);
-
-
+    
     this.postservice.registroPostTractora(this.formData).subscribe(
-          res =>{
-            if (res.status === 'Ingresado Correctamente') {
-              this.route.navigate(['/mainUser']); 
-            }
-        },
-          err=>{
+      res =>{
+        if (res.status === 'Ingresado Correctamente') {
+          this.route.navigate(['/mainUser']); 
+        }
+      },
+      err=>{
+            console.log(this.formData);
             if (err.error.error === 'Vehiculo no Introducido,La matrícula ya está ingresada en nuestra Base de Datos') {
               let warning = document.getElementById('dangerWarning');
               warning.classList.add('credentails');
+              this.formData = new FormData()
             }
           }
-            
     )
   }
 
   imagenesChange(event){
     for (let index = 0; index < event.target.files.length; index++) {
-      console.log(event.target.files);
       this.imagenesArray = event.target.files[index];
-      this.formData.append('media',this.imagenesArray);
     }
   }
 

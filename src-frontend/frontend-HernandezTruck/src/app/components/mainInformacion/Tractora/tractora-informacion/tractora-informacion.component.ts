@@ -59,7 +59,8 @@ export class TractoraInformacionComponent {
   filtrar(marcaCamion: String, evento) {
     let contador = 0;
     let inputs = document.querySelectorAll('mat-checkbox');
-
+    console.log(inputs);
+    
     if (evento.checked) {
       inputs.forEach(m => {
         m.classList.remove('mdc-checkbox--disabled')
