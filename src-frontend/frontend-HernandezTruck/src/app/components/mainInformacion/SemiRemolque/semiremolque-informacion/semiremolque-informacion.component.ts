@@ -57,13 +57,11 @@ export class SemiremolqueInformacionComponent {
   
       if (evento.checked) {
         inputs.forEach(m => {
-          m.classList.remove('mdc-checkbox--disabled')
+          m.removeAttribute('disabled');
           if (m.textContent != marcaCamion) {
-            console.log(m.attributes);
-            m.attributes[5].value = 'true';
+            m.setAttribute('disabled','');
             m.classList.add('mdc-checkbox--disabled')
           }
-          console.log(m.attributes);
         })
   
         setTimeout(() => {
@@ -80,7 +78,7 @@ export class SemiremolqueInformacionComponent {
         this.cargarInfo();
   
         inputs.forEach(m => {
-          m.attributes[5].value = 'false';
+          m.removeAttribute('disabled');
           m.classList.remove('mdc-checkbox--disabled')
         })
       }

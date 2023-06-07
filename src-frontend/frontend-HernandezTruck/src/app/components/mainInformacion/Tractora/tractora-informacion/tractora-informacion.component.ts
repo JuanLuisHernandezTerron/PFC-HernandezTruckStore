@@ -63,10 +63,11 @@ export class TractoraInformacionComponent {
     
     if (evento.checked) {
       inputs.forEach(m => {
-        m.classList.remove('mdc-checkbox--disabled')
+        m.removeAttribute('disabled');
         if (m.textContent != marcaCamion) {
-          m.attributes[5].value = 'true';
+          m.setAttribute('disabled','');
           m.classList.add('mdc-checkbox--disabled')
+
         }
         console.log(m.attributes);
       })
@@ -85,8 +86,9 @@ export class TractoraInformacionComponent {
       this.cargarInfo();
 
       inputs.forEach(m => {
-        m.attributes[5].value = 'false';
+        m.removeAttribute('disabled');
         m.classList.remove('mdc-checkbox--disabled')
+
       })
     }
   }

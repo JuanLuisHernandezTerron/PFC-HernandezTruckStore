@@ -166,7 +166,6 @@ const updatePost = async function (req, res) {
         await cabezatractora.findByIdAndUpdate({ _id: req.params.idVehiculo }, cabezaTractoraVehiculo).exec()
 
       } catch (e) {
-        console.log(e)
         res.json({ status: "error", error: "Usuario no registrado tractora" })
       }
     } else if (req.body.tipoVehiculo === 'semirremolque') {
@@ -206,12 +205,6 @@ const newPost = async function (req, res) {
         color: req.body.color
       })
       await Vehiculo.create(vehicle)
-      console.log('ANTES DATOS');
-      console.log(req.body.titulo);
-      console.log(req.body.tipo_publicacion);
-      console.log(req.file);
-      console.log(req.body.idUsuarioVendedor);
-      console.log(req.body.idVehiculo);
       const post = ({
         titulo: req.body.titulo,
         tipo_publicacion: req.body.tipo_publicacion,
@@ -222,7 +215,6 @@ const newPost = async function (req, res) {
         }]
       })
       await Post.create(post)
-      console.log('INGRESADO POST');
       res.json({ status: "Ingresado Correctamente" })
       if (req.body.tipoVehiculo === "cabezatractora") {
         try {
@@ -236,7 +228,6 @@ const newPost = async function (req, res) {
             retarder: req.body.retarde,
             vehiculo: req.body._id
           }
-          console.log(cabezaTractoraVehiculo);
           await cabezatractora.create(cabezaTractoraVehiculo)
 
         } catch (e) {
@@ -251,7 +242,6 @@ const newPost = async function (req, res) {
             ADR: req.body.ADR,
             vehiculo: req.body._id
           }
-          console.log(SemiremolqueVehiculo);
           await semiremolque.create(SemiremolqueVehiculo)
         } catch (err) {
           res.json({ status: "error", error: "Usuario no registrado Semiremolque" })
