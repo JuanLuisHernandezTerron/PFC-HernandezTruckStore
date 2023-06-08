@@ -58,7 +58,7 @@ export class EditarUserComponent implements OnInit{
     this.formGroup = this.fb.group({
       nombre : new FormControl('', [Validators.required, Validators.minLength(5)]),
       apellidos : new FormControl('', [Validators.required, Validators.minLength(5)]),
-      email : new FormControl('', [Validators.required, Validators.email]),
+      email : new FormControl({value:'',disabled:true}, [Validators.required, Validators.email]),
       password : new FormControl('', [Validators.required,Validators.pattern('^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$')]),
       ConfirmPassword : new FormControl('', [Validators.required]),
       DNI : new FormControl({value:'',disabled:true}, [Validators.required,Validators.pattern('^[0-9]{8,8}[A-Za-z]$')]),
