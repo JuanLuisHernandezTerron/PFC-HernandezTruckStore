@@ -1,17 +1,3 @@
-# FROM node:latest as build-step
-
-# WORKDIR /app
-
-# COPY package.json ./
-
-# RUN npm install
-
-# COPY . .
-
-# EXPOSE 4200
-
-# CMD ["npm", "start"]
-
 # Imagen de node que se va a usar (establecer vuestra versión, en el ejemplo es la 14)
 FROM node:14 as builder
 # Directorio de trabajo en el contenedor
@@ -19,7 +5,8 @@ WORKDIR /app
 # Copiar el archivo package.json y package-lock.json al contenedor para que se puedan instalar las dependencias
 COPY package*.json ./ 
 # Instalar las dependencias
-RUN npm install 
+RUN npm install
+# Copiamos todos los ficheros y directorios para el correcto funcionamiento de la aplicación.   
 COPY . /app
 
 # Construir la aplicación Angular

@@ -63,8 +63,8 @@
                     </div>
                     <!---->
                     <p class="ms-5 pPaswd">Click en el boton para cambiar la contraseña</p>
-                    <button mat-button class="mb-3 ms-5 ms-lg-0 botonLogin" data-bs-toggle="modal" data-dismiss="modal"
-                        data-backdrop="false" data-bs-target="#exampleModalPassword" class="ms-5 mb-5">Click Aqui</button>
+                    <p class="ms-5 ms-lg-0 botonLogin" data-bs-toggle="modal" data-dismiss="modal"
+                        data-backdrop="false" data-bs-target="#exampleModalPassword" class="ms-5 mb-3 cursor">Click Aqui</p>
 
                     <div class="modal fade" id="exampleModalPassword" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
@@ -94,6 +94,11 @@
                                         <mat-error *ngIf="validatorInput('ConfirmPassword','MatchPassword')">
                                             Las contraseñas no coinciden</mat-error>
                                     </mat-form-field>
+                                </div>
+                                <div class="row d-none" id="dangerWarningPasswd">
+                                    <div class="alert alert-danger col-9 mt-3 mb-3 m-auto" role="alert">
+                                        Introduzca Correctamente su Password por favor
+                                    </div>
                                 </div>
                                 <div class="modal-footer m-auto">
                                     <button mat-raised-button (click)="changePasswd()">Confirmar Cambio de Contraseña</button>

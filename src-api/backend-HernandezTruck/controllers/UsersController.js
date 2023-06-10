@@ -65,9 +65,11 @@ const updatePasswd = async function (req, res) {
         consulta = Usuario.findOneAndUpdate({ email: req.body.email }, { contrasena: hash }).exec();
         res.status(200).json({ status: "Password Actualizado Correctamente" })
       })
+    }else{
+      res.json({status:"Contraseña mal intrododucida"})
     }
   } catch (err) {
-    res.status(401).json({ status: "error", error: "Password no Actualizada" })
+    return res.status(401).json({ status: "error", error: "Password no Actualizada" })
   }
 }
 

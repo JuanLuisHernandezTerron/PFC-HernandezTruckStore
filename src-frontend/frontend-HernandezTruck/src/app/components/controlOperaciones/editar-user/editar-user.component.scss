@@ -26,6 +26,10 @@ h1{
     margin-left: 8px;
 }
 
+.cursor{
+    cursor: pointer;
+}
+
 .width{
     width: 75%;
     height: 70px;
@@ -67,6 +71,11 @@ label{
         justify-content: center;
     }
 }
+
+.credentails{
+    display: block !important;
+}
+
 
 .mat-mdc-raised-button.mat-primary{
     --mdc-protected-button-container-color:#186988 !important;

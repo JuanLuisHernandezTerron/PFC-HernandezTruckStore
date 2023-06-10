@@ -43,7 +43,6 @@ export class EditarUserComponent implements OnInit{
   ngOnInit(): void {
     let idUser = this.userService.getInfoToken()
     this.userService.getInfoUsuarioID(idUser).subscribe((data)=>{
-      console.log(data.consulta)
       this.user.nombre = data.consulta.nombre;
       this.user.apellidos = data.consulta.apellidos;
       this.user.email = data.consulta.email;
@@ -76,10 +75,14 @@ export class EditarUserComponent implements OnInit{
   }
 
   changePasswd(){
-    console.log(this.passwd)
-    this.userService.updatePassword(this.passwd).subscribe((data)=>{
+    let warning = document.getElementById('dangerWarningPasswd');
+
+    this.userService.updatePassword(this.passwd).subscribe((data)=>{      
       if(data.status == 'Password Actualizado Correctamente'){
+        warning.classList.remove('credentails');
         window.location.reload();
+      }else{        
+        warning.classList.add('credentails');
       }
     })
   }
